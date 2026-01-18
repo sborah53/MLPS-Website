@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MLPS | Machine Learning for Physical Sciences</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --bg-body: #F5F5F7;
+            --text-primary: #1D1D1F;
+            --text-secondary: #86868B;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-primary);
+            -webkit-font-smoothing: antialiased;
+            overflow-y: scroll; /* Prevent layout shift when switching tabs */
+        }
+
+        /* Glassmorphism Navigation */
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        /* Apple-style Bento Cards */
+        .card {
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            overflow: hidden;
+        }
+        
+        .card:hover {
+            transform: scale(1.01);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Typography Utilities */
+        .heading-hero {
+            letter-spacing: -0.04em;
+            line-height: 1.05;
+        }
+        
+        .heading-section {
+            letter-spacing: -0.02em;
+        }
+
+        /* Navigation Active State */
+        .nav-link.active {
+            color: black;
+            font-weight: 600;
+        }
+
+        /* Fade Animation for Tab Switching */
+        .fade-in {
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Hide elements utility */
+        .hidden-tab {
+            display: none;
+        }
+
+        /* Horizontal Scroll Snap for Research Areas */
+        .snap-x-mandatory {
+            scroll-snap-type: x mandatory;
+        }
+        .snap-center {
+            scroll-snap-align: center;
+        }
+    </style>
+</head>
+<body class="selection:bg-black selection:text-white flex flex-col min-h-screen">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
+            <a href="#" onclick="switchTab('home')" class="text-lg font-semibold tracking-tight text-black flex items-center gap-2 cursor-pointer">
+                <i data-lucide="atom" class="w-5 h-5"></i> MLPS Group
+            </a>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-6 lg:space-x-8 text-xs font-medium text-gray-500 tracking-wide uppercase">
+                <button onclick="switchTab('home')" class="nav-link hover:text-black transition-colors" id="nav-home">Home</button>
+                <button onclick="switchTab('about')" class="nav-link hover:text-black transition-colors" id="nav-about">About PI</button>
+                <button onclick="switchTab('group')" class="nav-link hover:text-black transition-colors" id="nav-group">Group</button>
+                <button onclick="switchTab('research')" class="nav-link hover:text-black transition-colors" id="nav-research">Research</button>
+                <button onclick="switchTab('conferences')" class="nav-link hover:text-black transition-colors" id="nav-conferences">Conferences</button>
+                <button onclick="switchTab('resources')" class="nav-link hover:text-black transition-colors" id="nav-resources">Resources</button>
+                <button onclick="switchTab('teaching')" class="nav-link hover:text-black transition-colors" id="nav-teaching">Teaching</button>
+                <button onclick="switchTab('gallery')" class="nav-link hover:text-black transition-colors" id="nav-gallery">Gallery</button>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-gray-500 hover:text-black" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden absolute top-14 left-0 w-full bg-white/95 backdrop-blur-xl border-b border-gray-100 p-6 flex flex-col space-y-4 shadow-xl md:hidden">
+            <button onclick="switchTab('home'); toggleMobileMenu()" class="text-left text-sm font-medium text-gray-800">Home</button>
+            <button onclick="switchTab('about'); toggleMobileMenu()" class="text-left text-sm font-medium text-gray-800">About PI</button>
+            <button onclick="switchTab('group'); toggleMobileMenu()" class="text-left text-sm font-medium text-gray-800">Group</button>
+            <button onclick="switchTab('research'); toggleMobileMenu()" class="text-left text-sm font-medium text-gray-800">Research</button>
+            <button onclick="switchTab('conferences'); toggleMobileMenu()" class="text-left text-sm font-medium text-gray-800">Conferences</button>
+            <button onclick="switchTab('resources'); toggleMobileMenu()" class="text-left text-sm font-medium text-gray-800">Resources</button>
+            <button onclick="switchTab('teaching'); toggleMobileMenu()" class="text-left text-sm font-medium text-gray-800">Teaching</button>
+            <button onclick="switchTab('gallery'); toggleMobileMenu()" class="text-left text-sm font-medium text-gray-800">Gallery</button>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="pt-24 pb-20 flex-grow px-6 max-w-7xl mx-auto w-full">
+
+        <!-- ================= VIEW: HOME ================= -->
+        <div id="view-home" class="view-section fade-in">
+            <!-- Hero Section -->
+            <section class="mb-24 text-center md:text-left">
+                <div class="flex flex-col md:flex-row items-center justify-between">
+                    <div class="max-w-3xl py-12">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-200/50 text-gray-600 text-[10px] font-bold uppercase tracking-widest mb-6">
+                            <span>IIT Hyderabad</span>
+                        </div>
+                        <h1 class="heading-hero text-5xl md:text-8xl font-bold text-black mb-6">
+                            Machine Learning <br/>
+                            <span class="text-gray-400">for Physical Sciences.</span>
+                        </h1>
+                        <p class="text-xl md:text-2xl text-gray-500 font-light leading-relaxed max-w-2xl">
+                            Bridging AI & Quantum Technology. The Machine Learning for Physical Sciences (MLPS) group explores the intersection of quantum computing, control theory, and artificial intelligence.
+                        </p>
+                        <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                            <button onclick="switchTab('research')" class="bg-black text-white px-8 py-3 rounded-full font-medium hover:bg-gray-800 transition-colors">
+                                View Research
+                            </button>
+                            <a href="#openings" class="bg-white text-black border border-gray-200 px-8 py-3 rounded-full font-medium hover:bg-gray-50 transition-colors flex items-center justify-center gap-2">
+                                Join Us <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Animated Abstract Graphic -->
+                    <div class="relative w-64 h-64 md:w-96 md:h-96 opacity-60">
+                        <div class="absolute inset-0 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl animate-blob"></div>
+                        <div class="absolute top-0 -right-4 w-72 h-72 bg-purple-400 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000"></div>
+                        <div class="absolute -bottom-8 left-20 w-72 h-72 bg-pink-400 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000"></div>
+                    </div>
+                </div>
+            </section>
+
+             <!-- Research Areas (Horizontal Scroll) -->
+             <section class="mb-24">
+                <div class="flex items-center justify-between mb-8">
+                    <h2 class="text-2xl font-semibold heading-section">Primary Research Areas</h2>
+                    <div class="flex gap-2">
+                         <button onclick="document.getElementById('areas-container').scrollBy({left: -300, behavior: 'smooth'})" class="p-2 rounded-full bg-white border hover:bg-gray-50"><i data-lucide="arrow-left" class="w-4 h-4"></i></button>
+                         <button onclick="document.getElementById('areas-container').scrollBy({left: 300, behavior: 'smooth'})" class="p-2 rounded-full bg-white border hover:bg-gray-50"><i data-lucide="arrow-right" class="w-4 h-4"></i></button>
+                    </div>
+                </div>
+                <div id="areas-container" class="flex overflow-x-auto gap-6 pb-8 snap-x-mandatory hide-scrollbar">
+                    <!-- Injected JS -->
+                </div>
+            </section>
+
+            <!-- Highlights (Bento Grid) -->
+            <section class="mb-24">
+                <div class="flex items-center justify-between mb-8">
+                    <h2 class="text-3xl font-semibold heading-section">Highlights</h2>
+                </div>
+                <div id="highlights-container" class="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-6 h-auto md:h-[600px]">
+                    <!-- Injected via JS -->
+                </div>
+            </section>
+
+            <!-- Openings / Contact Banner -->
+            <section id="openings" class="mb-24">
+                <div class="bg-black rounded-3xl p-10 md:p-16 text-center relative overflow-hidden">
+                    <div class="relative z-10">
+                        <h2 class="text-3xl font-bold text-white mb-4">Open Positions</h2>
+                        <p class="text-gray-400 max-w-2xl mx-auto mb-8 text-lg">
+                            We are looking for motivated PhD students and Postdocs interested in Quantum Machine Learning and Neuromorphic Computing.
+                        </p>
+                        <div class="flex flex-col md:flex-row justify-center gap-4">
+                            <a href="mailto:sangkha.borah@phy.iith.ac.in" class="bg-white text-black px-8 py-3 rounded-full font-bold hover:bg-gray-100 transition-colors inline-flex items-center justify-center gap-2">
+                                <i data-lucide="mail" class="w-4 h-4"></i> Contact PI
+                            </a>
+                            <button onclick="switchTab('about')" class="bg-transparent border border-gray-700 text-white px-8 py-3 rounded-full font-medium hover:bg-gray-900 transition-colors">
+                                Learn More
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Decor -->
+                    <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-blue-900/20 to-purple-900/20 pointer-events-none"></div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ================= VIEW: ABOUT PI ================= -->
+        <div id="view-about" class="view-section hidden-tab fade-in">
+             <div class="mb-12">
+                <h2 class="text-4xl font-bold mb-4">About the PI</h2>
+                <div class="h-1 w-20 bg-black rounded-full"></div>
+            </div>
+
+            <!-- Top Section: Split Layout (Intro & Experience) -->
+            <div class="bg-white rounded-t-3xl p-8 md:p-16 shadow-sm border-b border-gray-50 flex flex-col lg:flex-row gap-12 items-start">
+                
+                <!-- Left Column: Photo & Contact Dock -->
+                <div class="shrink-0 relative group w-full lg:w-1/3 sticky top-24">
+                    <div class="aspect-[3/4] rounded-2xl overflow-hidden shadow-lg bg-gray-200 relative mb-8">
+                        <!-- Placeholder for PI Image -->
+                        <img id="pi-image" src="" alt="Sangkha Borah" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
+                    </div>
+                    
+                    <!-- Innovative Contact Dock -->
+                    <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100">
+                        <h4 class="font-bold text-xs uppercase tracking-widest text-gray-400 mb-4 text-center">Connect</h4>
+                        
+                        <!-- Primary Details -->
+                        <div class="space-y-3 text-sm mb-6">
+                            <div class="flex items-center gap-3 text-gray-600">
+                                <i data-lucide="mail" class="w-4 h-4 shrink-0"></i>
+                                <a href="mailto:sangkha.borah@phy.iith.ac.in" class="hover:text-black break-all transition-colors">sangkha.borah@phy.iith.ac.in</a>
+                            </div>
+                            <div class="flex items-center gap-3 text-gray-600">
+                                <i data-lucide="map-pin" class="w-4 h-4 shrink-0"></i>
+                                <span>Dept. of Physics, IIT Hyderabad</span>
+                            </div>
+                        </div>
+
+                        <!-- Social Dock -->
+                        <div class="grid grid-cols-4 gap-2">
+                            <a href="https://scholar.google.com/citations?user=qfByhykAAAAJ&hl=en" target="_blank" class="flex items-center justify-center h-12 bg-white rounded-xl text-gray-600 hover:text-blue-600 hover:shadow-md hover:-translate-y-1 transition-all duration-300 border border-gray-100" title="Google Scholar">
+                                <i data-lucide="graduation-cap" class="w-5 h-5"></i>
+                            </a>
+                            <a href="#" target="_blank" class="flex items-center justify-center h-12 bg-white rounded-xl text-gray-600 hover:text-black hover:shadow-md hover:-translate-y-1 transition-all duration-300 border border-gray-100" title="GitHub">
+                                <i data-lucide="github" class="w-5 h-5"></i>
+                            </a>
+                            <a href="#" target="_blank" class="flex items-center justify-center h-12 bg-white rounded-xl text-gray-600 hover:text-blue-700 hover:shadow-md hover:-translate-y-1 transition-all duration-300 border border-gray-100" title="LinkedIn">
+                                <i data-lucide="linkedin" class="w-5 h-5"></i>
+                            </a>
+                            <a href="#" target="_blank" class="flex items-center justify-center h-12 bg-white rounded-xl text-gray-600 hover:text-black hover:shadow-md hover:-translate-y-1 transition-all duration-300 border border-gray-100" title="X (Twitter)">
+                                <i data-lucide="twitter" class="w-5 h-5"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Column: Bio & Experience Timeline -->
+                <div class="w-full lg:w-2/3">
+                    <h2 class="text-sm font-bold uppercase tracking-widest text-blue-600 mb-2">Principal Investigator</h2>
+                    <h3 class="text-4xl font-bold text-black mb-6" id="pi-name"></h3>
+                    <div class="prose prose-lg text-gray-600 font-light leading-relaxed mb-8" id="pi-bio"></div>
+                    
+                    <!-- Research Interests -->
+                    <h3 class="text-xl font-bold text-black mb-4">Current Research Interests</h3>
+                    <ul class="list-disc ml-5 space-y-2 text-gray-700 text-sm mb-12">
+                        <li>Machine Learning (RL) for quantum technology and computing applications.</li>
+                        <li>Quantum error correction (QEC).</li>
+                        <li>Quantum feedback control.</li>
+                        <li>Quantum ML and Neuromorphic computing.</li>
+                        <li>Applications of ML/QC for fundamental interdisciplinary research in physics, chemistry, and material science.</li>
+                    </ul>
+
+                     <!-- Professional Experience -->
+                     <h3 class="text-xl font-bold text-black mb-6">Research Career</h3>
+                     <div class="relative border-l border-gray-200 ml-3 space-y-8 pb-4">
+                         
+                         <!-- Item -->
+                         <div class="relative pl-8">
+                             <div class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-blue-600 border-4 border-white shadow-sm"></div>
+                             <div class="font-bold text-gray-900">May 2025 -- Present</div>
+                             <div class="text-lg text-gray-800 font-medium">Assistant Professor</div>
+                             <div class="text-gray-600">Department of Physics, Indian Institute of Technology Hyderabad.</div>
+                         </div>
+
+                         <!-- Item -->
+                         <div class="relative pl-8">
+                             <div class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-gray-300 border-4 border-white"></div>
+                             <div class="font-bold text-gray-900">Dec 2022 -- May 2025</div>
+                             <div class="text-lg text-gray-800 font-medium">Postdoctoral Researcher</div>
+                             <div class="text-gray-600">Marquardt Theory Division, Max Planck Institute for the Science of Light & University of Erlangen, Germany.</div>
+                             <div class="text-gray-500 text-xs mt-2 italic bg-gray-50 p-2 rounded inline-block">Munich Quantum Valley (MQV) Initiative. Advisor: Prof. Florian Marquardt.</div>
+                         </div>
+
+                         <!-- Item -->
+                         <div class="relative pl-8">
+                             <div class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-gray-300 border-4 border-white"></div>
+                             <div class="font-bold text-gray-900">Aug 2020 -- Nov 2022</div>
+                             <div class="text-lg text-gray-800 font-medium">Postdoctoral Researcher</div>
+                             <div class="text-gray-600">Quantum Machines Unit, OIST, Okinawa, Japan.</div>
+                             <div class="text-gray-500 text-xs mt-1 italic">Advisor: Prof. Jason Twamley.</div>
+                         </div>
+
+                         <!-- Item -->
+                         <div class="relative pl-8">
+                             <div class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-gray-300 border-4 border-white"></div>
+                             <div class="font-bold text-gray-900">Apr 2020 -- July 2020</div>
+                             <div class="text-lg text-gray-800 font-medium">Visiting Researcher</div>
+                             <div class="text-gray-600">Quantum Systems Unit, OIST, Okinawa, Japan.</div>
+                             <div class="text-gray-500 text-xs mt-1 italic">Advisor: Prof. Thomas Busch.</div>
+                         </div>
+
+                         <!-- Item -->
+                         <div class="relative pl-8">
+                             <div class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-gray-300 border-4 border-white"></div>
+                             <div class="font-bold text-gray-900">Sept 2018 -- March 2020</div>
+                             <div class="text-lg text-gray-800 font-medium">Postdoctoral Researcher</div>
+                             <div class="text-gray-600">Quantum Transport and Electronic Structure Theory Unit, OIST, Okinawa, Japan.</div>
+                             <div class="text-gray-500 text-xs mt-1 italic">Advisor: Prof. Fabian Pauly.</div>
+                         </div>
+
+                         <!-- Item (Doctoral) -->
+                         <div class="relative pl-8">
+                             <div class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-black border-4 border-white"></div>
+                             <div class="font-bold text-gray-900">Aug 2013 -- Jul 2018</div>
+                             <div class="text-lg text-gray-800 font-medium">Ph.D. in Physics</div>
+                             <div class="text-gray-600">Atomistic Modeling and Simulation Group, IIT Guwahati, India.</div>
+                             <div class="text-gray-500 text-xs mt-2 italic bg-gray-50 p-2 rounded block">
+                                 <strong>Thesis:</strong> "Ab-inito Molecular Dynamics Investigation of the Structural, Dynamical and Spectroscopic Aspects of Waterborne Selenium and Arsenic Species".<br>
+                                 <strong>Advisor:</strong> Prof. Padma Kumar Padmanabhan.
+                             </div>
+                         </div>
+                     </div>
+                </div>
+            </div>
+
+            <!-- Bottom Section: Full Width Content (Education onwards) -->
+            <div class="bg-white rounded-b-3xl p-8 md:p-16 shadow-sm border-t-0">
+                
+                <!-- Education Grid -->
+                <h3 class="text-2xl font-bold text-black mb-8 border-b border-gray-100 pb-4">Education</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
+                    <div class="p-6 bg-gray-50 rounded-2xl border border-gray-100 hover:border-gray-200 transition-colors">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-bold text-lg text-gray-900">M.Sc. in Physics</h4>
+                            <span class="bg-black text-white text-xs font-bold px-2 py-1 rounded">2013</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">Indian Institute of Technology (IIT) Guwahati</p>
+                        <div class="inline-block bg-white border border-gray-200 text-gray-700 text-sm font-mono px-3 py-1 rounded-md">
+                            CGPA: 7.99/10 (First Class)
+                        </div>
+                    </div>
+
+                    <div class="p-6 bg-gray-50 rounded-2xl border border-gray-100 hover:border-gray-200 transition-colors">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-bold text-lg text-gray-900">B.Sc. in Physics</h4>
+                            <span class="bg-black text-white text-xs font-bold px-2 py-1 rounded">2010</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">Cotton College, Gauhati University</p>
+                        <div class="inline-block bg-white border border-gray-200 text-gray-700 text-sm font-mono px-3 py-1 rounded-md">
+                            80.4% (Univ Rank: 3rd)
+                        </div>
+                    </div>
+
+                    <div class="p-6 bg-gray-50 rounded-2xl border border-gray-100 hover:border-gray-200 transition-colors">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-bold text-lg text-gray-900">Higher Secondary</h4>
+                            <span class="bg-gray-200 text-gray-600 text-xs font-bold px-2 py-1 rounded">2007</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">North Lakhimpur College (Science)</p>
+                        <div class="inline-block bg-white border border-gray-200 text-gray-700 text-sm font-mono px-3 py-1 rounded-md">
+                            83.2% (First Class)
+                        </div>
+                    </div>
+
+                    <div class="p-6 bg-gray-50 rounded-2xl border border-gray-100 hover:border-gray-200 transition-colors">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-bold text-lg text-gray-900">High School</h4>
+                            <span class="bg-gray-200 text-gray-600 text-xs font-bold px-2 py-1 rounded">2005</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">Namani Subansiri High School</p>
+                        <div class="inline-block bg-white border border-gray-200 text-gray-700 text-sm font-mono px-3 py-1 rounded-md">
+                            88.7% (Distinction)
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Awards & Achievements -->
+                <div class="mb-16">
+                    <h3 class="text-2xl font-bold text-black mb-8 border-b border-gray-100 pb-4">Awards & Achievements</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="border-l-4 border-yellow-400 pl-4 py-1">
+                            <span class="text-xs font-bold text-gray-400 block mb-1">2013</span>
+                            <p class="font-bold text-gray-900">Qualified GATE</p>
+                            <p class="text-sm text-gray-600">Graduate Aptitude Test in Engineering</p>
+                        </div>
+                        <div class="border-l-4 border-yellow-400 pl-4 py-1">
+                            <span class="text-xs font-bold text-gray-400 block mb-1">2013</span>
+                            <p class="font-bold text-gray-900">Chief Minister's Merit Scholarship</p>
+                            <p class="text-sm text-gray-600">₹100,000 award for academic excellence</p>
+                        </div>
+                        <div class="border-l-4 border-gray-300 pl-4 py-1">
+                            <span class="text-xs font-bold text-gray-400 block mb-1">2011</span>
+                            <p class="font-bold text-gray-900">Qualified JAM</p>
+                            <p class="text-sm text-gray-600">Joint Admission Test for M.Sc</p>
+                        </div>
+                        <div class="border-l-4 border-gray-300 pl-4 py-1">
+                            <span class="text-xs font-bold text-gray-400 block mb-1">2010</span>
+                            <p class="font-bold text-gray-900">University Rank: 3rd</p>
+                            <p class="text-sm text-gray-600">Gauhati University (B.Sc Physics)</p>
+                        </div>
+                        <div class="border-l-4 border-gray-300 pl-4 py-1">
+                            <span class="text-xs font-bold text-gray-400 block mb-1">2007</span>
+                            <p class="font-bold text-gray-900">Vidya Bhushan Award</p>
+                            <p class="text-sm text-gray-600">Amul India Excellence Award</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Research Summary (Detailed) -->
+                <div class="mb-16">
+                    <h3 class="text-2xl font-bold text-black mb-8 border-b border-gray-100 pb-4">Detailed Research Summary</h3>
+                    <div class="space-y-8">
+                        <div class="bg-gray-50 p-8 rounded-3xl">
+                            <h4 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                                <span class="w-2 h-8 bg-blue-600 rounded-full"></span>
+                                Max Planck Institute (Germany)
+                            </h4>
+                            <div class="grid md:grid-cols-2 gap-8 text-sm leading-relaxed text-gray-600">
+                                <div>
+                                    <strong class="block text-gray-900 mb-2">Focus Projects</strong>
+                                    <ul class="list-disc ml-4 space-y-1">
+                                        <li>No-collapse accurate measurement-based feedback control.</li>
+                                        <li>Quantum parameter estimation via continuous observation.</li>
+                                        <li>Non-Markovian feedback for optimized QEC.</li>
+                                        <li>RL for quantum computing experiments.</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <strong class="block text-gray-900 mb-2">Key Contributions</strong>
+                                    <p class="mb-2">Introduced protocols for precisely estimating noise-free signals and full density matrices for feedback control, significantly improving RL training efficiency.</p>
+                                    <p>Developed a recurrent neural network approach for measurement-based QEC that builds an internal representation of the quantum state, extending logical qubit lifetimes beyond current best protocols.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-gray-50 p-8 rounded-3xl">
+                            <h4 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                                <span class="w-2 h-8 bg-purple-600 rounded-full"></span>
+                                OIST (Japan)
+                            </h4>
+                            <div class="grid md:grid-cols-2 gap-8 text-sm leading-relaxed text-gray-600">
+                                <div>
+                                    <strong class="block text-gray-900 mb-2">Focus Projects</strong>
+                                    <ul class="list-disc ml-4 space-y-1">
+                                        <li>Phonon-assisted carrier cooling in graphene.</li>
+                                        <li>Measurement-Based Feedback with RL.</li>
+                                        <li>Estimator scheme for continuous QEC.</li>
+                                        <li>Open-loop control for motional cooling.</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <strong class="block text-gray-900 mb-2">Key Contributions</strong>
+                                    <p class="mb-2">Demonstrated that RL can discover real-time controls for complex systems undergoing continuous measurement, specifically for preparing non-classical cat states.</p>
+                                    <p>Proposed a QEC method using real-time estimators that exceeds the break-even point for small codes.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Two Column Layout for Expertise and Service -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+                    
+                    <!-- Expertise -->
+                    <div>
+                        <h3 class="text-2xl font-bold text-black mb-6 border-b border-gray-100 pb-4">Expertise</h3>
+                        <div class="space-y-4">
+                            <div class="flex gap-4 items-start">
+                                <div class="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600 shrink-0"><i data-lucide="atom" class="w-6 h-6"></i></div>
+                                <div>
+                                    <h5 class="font-bold text-gray-900">Theory</h5>
+                                    <p class="text-sm text-gray-600 mt-1">Quantum Control, Measurement-Based Feedback, Quantum Computing, ML, MD, DFT, AIMD.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4 items-start">
+                                <div class="w-12 h-12 rounded-xl bg-purple-50 flex items-center justify-center text-purple-600 shrink-0"><i data-lucide="cpu" class="w-6 h-6"></i></div>
+                                <div>
+                                    <h5 class="font-bold text-gray-900">Computational</h5>
+                                    <p class="text-sm text-gray-600 mt-1">Machine Learning (RL), Molecular Dynamics, Density Functional Theory.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4 items-start">
+                                <div class="w-12 h-12 rounded-xl bg-green-50 flex items-center justify-center text-green-600 shrink-0"><i data-lucide="code-2" class="w-6 h-6"></i></div>
+                                <div>
+                                    <h5 class="font-bold text-gray-900">Toolkit</h5>
+                                    <p class="text-sm text-gray-600 mt-1"><strong>Software:</strong> QuTiP, QuantumOptics.jl, Qiskit, PennyLane, QuantumEspresso, CP2K.</p>
+                                    <p class="text-sm text-gray-600 mt-1"><strong>Coding:</strong> Python (JAX, PyTorch, TensorFlow), Fortran 90.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Service -->
+                    <div>
+                        <h3 class="text-2xl font-bold text-black mb-6 border-b border-gray-100 pb-4">Academic Service</h3>
+                        <div class="bg-gray-50 rounded-2xl p-6">
+                            <div class="mb-6">
+                                <h5 class="font-bold text-gray-900 flex items-center gap-2 mb-2"><i data-lucide="book-open-check" class="w-4 h-4"></i> Guest Editor</h5>
+                                <p class="text-sm text-gray-600">Special issue on "Quantum Control and Machine Learning" in <em>Mathematics</em> (MDPI).</p>
+                            </div>
+                            <div class="mb-6">
+                                <h5 class="font-bold text-gray-900 flex items-center gap-2 mb-2"><i data-lucide="file-search" class="w-4 h-4"></i> Journal Reviewer</h5>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-2 py-1 bg-white border border-gray-200 rounded text-xs text-gray-600">Quantum</span>
+                                    <span class="px-2 py-1 bg-white border border-gray-200 rounded text-xs text-gray-600">Phys. Rev. A/B/Applied</span>
+                                    <span class="px-2 py-1 bg-white border border-gray-200 rounded text-xs text-gray-600">PRX Quantum</span>
+                                    <span class="px-2 py-1 bg-white border border-gray-200 rounded text-xs text-gray-600">Scientific Reports</span>
+                                    <span class="px-2 py-1 bg-white border border-gray-200 rounded text-xs text-gray-600">APL Machine Learning</span>
+                                </div>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-gray-900 flex items-center gap-2 mb-2"><i data-lucide="users" class="w-4 h-4"></i> Organization</h5>
+                                <p class="text-sm text-gray-600">Organizer of the '2nd Workshop on Machine Learning for Quantum Technology' (2024).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Referees Grid -->
+                <div>
+                    <h3 class="text-2xl font-bold text-black mb-8 border-b border-gray-100 pb-4">Referees</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="p-4 rounded-xl border border-gray-100 hover:shadow-md transition-shadow">
+                            <p class="font-bold text-gray-900">Prof. Gerard Milburn</p>
+                            <p class="text-xs text-gray-500 uppercase tracking-wide mb-2">Univ. of Queensland</p>
+                            <a href="mailto:g.milburn@uq.edu.au" class="text-sm text-blue-600 hover:underline flex items-center gap-1"><i data-lucide="mail" class="w-3 h-3"></i> Email</a>
+                        </div>
+                        <div class="p-4 rounded-xl border border-gray-100 hover:shadow-md transition-shadow">
+                            <p class="font-bold text-gray-900">Prof. Florian Marquardt</p>
+                            <p class="text-xs text-gray-500 uppercase tracking-wide mb-2">Max Planck Institute</p>
+                            <a href="mailto:florian.marquardt@mpl.mpg.de" class="text-sm text-blue-600 hover:underline flex items-center gap-1"><i data-lucide="mail" class="w-3 h-3"></i> Email</a>
+                        </div>
+                        <div class="p-4 rounded-xl border border-gray-100 hover:shadow-md transition-shadow">
+                            <p class="font-bold text-gray-900">Prof. Jason Twamley</p>
+                            <p class="text-xs text-gray-500 uppercase tracking-wide mb-2">OIST</p>
+                            <a href="mailto:jason.twamley@oist.jp" class="text-sm text-blue-600 hover:underline flex items-center gap-1"><i data-lucide="mail" class="w-3 h-3"></i> Email</a>
+                        </div>
+                        <div class="p-4 rounded-xl border border-gray-100 hover:shadow-md transition-shadow">
+                            <p class="font-bold text-gray-900">Prof. Fabian Pauly</p>
+                            <p class="text-xs text-gray-500 uppercase tracking-wide mb-2">Univ. of Augsburg</p>
+                            <a href="mailto:fabian.pauly@physik.uni-augsburg.de" class="text-sm text-blue-600 hover:underline flex items-center gap-1"><i data-lucide="mail" class="w-3 h-3"></i> Email</a>
+                        </div>
+                        <div class="p-4 rounded-xl border border-gray-100 hover:shadow-md transition-shadow">
+                            <p class="font-bold text-gray-900">Prof. P. K. Padmanabhan</p>
+                            <p class="text-xs text-gray-500 uppercase tracking-wide mb-2">IIT Guwahati</p>
+                            <a href="mailto:padmakumarp@iitg.ac.in" class="text-sm text-blue-600 hover:underline flex items-center gap-1"><i data-lucide="mail" class="w-3 h-3"></i> Email</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ================= VIEW: GROUP ================= -->
+        <div id="view-group" class="view-section hidden-tab fade-in">
+            <div class="mb-12">
+                <h2 class="text-4xl font-bold mb-4">The Group</h2>
+                <p class="text-gray-500 text-lg">Meet the researchers behind the science.</p>
+            </div>
+            
+            <div class="space-y-16">
+                <!-- PhD Students -->
+                <div>
+                    <h3 class="text-xl font-medium text-gray-900 mb-6 flex items-center gap-2 border-b border-gray-200 pb-2">
+                        <span class="w-2 h-2 rounded-full bg-blue-500"></span> PhD Students
+                    </h3>
+                    <div id="phd-container" class="space-y-4"></div>
+                </div>
+
+                <!-- Project Students -->
+                <div>
+                    <h3 class="text-xl font-medium text-gray-900 mb-6 flex items-center gap-2 border-b border-gray-200 pb-2">
+                        <span class="w-2 h-2 rounded-full bg-purple-500"></span> Project Students
+                    </h3>
+                    <div id="project-container" class="space-y-4"></div>
+                </div>
+
+                <!-- Alumni -->
+                <div>
+                    <h3 class="text-xl font-medium text-gray-900 mb-6 flex items-center gap-2 border-b border-gray-200 pb-2">
+                        <span class="w-2 h-2 rounded-full bg-gray-500"></span> Alumni
+                    </h3>
+                    <div id="alumni-container" class="space-y-4"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= VIEW: RESEARCH ================= -->
+        <div id="view-research" class="view-section hidden-tab fade-in">
+             <div class="mb-12 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div>
+                    <h2 class="text-4xl font-bold mb-2">Research</h2>
+                    <p class="text-gray-500 text-lg">Publications, Preprints, and Collaborations.</p>
+                </div>
+                <a href="https://scholar.google.com/citations?hl=en&user=qfByhykAAAAJ" target="_blank" class="bg-blue-600 text-white px-6 py-2 rounded-full font-medium hover:bg-blue-700 transition-colors flex items-center gap-2 text-sm">
+                    <i data-lucide="graduation-cap" class="w-4 h-4"></i> Google Scholar Profile
+                </a>
+            </div>
+
+            <div class="space-y-16">
+                
+                <!-- Recent Publications -->
+                <section>
+                    <h3 class="text-xl font-bold mb-6 flex items-center gap-2 text-black">
+                        <i data-lucide="book-open" class="w-5 h-5 text-gray-400"></i> List of Published Papers
+                    </h3>
+                    <div id="publications-recent-container" class="space-y-4 bg-white p-8 rounded-3xl shadow-sm">
+                        <!-- JS Injected -->
+                    </div>
+                </section>
+
+                <!-- Preprints -->
+                <section>
+                    <h3 class="text-xl font-bold mb-6 flex items-center gap-2 text-black">
+                        <i data-lucide="file-clock" class="w-5 h-5 text-gray-400"></i> Preprints
+                    </h3>
+                    <div id="publications-preprint-container" class="space-y-4 bg-white p-8 rounded-3xl shadow-sm border border-dashed border-gray-200">
+                        <!-- JS Injected -->
+                    </div>
+                </section>
+
+                <!-- In The News -->
+                <section>
+                    <h3 class="text-xl font-bold mb-6 flex items-center gap-2 text-black">
+                        <i data-lucide="newspaper" class="w-5 h-5 text-gray-400"></i> In The News
+                    </h3>
+                    <div id="news-container" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- JS Injected -->
+                    </div>
+                </section>
+
+                <!-- Collaborators -->
+                <section>
+                    <h3 class="text-xl font-bold mb-6 flex items-center gap-2 text-black">
+                        <i data-lucide="users" class="w-5 h-5 text-gray-400"></i> Collaborators
+                    </h3>
+                    <div id="collaborators-container" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
+                        <!-- JS Injected -->
+                    </div>
+                </section>
+
+            </div>
+        </div>
+
+        <!-- ================= VIEW: CONFERENCES ================= -->
+        <div id="view-conferences" class="view-section hidden-tab fade-in">
+             <div class="mb-12">
+                <h2 class="text-4xl font-bold mb-4">Conferences & Workshops</h2>
+                <p class="text-gray-500 text-lg">Workshops organized by the group and international talks.</p>
+            </div>
+
+            <div class="space-y-16">
+                <!-- Events Organized -->
+                <section>
+                    <h3 class="text-2xl font-bold mb-8 flex items-center gap-3">
+                        <span class="flex items-center justify-center w-8 h-8 rounded-full bg-black text-white"><i data-lucide="calendar-check" class="w-4 h-4"></i></span>
+                        Organized by MLPS
+                    </h3>
+                    <div id="events-container" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <!-- Injected JS -->
+                    </div>
+                </section>
+
+                <!-- Talks & Attended -->
+                <section>
+                    <h3 class="text-2xl font-bold mb-8 flex items-center gap-3">
+                        <span class="flex items-center justify-center w-8 h-8 rounded-full bg-gray-200 text-gray-600"><i data-lucide="mic-2" class="w-4 h-4"></i></span>
+                        Talks & Conferences Attended
+                    </h3>
+                    <div class="card p-8 md:p-12">
+                        <div id="conferences-container" class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+                            <!-- Injected JS -->
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- ================= VIEW: RESOURCES ================= -->
+        <div id="view-resources" class="view-section hidden-tab fade-in">
+             <div class="mb-12">
+                <h2 class="text-4xl font-bold mb-4">Resources</h2>
+                <p class="text-gray-500 text-lg">Open source tools, datasets, and code repositories developed by our group.</p>
+            </div>
+
+            <div class="bg-black text-white rounded-[40px] p-10 md:p-16 overflow-hidden relative min-h-[500px]">
+                <div class="relative z-10">
+                    <div id="resources-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Injected JS -->
+                    </div>
+                </div>
+                <!-- Background decoration -->
+                <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-b from-gray-800 to-black rounded-full blur-3xl opacity-30 translate-x-1/3 -translate-y-1/3"></div>
+            </div>
+        </div>
+
+        <!-- ================= VIEW: TEACHING ================= -->
+        <div id="view-teaching" class="view-section hidden-tab fade-in">
+             <div class="mb-12">
+                <h2 class="text-4xl font-bold mb-4">Teaching</h2>
+                <p class="text-gray-500 text-lg">Courses taught at IIT Hyderabad.</p>
+            </div>
+
+            <div class="card p-8 md:p-12">
+                <div id="teaching-container" class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12">
+                    <!-- Injected JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= VIEW: GALLERY ================= -->
+        <div id="view-gallery" class="view-section hidden-tab fade-in">
+             <div class="mb-12">
+                <h2 class="text-4xl font-bold mb-4">Group Life</h2>
+                <p class="text-gray-500 text-lg">Moments from the lab, celebrations, and outreach.</p>
+            </div>
+
+            <div id="gallery-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Injected JS -->
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer (Strictly Black as requested) -->
+    <footer class="bg-black text-white py-12 px-6 border-t border-gray-900 mt-auto">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-6">
+            <div>
+                <h2 class="text-xl font-semibold tracking-tight mb-1">Sangkha Borah</h2>
+                <p class="text-gray-400 font-light text-sm tracking-wide">
+                    Dept. of Physics, Indian Institute of Technology Hyderabad, India.
+                </p>
+            </div>
+            <div class="text-xs text-gray-600 font-mono">
+                &copy; 2026 MLPS Group.
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        /* ======================================================================
+           NAVIGATION LOGIC (SPA Behavior)
+        ======================================================================
+        */
+        function switchTab(tabId) {
+            // 1. Hide all sections
+            const sections = document.querySelectorAll('.view-section');
+            sections.forEach(section => {
+                section.classList.add('hidden-tab');
+            });
+
+            // 2. Show the selected section
+            const activeSection = document.getElementById(`view-${tabId}`);
+            if(activeSection) {
+                activeSection.classList.remove('hidden-tab');
+                // Trigger reflow for animation if needed
+                void activeSection.offsetWidth; 
+            }
+
+            // 3. Update Navigation Styling
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+            const activeLink = document.getElementById(`nav-${tabId}`);
+            if(activeLink) activeLink.classList.add('active');
+
+            // 4. Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        function toggleMobileMenu() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        }
+
+        // Initialize Home Tab
+        document.addEventListener('DOMContentLoaded', () => {
+            switchTab('home');
+        });
+
+
+        /* ======================================================================
+           DATA SECTION (Copy this object to a separate 'data.js' file later)
+        ======================================================================
+        */
+        const groupData = {
+            pi: {
+                name: "Sangkha Borah",
+                title: "Assistant Professor",
+                image: "https://api.dicebear.com/7.x/initials/svg?seed=SB&backgroundColor=1a1a1a", 
+                bio: "My primary research areas are ML for Quantum Technology, Quantum Control, Quantum Computing, and Quantum Error Correction. We also explore Neuromorphic Computing and ML applications in photonics and condensed matter physics. I lead the Machine Learning for Physical Sciences group at IIT Hyderabad, focusing on the intersection of artificial intelligence and fundamental physics."
+            },
+            researchAreas: [
+                { title: "ML for Quantum Tech", icon: "cpu", desc: "Optimizing quantum hardware with AI." },
+                { title: "Quantum Control", icon: "settings-2", desc: "Robust pulse shaping via RL." },
+                { title: "QEC", icon: "shield-check", desc: "AI-driven error correction codes." },
+                { title: "Quantum ML", icon: "brain-circuit", desc: "Variational circuits & Kernels." },
+                { title: "Neuromorphic Comp.", icon: "zap", desc: "Brain-inspired computing architectures." },
+                { title: "ML for Photonics", icon: "lightbulb", desc: "Inverse design of photonic structures." },
+                { title: "Condensed Matter", icon: "layers", desc: "Phase classification with ML." },
+            ],
+            highlights: [
+                {
+                    type: "featured",
+                    title: "Quantum Error Correction with RL",
+                    desc: "Featured in Phys. Rev. Lett (2025): Non-Markovian feedback for optimized quantum error correction.",
+                    link: "https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.134.020601",
+                    color: "bg-blue-50 text-blue-900",
+                    size: "md:col-span-2 md:row-span-2", // Big Square
+                    bgImage: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=800&auto=format&fit=crop"
+                },
+                {
+                    type: "featured",
+                    title: "No-Collapse Feedback Control",
+                    desc: "Published in Phys. Rev. Lett (2023): Achieving accurate quantum feedback via conditional state tomography.",
+                    link: "https://doi.org/10.1103/PhysRevLett.131.210803",
+                    color: "bg-white border border-gray-100",
+                    size: "md:col-span-1 md:row-span-1",
+                    bgImage: "" 
+                },
+                {
+                    type: "featured",
+                    title: "Deep RL for Quantum Control",
+                    desc: "Phys. Rev. Lett (2021): Measurement-based feedback quantum control for nonlinear potentials.",
+                    link: "https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.127.190403",
+                    color: "bg-gray-900 text-white",
+                    size: "md:col-span-1 md:row-span-1",
+                    bgImage: "https://images.unsplash.com/photo-1591453089816-0fbb971b454c?q=80&w=600&auto=format&fit=crop"
+                },
+                {
+                    type: "news",
+                    title: "Best Poster Award",
+                    desc: "Congratulations to Arjun Rao for winning Best Poster at QML Workshop 2024!",
+                    link: "#",
+                    color: "bg-purple-50 text-purple-900",
+                    size: "md:col-span-1 md:row-span-1",
+                    bgImage: ""
+                }
+            ],
+            team: {
+                phd: [
+                    { name: "Arjun Rao", year: "3rd Year", topic: "Quantum Error Correction", img: "https://api.dicebear.com/7.x/notion/svg?seed=Arjun" },
+                    { name: "Priya Sharma", year: "2nd Year", topic: "Neuromorphic Photonics", img: "https://api.dicebear.com/7.x/notion/svg?seed=Priya" }
+                ],
+                project: [
+                    { name: "Rohan Das", year: "M.Sc Thesis", topic: "Variational Quantum Eigensolvers", img: "https://api.dicebear.com/7.x/notion/svg?seed=Rohan" }
+                ],
+                alumni: [
+                    { name: "Dr. Aditi Verma", role: "Former PhD", current: "Postdoc at ETH Zurich", img: "https://api.dicebear.com/7.x/notion/svg?seed=Aditi" }
+                ]
+            },
+            publications: {
+                recent: [
+                    {
+                        title: "Non-Markovian feedback for optimized quantum error correction",
+                        authors: "Matteo Puviani, <b>Sangkha Borah</b>, Remmy Zen, Jan Olle, Florian Marquardt",
+                        journal: "Physical Review Letters, 134, 020601",
+                        year: "2025",
+                        link: "https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.134.020601"
+                    },
+                    {
+                        title: "Uniaxial Tensile-Induced Phase Transition in Graphynes",
+                        authors: "Jacques Kotoko, Komi Sodoga, Yusuf Shaidu, Nicola Seriani, <b>Sangkha Borah</b>, Katawoura Beltako",
+                        journal: "Journal of Physical Chemistry C, 128, 17058",
+                        year: "2024",
+                        link: "https://doi.org/10.1021/acs.jpcc.4c01233"
+                    },
+                    {
+                        title: "No-collapse accurate quantum feedback control via conditional state tomography",
+                        authors: "<b>Sangkha Borah</b>, Bijita Sarma",
+                        journal: "Physical Review Letters, 131, 210803",
+                        year: "2023",
+                        link: "https://doi.org/10.1103/PhysRevLett.131.210803"
+                    },
+                    {
+                        title: "Accelerated motional cooling with deep reinforcement learning",
+                        authors: "Bijita Sarma, <b>Sangkha Borah</b>, A Kani, Jason Twamley",
+                        journal: "Physical Review Research (Letter), 4, L042038",
+                        year: "2022",
+                        link: "https://doi.org/10.1103/PhysRevResearch.4.L042038"
+                    },
+                    {
+                        title: "Measurement based estimator scheme for continuous quantum error correction",
+                        authors: "<b>Sangkha Borah</b>, Bijita Sarma, Michael Kewming, Fernando Quijandria, Gerard J. Milburn, Jason Twamley",
+                        journal: "Physical Review Research, 4, 033207",
+                        year: "2022",
+                        link: "https://doi.org/10.1103/PhysRevResearch.4.033207"
+                    },
+                    {
+                        title: "Phonon-assisted carrier cooling in h-BN/graphene van der waals heterostructures",
+                        authors: "<b>Sangkha Borah</b>, Dinesh Yadav, Maxim Trushin, Fabian Pauly",
+                        journal: "Physical Review B, 105, 245419",
+                        year: "2022",
+                        link: "https://journals.aps.org/prb/abstract/10.1103/PhysRevB.105.245419"
+                    },
+                    {
+                        title: "Measurement-based feedback quantum control with deep reinforcement learning for a double-well nonlinear potential",
+                        authors: "<b>Sangkha Borah</b>, Bijita Sarma, Michael Kewming, Gerard J. Milburn, Jason Twamley",
+                        journal: "Physical Review Letters, 127(19), 190403",
+                        year: "2021",
+                        link: "https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.127.190403"
+                    },
+                    {
+                        title: "Flavan-based phytoconstituents inhibit mpro, a sars-cov-2 molecular target, in silico",
+                        authors: "Soham Mukherjee, Deepika Sharma, Ajay Kumar Sharma, Shreya Jaiswal, Nancy Sharma, <b>Sangkha Borah</b>, Gurjot Kaur",
+                        journal: "Journal of Biomolecular Structure and Dynamics, 40, 11545",
+                        year: "2021",
+                        link: "https://www.tandfonline.com/doi/abs/10.1080/07391102.2021.1960196"
+                    },
+                    {
+                        title: "Spatially resolved hydration shells and dynamics of different sulfur species in water from first-principle molecular dynamics simulations",
+                        authors: "<b>Sangkha Borah</b>",
+                        journal: "Journal of Molecular Liquids, 312, 113387",
+                        year: "2020",
+                        link: "https://www.sciencedirect.com/science/article/pii/S0167732220307121"
+                    },
+                    {
+                        title: "Hydration properties of H<sub>n</sub>PO<sup>n-3</sup><sub>4</sub> (n = 0 - 3) from ab initio molecular dynamics simulations",
+                        authors: "<b>Sangkha Borah</b>",
+                        journal: "The Journal of Physical Chemistry B, 124, 5454",
+                        year: "2020",
+                        link: "https://pubs.acs.org/doi/full/10.1021/acs.jpcb.0c01769"
+                    },
+                    {
+                        title: "Hydration structure of As-III aqueous solutions from ab initio molecular dynamics simulations",
+                        authors: "<b>Sangkha Borah</b>, P Padma Kumar",
+                        journal: "Journal of Molecular Liquids, 318, 114056",
+                        year: "2020",
+                        link: "https://doi.org/10.1016/j.molliq.2020.114056"
+                    },
+                    {
+                        title: "Accessing slow diffusion in solids employing metadynamics simulation",
+                        authors: "Krishnanjan Pramanik, <b>Sangkha Borah</b>, P Padma Kumar",
+                        journal: "Physical Chemistry Chemical Physics, 22, 22796",
+                        year: "2020",
+                        link: "https://pubs.rsc.org/en/content/articlehtml/2020/cp/d0cp03239e"
+                    },
+                    {
+                        title: "First-principle molecular dynamics investigation of waterborne As-V species",
+                        authors: "<b>Sangkha Borah</b>, P Padma Kumar",
+                        journal: "The Journal of Physical Chemistry B, 122, 3153",
+                        year: "2018",
+                        link: "https://pubs.acs.org/doi/full/10.1021/acs.jpcb.7b12482"
+                    },
+                    {
+                        title: "Ab initio molecular dynamics study of Se (IV) species in aqueous environment",
+                        authors: "<b>Sangkha Borah</b>, P Padma Kumar",
+                        journal: "Physical Chemistry Chemical Physics, 18, 26755",
+                        year: "2016",
+                        link: "https://pubs.rsc.org/en/content/articlehtml/2016/cp/c6cp04725d"
+                    },
+                    {
+                        title: "Ab initio molecular dynamics investigation of structural, dynamic and spectroscopic aspects of Se (VI) species in the aqueous environment",
+                        authors: "<b>Sangkha Borah</b>, P Padma Kumar",
+                        journal: "Physical Chemistry Chemical Physics, 18, 14561",
+                        year: "2016",
+                        link: "https://pubs.rsc.org/en/content/articlehtml/2016/cp/c6cp01835a"
+                    }
+                ],
+                preprints: [
+                    {
+                        title: "Transformer-based machine learning for fast and accurate readout of superconducting qubits",
+                        authors: "A Kumar, S Borah",
+                        journal: "arXiv preprint arXiv:2310.02100",
+                        year: "2023",
+                        link: "#"
+                    },
+                    {
+                        title: "Quantum heat engine with a non-Markovian bath: performance and efficiency",
+                        authors: "S Borah, S Das",
+                        journal: "arXiv preprint arXiv:2205.11145",
+                        year: "2022",
+                        link: "#"
+                    }
+                ],
+                news: [
+                    { title: "Cover Story in Physics Today", desc: "Our work on RL control was featured on the cover.", date: "Jan 2025", link: "#" },
+                    { title: "Best Paper Award", desc: "Won at QML Workshop Zurich.", date: "Dec 2024", link: "#" }
+                ]
+            },
+            collaborators: [
+                { name: "Prof. John Doe", affiliation: "MIT, USA", img: "https://api.dicebear.com/7.x/avataaars/svg?seed=John" },
+                { name: "Dr. Jane Smith", affiliation: "ETH Zurich", img: "https://api.dicebear.com/7.x/avataaars/svg?seed=Jane" },
+                { name: "Prof. A. Kumar", affiliation: "IISc Bangalore", img: "https://api.dicebear.com/7.x/avataaars/svg?seed=Kumar" },
+                { name: "Dr. Sarah Lee", affiliation: "NUS Singapore", img: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah" }
+            ],
+            conferences: [
+                { name: "APS March Meeting 2025", location: "Los Angeles", role: "Invited Talk" },
+                { name: "QML Workshop 2024", location: "Zurich", role: "Poster Presentation" },
+                { name: "IEEE Quantum Week", location: "Seattle", role: "Keynote" },
+                { name: "Indian Science Congress", location: "Kolkata", role: "Invited Talk" }
+            ],
+            events_organized: [
+                { 
+                    title: "Workshop on Quantum Machine Learning", 
+                    date: "Dec 2024", 
+                    desc: "A 3-day intense workshop covering VQEs and Quantum Kernels, attended by over 50 participants from across India." 
+                },
+                { 
+                    title: "Winter School on Mathematical Physics", 
+                    date: "Jan 2025", 
+                    desc: "Lectures on topology and geometry in physics, featuring guest speakers from TIFR and IISc." 
+                }
+            ],
+            resources: [
+                { title: "QuantumNet", desc: "A PyTorch library for Quantum Neural Networks.", link: "github.com" },
+                { title: "TopoLearn", desc: "Dataset for topological phases of matter.", link: "github.com" },
+                { title: "SpinSim", desc: "Fast simulation of spin chains using JAX.", link: "github.com" }
+            ],
+            teaching: [
+                { code: "PH501", name: "Quantum Computing", semester: "Autumn 2025" },
+                { code: "PH602", name: "Machine Learning for Physical Sciences", semester: "Spring 2026" },
+                { code: "PH405", name: "Mathematical Physics", semester: "Autumn 2024" },
+                { code: "PH510", name: "Quantum Simulations", semester: "Spring 2025" }
+            ],
+            gallery: [
+                { title: "Diwali Celebration 2024", date: "Nov 2024", img: "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=600&auto=format&fit=crop" },
+                { title: "Group Trek to Coorg", date: "Aug 2024", img: "https://images.unsplash.com/photo-1501555088652-021faa106b9b?q=80&w=600&auto=format&fit=crop" },
+                { title: "Lab Birthday Party", date: "July 2024", img: "https://images.unsplash.com/photo-1530103862676-de3c9a59af57?q=80&w=600&auto=format&fit=crop" },
+                { title: "Annual Science Day", date: "Feb 2024", img: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?q=80&w=600&auto=format&fit=crop" },
+                { title: "Farewell Dinner", date: "Dec 2023", img: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=600&auto=format&fit=crop" }
+            ]
+        };
+
+        /* ======================================================================
+           RENDER LOGIC (Save as script.js)
+        ======================================================================
+        */
+        
+        // Render PI
+        document.getElementById('pi-name').textContent = groupData.pi.name;
+        document.getElementById('pi-bio').textContent = groupData.pi.bio;
+        document.getElementById('pi-image').src = groupData.pi.image;
+
+        // Render Research Areas (Horizontal Scroll)
+        const areasContainer = document.getElementById('areas-container');
+        groupData.researchAreas.forEach(area => {
+            const div = document.createElement('div');
+            div.className = "min-w-[200px] snap-center p-6 bg-white rounded-2xl border border-gray-100 shadow-sm flex flex-col items-center text-center hover:shadow-md transition-shadow cursor-default";
+            div.innerHTML = `
+                <div class="w-12 h-12 bg-gray-50 rounded-full flex items-center justify-center mb-4 text-black">
+                    <i data-lucide="${area.icon}" class="w-6 h-6"></i>
+                </div>
+                <h4 class="font-bold text-sm mb-1">${area.title}</h4>
+                <p class="text-xs text-gray-500">${area.desc}</p>
+            `;
+            areasContainer.appendChild(div);
+        });
+
+        // Render Highlights (Bento Grid with Images)
+        const highlightContainer = document.getElementById('highlights-container');
+        groupData.highlights.forEach(item => {
+            const div = document.createElement('div');
+            div.className = `card flex flex-col justify-between relative group ${item.size} ${item.color}`;
+            
+            // Background Image Overlay
+            let bgOverlay = '';
+            let textClass = '';
+            if (item.bgImage) {
+                bgOverlay = `
+                    <div class="absolute inset-0 z-0">
+                        <img src="${item.bgImage}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                    </div>
+                `;
+                textClass = 'text-white';
+            } else {
+                 textClass = item.color.includes('text-white') ? 'text-white' : 'text-black';
+            }
+
+            // Decorative background for 'featured' if no image
+            let decor = '';
+            if(item.type === 'featured' && !item.bgImage) {
+                decor = `<div class="absolute -right-10 -bottom-10 w-48 h-48 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>`;
+            }
+
+            div.innerHTML = `
+                ${bgOverlay}
+                ${decor}
+                <div class="relative z-10 p-8 flex flex-col h-full justify-between ${textClass}">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider opacity-80 mb-2 block">${item.type}</span>
+                        <h3 class="text-2xl font-bold mb-3 leading-tight">${item.title}</h3>
+                        <p class="opacity-90 text-sm leading-relaxed">${item.desc}</p>
+                    </div>
+                    <a href="${item.link}" class="mt-6 inline-flex items-center text-sm font-semibold hover:opacity-70 transition-opacity">
+                        View Details <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
+                    </a>
+                </div>
+            `;
+            highlightContainer.appendChild(div);
+        });
+
+        // Helper for Member Rows
+        function createMemberRow(member) {
+            return `
+                <div class="card p-4 md:p-6 flex flex-col md:flex-row items-center md:items-start gap-6 group hover:bg-white">
+                    <img src="${member.img}" alt="${member.name}" class="w-24 h-24 rounded-full md:rounded-2xl object-cover bg-gray-100 shadow-sm group-hover:scale-105 transition-transform duration-300">
+                    <div class="flex-1 text-center md:text-left">
+                        <h4 class="text-lg font-bold text-black">${member.name}</h4>
+                        <p class="text-sm font-medium text-blue-600 mb-2">${member.year || member.role}</p>
+                        <p class="text-sm text-gray-500 leading-relaxed">${member.topic || member.current}</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Render Group
+        document.getElementById('phd-container').innerHTML = groupData.team.phd.map(createMemberRow).join('');
+        document.getElementById('project-container').innerHTML = groupData.team.project.map(createMemberRow).join('');
+        document.getElementById('alumni-container').innerHTML = groupData.team.alumni.map(createMemberRow).join('');
+
+        // Helper for Publications
+        function createPubRow(pub) {
+             return `
+                <div class="group block border-b border-gray-100 last:border-0 pb-4 mb-4">
+                    <h4 class="text-lg font-semibold text-black mb-1 group-hover:text-blue-600 transition-colors">
+                        <a href="${pub.link}" target="_blank">${pub.title}</a>
+                    </h4>
+                    <p class="text-sm text-gray-600 mb-1">${pub.authors}</p>
+                    <div class="flex items-center gap-3 text-xs font-medium text-gray-400 uppercase tracking-wide">
+                        <span class="bg-gray-100 px-2 py-0.5 rounded text-gray-600">${pub.year}</span>
+                        <span>${pub.journal}</span>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Render Publications (Categorized)
+        document.getElementById('publications-recent-container').innerHTML = groupData.publications.recent.map(createPubRow).join('');
+        document.getElementById('publications-preprint-container').innerHTML = groupData.publications.preprints.map(createPubRow).join('');
+        
+        // Render News
+        document.getElementById('news-container').innerHTML = groupData.publications.news.map(n => `
+            <div class="card p-6 border-l-4 border-blue-500">
+                <span class="text-xs font-bold text-gray-400 uppercase mb-2 block">${n.date}</span>
+                <h4 class="font-bold text-lg mb-1">${n.title}</h4>
+                <p class="text-sm text-gray-500">${n.desc}</p>
+            </div>
+        `).join('');
+
+        // Render Collaborators
+        document.getElementById('collaborators-container').innerHTML = groupData.collaborators.map(collab => `
+            <div class="flex flex-col items-center text-center">
+                <img src="${collab.img}" alt="${collab.name}" class="w-20 h-20 rounded-full mb-3 object-cover shadow-sm bg-gray-100">
+                <h5 class="font-bold text-sm text-gray-900">${collab.name}</h5>
+                <p class="text-xs text-gray-500">${collab.affiliation}</p>
+            </div>
+        `).join('');
+
+
+        // Render Conferences (Talks/Attended)
+        document.getElementById('conferences-container').innerHTML = groupData.conferences.map(conf => `
+            <div class="flex gap-4 items-start p-2">
+                <div class="mt-2 w-2 h-2 rounded-full bg-blue-600 shrink-0"></div>
+                <div>
+                    <h5 class="text-base font-bold text-gray-900">${conf.name}</h5>
+                    <p class="text-sm text-gray-500 mt-1">${conf.location} • <span class="font-medium text-blue-600">${conf.role}</span></p>
+                </div>
+            </div>
+        `).join('');
+
+        // Render Organized Events
+        document.getElementById('events-container').innerHTML = groupData.events_organized.map(event => `
+            <div class="card p-8 group border border-transparent hover:border-gray-100">
+                <span class="inline-block py-1 px-3 rounded-md bg-gray-100 text-gray-600 text-xs font-bold uppercase mb-4">${event.date}</span>
+                <h3 class="text-2xl font-bold text-black mb-3 leading-tight group-hover:text-blue-600 transition-colors">${event.title}</h3>
+                <p class="text-gray-500 leading-relaxed">${event.desc}</p>
+            </div>
+        `).join('');
+
+        // Render Resources
+        document.getElementById('resources-container').innerHTML = groupData.resources.map(res => `
+            <a href="#" class="block bg-gray-900 rounded-2xl p-6 hover:bg-gray-800 transition-colors border border-gray-700">
+                <div class="flex items-center justify-between mb-4">
+                    <i data-lucide="code-2" class="text-white w-6 h-6"></i>
+                    <i data-lucide="external-link" class="text-gray-500 w-4 h-4"></i>
+                </div>
+                <h3 class="text-white font-bold mb-1">${res.title}</h3>
+                <p class="text-gray-400 text-sm">${res.desc}</p>
+            </a>
+        `).join('');
+
+        // Render Teaching
+        document.getElementById('teaching-container').innerHTML = groupData.teaching.map(course => `
+            <div class="flex items-start gap-4">
+                <div class="w-12 h-12 rounded-xl bg-gray-50 flex items-center justify-center text-xs font-bold text-gray-400 shrink-0">
+                    ${course.code.substring(0,2)}
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold text-gray-900">${course.name}</h4>
+                    <p class="text-sm text-gray-500">${course.code} • ${course.semester}</p>
+                </div>
+            </div>
+        `).join('');
+
+        // Render Gallery
+        document.getElementById('gallery-container').innerHTML = groupData.gallery.map(item => `
+            <div class="card p-3 group">
+                <div class="overflow-hidden rounded-xl h-64 bg-gray-100 mb-4">
+                    <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                </div>
+                <div class="px-2 pb-2">
+                    <span class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1 block">${item.date}</span>
+                    <h3 class="text-lg font-bold text-black">${item.title}</h3>
+                </div>
+            </div>
+        `).join('');
+
+        // Re-run icons for dynamically added content
+        lucide.createIcons();
+
+        // Animation for blob
+        const styleSheet = document.createElement("style");
+        styleSheet.innerText = `
+            @keyframes blob {
+                0% { transform: translate(0px, 0px) scale(1); }
+                33% { transform: translate(30px, -50px) scale(1.1); }
+                66% { transform: translate(-20px, 20px) scale(0.9); }
+                100% { transform: translate(0px, 0px) scale(1); }
+            }
+            .animate-blob {
+                animation: blob 7s infinite;
+            }
+            .animation-delay-2000 {
+                animation-delay: 2s;
+            }
+            .animation-delay-4000 {
+                animation-delay: 4s;
+            }
+            .hide-scrollbar::-webkit-scrollbar {
+                display: none;
+            }
+            .hide-scrollbar {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+        `;
+        document.head.appendChild(styleSheet);
+    </script>
+</body>
+</html>
