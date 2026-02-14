@@ -1,7 +1,7 @@
-// js/main.js
 import { groupData } from './data.js';
 
-// --- Helper: Create Member Row ---
+// --- Helper Functions ---
+
 function createMemberRow(member) {
     const socialLinks = `
         <div class="flex gap-3 mt-4 justify-center md:justify-start">
@@ -33,7 +33,6 @@ function createMemberRow(member) {
     `;
 }
 
-// --- Helper: Create Publication Row ---
 function createPubRow(pub) {
     return `
        <div class="group block border-b border-gray-100 last:border-0 pb-4 mb-4">
@@ -50,30 +49,72 @@ function createPubRow(pub) {
 }
 
 // --- Navigation Logic ---
-window.switchTab = function(tabId) {
+function switchTab(tabId) {
+    // 1. Hide all sections
     const sections = document.querySelectorAll('.view-section');
     sections.forEach(section => section.classList.add('hidden-tab'));
 
+    // 2. Show selected section
     const activeSection = document.getElementById(`view-${tabId}`);
     if(activeSection) {
         activeSection.classList.remove('hidden-tab');
-        void activeSection.offsetWidth; // Trigger reflow
+        void activeSection.offsetWidth; // Trigger reflow for animation
     }
 
+    // 3. Update Nav Styling
     document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
     const activeLink = document.getElementById(`nav-${tabId}`);
     if(activeLink) activeLink.classList.add('active');
 
+    // 4. Scroll to top
     window.scrollTo(0, 0);
-};
 
-window.toggleMobileMenu = function() {
-    document.getElementById('mobile-menu').classList.toggle('hidden');
-};
+    // 5. Close Mobile Menu if open
+    document.getElementById('mobile-menu').classList.add('hidden');
+}
 
-// --- Rendering Logic ---
+// --- Initialization & Rendering ---
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. PI Section
+
+    // === ATTACH EVENT LISTENERS (The fix for broken links) ===
+    
+    // 1. Navigation Links (Any element with data-target)
+    document.querySelectorAll('.nav-item').forEach(button => {
+        button.addEventListener('click', (e) => {
+            // If it's an <a> tag preventing default might block external links, 
+            // but for SPA nav we generally want to prevent default anchor behavior
+            if(button.tagName === 'A' && button.getAttribute('href') === '#') {
+                e.preventDefault();
+            }
+            const target = button.getAttribute('data-target');
+            if(target) switchTab(target);
+        });
+    });
+
+    // 2. Mobile Menu Toggle
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    if(mobileBtn) {
+        mobileBtn.addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+    }
+
+    // 3. Horizontal Scroll Buttons
+    const leftBtn = document.getElementById('scroll-left-btn');
+    const rightBtn = document.getElementById('scroll-right-btn');
+    const areasCont = document.getElementById('areas-container');
+    
+    if(leftBtn && areasCont) {
+        leftBtn.addEventListener('click', () => areasCont.scrollBy({left: -300, behavior: 'smooth'}));
+    }
+    if(rightBtn && areasCont) {
+        rightBtn.addEventListener('click', () => areasCont.scrollBy({left: 300, behavior: 'smooth'}));
+    }
+
+
+    // === RENDER CONTENT ===
+
+    // PI Info
     const piName = document.getElementById('pi-name');
     if(piName) piName.textContent = groupData.pi.name;
     const piBio = document.getElementById('pi-bio');
@@ -81,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const piImg = document.getElementById('pi-image');
     if(piImg) piImg.src = groupData.pi.image;
 
-    // 2. Research Areas
+    // Research Areas
     const areasContainer = document.getElementById('areas-container');
     if(areasContainer) {
         areasContainer.innerHTML = groupData.researchAreas.map(area => `
@@ -95,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
         `).join('');
     }
 
-    // 3. Highlights
+    // Highlights
     const highlightContainer = document.getElementById('highlights-container');
     if(highlightContainer) {
         highlightContainer.innerHTML = groupData.highlights.map(item => {
@@ -123,21 +164,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }).join('');
     }
 
-    // 4. Team Members
-    const renderMemberSection = (id, data) => {
-        const container = document.getElementById(id);
-        if(container) container.innerHTML = data.map(createMemberRow).join('');
+    // Team
+    const renderTeam = (id, data) => {
+        const el = document.getElementById(id);
+        if(el) el.innerHTML = data.map(createMemberRow).join('');
     };
+    renderTeam('pi-group-container', groupData.team.pi);
+    renderTeam('postdoc-container', groupData.team.postdocs);
+    renderTeam('phd-container', groupData.team.phd);
+    renderTeam('project-container', groupData.team.project);
+    renderTeam('interns-container', groupData.team.interns);
+    renderTeam('visitors-container', groupData.team.visitors);
+    renderTeam('alumni-container', groupData.team.alumni);
 
-    renderMemberSection('pi-group-container', groupData.team.pi);
-    renderMemberSection('postdoc-container', groupData.team.postdocs);
-    renderMemberSection('phd-container', groupData.team.phd);
-    renderMemberSection('project-container', groupData.team.project);
-    renderMemberSection('interns-container', groupData.team.interns);
-    renderMemberSection('visitors-container', groupData.team.visitors);
-    renderMemberSection('alumni-container', groupData.team.alumni);
-
-    // 5. Grants
+    // Grants
     const grantsContainer = document.getElementById('grants-container');
     if(grantsContainer) {
         grantsContainer.innerHTML = groupData.grants.map(grant => `
@@ -151,14 +191,13 @@ document.addEventListener('DOMContentLoaded', () => {
         `).join('');
     }
 
-    // 6. Publications
+    // Publications
     const recentPubs = document.getElementById('publications-recent-container');
     if(recentPubs) recentPubs.innerHTML = groupData.publications.recent.map(createPubRow).join('');
-    
     const preprints = document.getElementById('publications-preprint-container');
     if(preprints) preprints.innerHTML = groupData.publications.preprints.map(createPubRow).join('');
 
-    // 7. News
+    // News
     const newsContainer = document.getElementById('news-container');
     if(newsContainer) {
         newsContainer.innerHTML = groupData.publications.news.map(n => `
@@ -170,13 +209,13 @@ document.addEventListener('DOMContentLoaded', () => {
         `).join('');
     }
 
-    // 8. Collaborators, Conferences, Outreach, Events, Resources, Teaching, Gallery
-    // (Simplified map injections similar to above - abbreviated for modularity example)
+    // Helpers for simple lists
     const simpleMap = (id, data, fn) => {
         const el = document.getElementById(id);
         if(el) el.innerHTML = data.map(fn).join('');
     };
 
+    // Collaborators
     simpleMap('collaborators-container', groupData.collaborators, c => `
         <div class="flex flex-col items-center text-center">
             <img src="${c.img}" alt="${c.name}" class="w-20 h-20 rounded-full mb-3 object-cover shadow-sm bg-gray-100">
@@ -185,6 +224,52 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
     `);
 
+    // Conferences
+    simpleMap('conferences-container', groupData.conferences, conf => `
+        <div class="flex gap-4 items-start p-2">
+            <div class="mt-2 w-2 h-2 rounded-full bg-blue-600 shrink-0"></div>
+            <div>
+                <h5 class="text-base font-bold text-gray-900">${conf.name}</h5>
+                <p class="text-sm text-gray-500 mt-1">${conf.location} • <span class="font-medium text-blue-600">${conf.role}</span></p>
+            </div>
+        </div>
+    `);
+
+    // Events Organized
+    simpleMap('events-container', groupData.events_organized, event => `
+        <div class="card p-8 group border border-transparent hover:border-gray-100 mb-6">
+            <span class="inline-block py-1 px-3 rounded-md bg-gray-100 text-gray-600 text-xs font-bold uppercase mb-4">${event.date}</span>
+            <h3 class="text-2xl font-bold text-black mb-3 leading-tight group-hover:text-blue-600 transition-colors">${event.title}</h3>
+            <p class="text-gray-500 leading-relaxed">${event.desc}</p>
+        </div>
+    `);
+
+    // Resources
+    simpleMap('resources-container', groupData.resources, res => `
+        <a href="${res.link}" class="block bg-gray-900 rounded-2xl p-6 hover:bg-gray-800 transition-colors border border-gray-700">
+            <div class="flex items-center justify-between mb-4">
+                <i data-lucide="code-2" class="text-white w-6 h-6"></i>
+                <i data-lucide="external-link" class="text-gray-500 w-4 h-4"></i>
+            </div>
+            <h3 class="text-white font-bold mb-1">${res.title}</h3>
+            <p class="text-gray-400 text-sm">${res.desc}</p>
+        </a>
+    `);
+
+    // Teaching
+    simpleMap('teaching-container', groupData.teaching, course => `
+        <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl bg-gray-50 flex items-center justify-center text-xs font-bold text-gray-400 shrink-0">
+                ${course.code.substring(0,2)}
+            </div>
+            <div>
+                <h4 class="text-lg font-bold text-gray-900">${course.name}</h4>
+                <p class="text-sm text-gray-500">${course.code} • ${course.semester}</p>
+            </div>
+        </div>
+    `);
+
+    // Gallery
     simpleMap('gallery-container', groupData.gallery, item => `
         <div class="card p-3 group">
             <div class="overflow-hidden rounded-xl h-64 bg-gray-100 mb-4">
@@ -196,13 +281,10 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         </div>
     `);
-    
-    // (Injecting remaining IDs based on existing structure - simplified for brevity)
-    // ... Add mappings for teaching, resources, events_organized here following same pattern ...
 
-    // Initialize Default Tab
+    // Set Default Tab
     switchTab('home');
 
-    // Initialize Icons LAST
+    // Init Icons
     lucide.createIcons();
 });

@@ -18,31 +18,38 @@
 
     <nav class="fixed w-full z-50 glass-nav transition-all duration-300" id="navbar">
         <div class="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
-            <a href="#" onclick="switchTab('home')" class="text-lg font-semibold tracking-tight text-black flex items-center gap-2 cursor-pointer">
+            <a href="#" data-target="home" class="nav-item text-lg font-semibold tracking-tight text-black flex items-center gap-2 cursor-pointer">
                 <i data-lucide="atom" class="w-5 h-5"></i> MLPS Group
             </a>
             
             <div class="hidden md:flex space-x-4 lg:space-x-6 text-xs font-medium text-gray-500 tracking-wide uppercase">
-                <button onclick="switchTab('home')" class="nav-link hover:text-black transition-colors" id="nav-home">Home</button>
-                <button onclick="switchTab('about')" class="nav-link hover:text-black transition-colors" id="nav-about">About PI</button>
-                <button onclick="switchTab('group')" class="nav-link hover:text-black transition-colors" id="nav-group">Group</button>
-                <button onclick="switchTab('research')" class="nav-link hover:text-black transition-colors" id="nav-research">Research</button>
-                <button onclick="switchTab('conferences')" class="nav-link hover:text-black transition-colors" id="nav-conferences">Conferences</button>
-                <button onclick="switchTab('funding')" class="nav-link hover:text-black transition-colors" id="nav-funding">Funding</button>
-                <button onclick="switchTab('resources')" class="nav-link hover:text-black transition-colors" id="nav-resources">Resources</button>
-                <button onclick="switchTab('teaching')" class="nav-link hover:text-black transition-colors" id="nav-teaching">Teaching</button>
-                <button onclick="switchTab('gallery')" class="nav-link hover:text-black transition-colors" id="nav-gallery">Gallery</button>
+                <button data-target="home" class="nav-item nav-link hover:text-black transition-colors" id="nav-home">Home</button>
+                <button data-target="about" class="nav-item nav-link hover:text-black transition-colors" id="nav-about">About PI</button>
+                <button data-target="group" class="nav-item nav-link hover:text-black transition-colors" id="nav-group">Group</button>
+                <button data-target="research" class="nav-item nav-link hover:text-black transition-colors" id="nav-research">Research</button>
+                <button data-target="conferences" class="nav-item nav-link hover:text-black transition-colors" id="nav-conferences">Conferences</button>
+                <button data-target="funding" class="nav-item nav-link hover:text-black transition-colors" id="nav-funding">Funding</button>
+                <button data-target="resources" class="nav-item nav-link hover:text-black transition-colors" id="nav-resources">Resources</button>
+                <button data-target="teaching" class="nav-item nav-link hover:text-black transition-colors" id="nav-teaching">Teaching</button>
+                <button data-target="gallery" class="nav-item nav-link hover:text-black transition-colors" id="nav-gallery">Gallery</button>
             </div>
 
-            <button class="md:hidden text-gray-500 hover:text-black" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+            <button id="mobile-menu-btn" class="md:hidden text-gray-500 hover:text-black">
                 <i data-lucide="menu" class="w-6 h-6"></i>
             </button>
         </div>
         
         <div id="mobile-menu" class="hidden absolute top-14 left-0 w-full bg-white/95 backdrop-blur-xl border-b border-gray-100 p-6 flex flex-col space-y-4 shadow-xl md:hidden">
-            <button onclick="switchTab('home'); toggleMobileMenu()" class="text-left text-sm font-medium text-gray-800">Home</button>
-            <button onclick="switchTab('about'); toggleMobileMenu()" class="text-left text-sm font-medium text-gray-800">About PI</button>
-            </div>
+            <button data-target="home" class="nav-item text-left text-sm font-medium text-gray-800">Home</button>
+            <button data-target="about" class="nav-item text-left text-sm font-medium text-gray-800">About PI</button>
+            <button data-target="group" class="nav-item text-left text-sm font-medium text-gray-800">Group</button>
+            <button data-target="research" class="nav-item text-left text-sm font-medium text-gray-800">Research</button>
+            <button data-target="conferences" class="nav-item text-left text-sm font-medium text-gray-800">Conferences</button>
+            <button data-target="funding" class="nav-item text-left text-sm font-medium text-gray-800">Funding</button>
+            <button data-target="resources" class="nav-item text-left text-sm font-medium text-gray-800">Resources</button>
+            <button data-target="teaching" class="nav-item text-left text-sm font-medium text-gray-800">Teaching</button>
+            <button data-target="gallery" class="nav-item text-left text-sm font-medium text-gray-800">Gallery</button>
+        </div>
     </nav>
 
     <main class="pt-24 pb-20 flex-grow px-6 max-w-7xl mx-auto w-full">
@@ -62,7 +69,7 @@
                             Bridging Artificial Intelligence (AI) & Quantum Technology.
                         </p>
                         <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                            <button onclick="switchTab('research')" class="bg-black text-white px-8 py-3 rounded-full font-medium hover:bg-gray-800 transition-colors">
+                            <button data-target="research" class="nav-item bg-black text-white px-8 py-3 rounded-full font-medium hover:bg-gray-800 transition-colors">
                                 View Research
                             </button>
                             <a href="#openings" class="bg-white text-black border border-gray-200 px-8 py-3 rounded-full font-medium hover:bg-gray-50 transition-colors flex items-center justify-center gap-2">
@@ -82,8 +89,8 @@
                 <div class="flex items-center justify-between mb-8">
                     <h2 class="text-2xl font-semibold heading-section">Primary Research Areas</h2>
                     <div class="flex gap-2">
-                         <button onclick="document.getElementById('areas-container').scrollBy({left: -300, behavior: 'smooth'})" class="p-2 rounded-full bg-white border hover:bg-gray-50"><i data-lucide="arrow-left" class="w-4 h-4"></i></button>
-                         <button onclick="document.getElementById('areas-container').scrollBy({left: 300, behavior: 'smooth'})" class="p-2 rounded-full bg-white border hover:bg-gray-50"><i data-lucide="arrow-right" class="w-4 h-4"></i></button>
+                         <button id="scroll-left-btn" class="p-2 rounded-full bg-white border hover:bg-gray-50"><i data-lucide="arrow-left" class="w-4 h-4"></i></button>
+                         <button id="scroll-right-btn" class="p-2 rounded-full bg-white border hover:bg-gray-50"><i data-lucide="arrow-right" class="w-4 h-4"></i></button>
                     </div>
                 </div>
                 <div id="areas-container" class="flex overflow-x-auto gap-6 pb-8 snap-x-mandatory hide-scrollbar"></div>
@@ -107,7 +114,7 @@
                             <a href="mailto:sangkha.borah@phy.iith.ac.in" class="bg-white text-black px-8 py-3 rounded-full font-bold hover:bg-gray-100 transition-colors inline-flex items-center justify-center gap-2">
                                 <i data-lucide="mail" class="w-4 h-4"></i> Contact PI
                             </a>
-                            <button onclick="switchTab('about')" class="bg-transparent border border-gray-700 text-white px-8 py-3 rounded-full font-medium hover:bg-gray-900 transition-colors">
+                            <button data-target="about" class="nav-item bg-transparent border border-gray-700 text-white px-8 py-3 rounded-full font-medium hover:bg-gray-900 transition-colors">
                                 Learn More
                             </button>
                         </div>
@@ -126,11 +133,11 @@
                     <div class="aspect-[3/4] rounded-2xl overflow-hidden shadow-lg bg-gray-200 relative mb-8">
                         <img id="pi-image" src="" alt="Sangkha Borah" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
                     </div>
-                    </div>
+                </div>
                 <div class="w-full lg:w-2/3">
                     <h3 class="text-4xl font-bold text-black mb-6" id="pi-name"></h3>
                     <div class="prose prose-lg text-gray-600 font-light leading-relaxed mb-8" id="pi-bio"></div>
-                    </div>
+                </div>
             </div>
             </div>
 
@@ -159,8 +166,8 @@
 
         <div id="view-conferences" class="view-section hidden-tab fade-in">
              <div class="mb-12"><h2 class="text-4xl font-bold">Conferences</h2></div>
-            <div id="events-container"></div>
-            <div id="conferences-container"></div>
+            <div id="events-container" class="mb-12"></div>
+            <div id="conferences-container" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
         </div>
         
         <div id="view-funding" class="view-section hidden-tab fade-in">
