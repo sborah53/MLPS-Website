@@ -233,7 +233,7 @@ We welcome driven PhD Scholars and postdocs excited about Machine Learning, Quan
                         <img id="pi-image" src="" alt="Sangkha Borah" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
                     </div>
                     
-                    <!-- Innovative Contact Dock -->
+                    <!-- NEW Social Dock (Replaced the old one) -->
                     <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100">
                         <h4 class="font-bold text-xs uppercase tracking-widest text-gray-400 mb-4 text-center">Connect</h4>
                         
@@ -249,13 +249,13 @@ We welcome driven PhD Scholars and postdocs excited about Machine Learning, Quan
                             </div>
                         </div>
 
-                        <!-- Social Dock -->
+                        <!-- Social Dock Buttons -->
                         <div class="grid grid-cols-4 gap-2">
+                             <a href="mailto:sangkha.borah@phy.iith.ac.in" class="flex items-center justify-center h-12 bg-white rounded-xl text-gray-600 hover:text-black hover:shadow-md hover:-translate-y-1 transition-all duration-300 border border-gray-100" title="Email">
+                                <i data-lucide="mail" class="w-5 h-5"></i>
+                            </a>
                             <a href="https://scholar.google.com/citations?user=qfByhykAAAAJ&hl=en" target="_blank" class="flex items-center justify-center h-12 bg-white rounded-xl text-gray-600 hover:text-blue-600 hover:shadow-md hover:-translate-y-1 transition-all duration-300 border border-gray-100" title="Google Scholar">
                                 <i data-lucide="graduation-cap" class="w-5 h-5"></i>
-                            </a>
-                            <a href="#" target="_blank" class="flex items-center justify-center h-12 bg-white rounded-xl text-gray-600 hover:text-black hover:shadow-md hover:-translate-y-1 transition-all duration-300 border border-gray-100" title="GitHub">
-                                <i data-lucide="github" class="w-5 h-5"></i>
                             </a>
                             <a href="#" target="_blank" class="flex items-center justify-center h-12 bg-white rounded-xl text-gray-600 hover:text-blue-700 hover:shadow-md hover:-translate-y-1 transition-all duration-300 border border-gray-100" title="LinkedIn">
                                 <i data-lucide="linkedin" class="w-5 h-5"></i>
@@ -659,7 +659,7 @@ We welcome driven PhD Scholars and postdocs excited about Machine Learning, Quan
                     <h3 class="text-xl font-bold mb-6 flex items-center gap-2 text-black">
                         <i data-lucide="book-open" class="w-5 h-5 text-gray-400"></i> List of Published Papers
                     </h3>
-                    <div id="publications-recent-container" class="space-y-4 bg-white p-8 rounded-3xl shadow-sm">
+                    <div id="publications-recent-container" class="space-y-6">
                         <!-- JS Injected -->
                     </div>
                 </section>
@@ -669,7 +669,7 @@ We welcome driven PhD Scholars and postdocs excited about Machine Learning, Quan
                     <h3 class="text-xl font-bold mb-6 flex items-center gap-2 text-black">
                         <i data-lucide="file-clock" class="w-5 h-5 text-gray-400"></i> Preprints
                     </h3>
-                    <div id="publications-preprint-container" class="space-y-4 bg-white p-8 rounded-3xl shadow-sm border border-dashed border-gray-200">
+                    <div id="publications-preprint-container" class="space-y-6">
                         <!-- JS Injected -->
                     </div>
                 </section>
@@ -860,9 +860,23 @@ We welcome driven PhD Scholars and postdocs excited about Machine Learning, Quan
             switchTab('home');
         });
 
+        // Toggle Abstract Function
+        function toggleAbstract(id) {
+            const el = document.getElementById(`abstract-${id}`);
+            const btn = document.getElementById(`btn-abstract-${id}`);
+            if(el.classList.contains('hidden')) {
+                el.classList.remove('hidden');
+                btn.innerHTML = `Close Abstract <i data-lucide="chevron-up" class="w-4 h-4"></i>`;
+            } else {
+                el.classList.add('hidden');
+                btn.innerHTML = `Abstract <i data-lucide="chevron-down" class="w-4 h-4"></i>`;
+            }
+            lucide.createIcons();
+        }
+
 
         /* ======================================================================
-           DATA SECTION (Copy this object to a separate 'data.js' file later)
+           DATA SECTION
         ======================================================================
         */
         const groupData = {
@@ -918,45 +932,39 @@ We welcome driven PhD Scholars and postdocs excited about Machine Learning, Quan
                         role: "Principal Investigator",
                         img: "assets/images/sb2.png",
                         desc: "I work as a quantum physicist at the intersection of machine learning and quantum technologies, where I develop algorithms to enhance quantum computing, quantum error correction, and quantum control for next‑generation devices. My research often focuses on learning‑based decoders and quantum machine‑learning models that can identify and correct errors in noisy quantum processors, as well as protocols that use entanglement and error correction to improve the performance and stability of quantum hardware. I am particularly interested in how ideas from modern AI, such as neural networks, physics informed AI, and representation learning, can be adapted to the constraints of near‑term quantum hardware to make experiments more robust, scalable, and informative across quantum technologies. This includes emerging directions in quantum neuromorphic computing and machine learning for the physical sciences beyond quantum information processing, for example applications in photonics and condensed‑matter physics. A key theme in my work is the design of measurement based feedback control schemes, where classical and learning‑based controllers act on continuously measured quantum systems to stabilize dynamics and suppress noise in realistic experimental platforms. Outside the lab, I enjoy intellectually engaging hobbies like reading and exploring new developments in physics and computer science, along with other activities that help me think creatively and unwind so I can return to research with fresh perspectives.",
+                        email: "sangkha.borah@phy.iith.ac.in",
                         socials: {
                             googleScholar: "https://scholar.google.com/citations?user=qfByhykAAAAJ&hl=en",
                             linkedin: "#"
                         }
                    } 
                 ],
-                postdocs: [
-                    // Placeholder for future postdocs
-                    // {
-                    //     name: "Dr. You",
-                    //     role: "Postdoctoral Researcher",
-                    //     img: "https://api.dicebear.com/7.x/notion/svg?seed=Postdoc1",
-                    //     funding: "Institute/External Grant",
-                    //     desc: "If you are looking for a postdoctoral opportunity, make sure to contact me.",
-                    //     socials: { googleScholar: "#", linkedin: "#" }
-                    // }
-                ],
+                postdocs: [],
                 phd: [
                     { 
                         name: "Akash Kumar Saw", 
                         role: "Quantum Error Correction", 
                         img: "assets/images/akash_kumar_saw_1.png",
                         funding: "CSIR-JRF Fellowship",
+                        email: "ph25resch12003@iith.ac.in",
                         desc: "I am a PhD scholar working on quantum error correction, where I design and analyse schemes to detect and correct noise in realistic quantum processors so that future quantum devices become more stable and scalable. I completed my BSc in physics at a regional college, where courses on quantum mechanics and laboratory work first sparked my fascination with quantum information, and then pursued an MSc in physics at a central university, during which I worked on a project studying simple quantum error‑correcting codes and noise models; outside research I enjoy reading, travelling, and long conversations about physics and philosophy.",
-                        socials: { googleScholar: "#", linkedin: "#" }
+                        socials: { googleScholar: "#", linkedin: "" }
                     },
                     { 
                         name: "Anjana K", 
                         role: "Quantum Machine Learning", 
                         img: "assets/images/anjana_k_1.jpg",
                         funding: "DST-Inspire Fellowship",
-                        desc: "I am a PhD scholar working on quantum machine learning, focusing on how quantum models can learn from data and potentially outperform or complement classical machine‑learning methods in concrete tasks such as classification and generative modelling. I did my BSc in physics at a city college, where exposure to basic programming and numerical methods drew me towards computation, and later completed my MSc in physics at a technological university, where my thesis project involved implementing small‑scale quantum machine‑learning algorithms and benchmarking them on simulators; in my free time I like reading, travelling, and exploring new developments in physics and computer science",
-                        socials: { googleScholar: "#", linkedin: "#" }
+                        email: "ph25resch12004@iith.ac.in",
+                        desc: "I am a PhD scholar in quantum machine learning, studying how quantum models can learn from data and when they can outperform or complement classical methods in concrete tasks such as classification and generative modelling, with a particular focus on quantum kernel methods and quantum reinforcement learning. I completed my BSc in Physics at MG College, Kerala, where early exposure to programming and numerical methods sparked my interest in computation, and later earned my MSc in Physics from the University of Kerala, where my thesis project involved implementing small‑scale machine‑learning algorithms for specific applied use cases. In my free time, I enjoy reading, travelling, and exploring new developments in physics and computer science.",
+                        socials: { googleScholar: "#", linkedin: "https://in.linkedin.com/in/anjana-k-129bab29a" }
                     },
                     { 
                         name: "Subodh Roushan", 
                         role: "Neuromorphic Quantum Computing", 
                         img: "assets/images/subodh_roushan_1.png",
                         funding: "UGC-JRF Fellowship",
+                        email: "ph25resch12002@iith.ac.in",
                         desc: "I am a PhD scholar working on neuromorphic quantum computing, aiming to merge ideas from neuroscience, neuromorphic architectures, and quantum information to design adaptive and energy‑efficient quantum systems. I obtained my BSc in physics from a government college, where courses in electronics and solid‑state physics nurtured my interest in unconventional computing, and then an MSc in physics from a national university, where I worked on a project exploring simple quantum circuits inspired by spiking‑neuron models; beyond the lab I enjoy reading broadly, travelling, and thinking about the future of intelligent quantum technologies.",
                         socials: { googleScholar: "#", linkedin: "#" }
                     },
@@ -965,6 +973,7 @@ We welcome driven PhD Scholars and postdocs excited about Machine Learning, Quan
                         role: "Machine Learning for Photonics", 
                         img: "assets/images/majji_siva_1.png",
                         funding: "UGC-JRF Fellowship",
+                        email: "ph25resch12010@iith.ac.in",
                         desc: "I am a PhD scholar working on machine learning for photonics, co‑guided with Prof. Vandana Sharma at IIT Hyderabad, using data‑driven methods to analyse, design, and optimize photonic devices and experiments. I completed my BSc in physics at a science college, where optics labs and laser experiments drew me towards photonics, and went on to an MSc in physics at a university with a strong optics program, where my project focused on using basic ML models to fit and interpret optical spectra; I like to spend my spare time reading, travelling, and exploring ideas at the interface of physics and machine learning.",
                         socials: { googleScholar: "#", linkedin: "#" }
                     },
@@ -973,6 +982,7 @@ We welcome driven PhD Scholars and postdocs excited about Machine Learning, Quan
                         role: "ML for Condensed Matter Physics", 
                         img: "assets/images/harish_chalwadi_1.png",
                         funding: "MOE Fellowship",
+                        email: "ph25resch12001@iith.ac.in",
                         desc: "I am a PhD scholar working on machine learning for condensed‑matter physics, co‑guided with Dr. Mahesh Peddigari at IIT Hyderabad, applying modern ML tools to complex many‑body systems and quantum materials. I earned my BSc in physics from a college known for its solid‑state physics courses, where I first became interested in phase transitions and correlated systems, and later my MSc in physics from a research‑focused university, where my thesis project involved using numerical and machine‑learning techniques to study model Hamiltonians; outside research I enjoy reading, travelling, and keeping up with developments in condensed‑matter physics and computation.",
                         socials: { googleScholar: "#", linkedin: "#" }
                     }
@@ -985,14 +995,16 @@ We welcome driven PhD Scholars and postdocs excited about Machine Learning, Quan
                         img: "https://api.dicebear.com/7.x/notion/svg?seed=Raghav",
                         topic: "Machine Learning for Quantum Technology",
                         desc: "Working on Neuromorphic Computing.",
+                        email: "ep23btech11020",
                         socials: { googleScholar: "#", linkedin: "#" }
                     },
                      { 
                         name: "Harshit Lakshakar", 
                         role: "M.Sc Project", 
                         img: "https://api.dicebear.com/7.x/notion/svg?seed=Harshit",
-                        topic: "Machine Learning for Quantum Technology",
+                        topic: "Machine Learning for Photonics",
                         desc: "Co-guided with Prof. Vandana Sharma. Working on Machine Learning for Photonics.",
+                        email: "ph24mtech11004@iith.ac.in",
                         socials: { googleScholar: "#", linkedin: "#" }
                     },
                      { 
@@ -1001,57 +1013,58 @@ We welcome driven PhD Scholars and postdocs excited about Machine Learning, Quan
                         img: "https://api.dicebear.com/7.x/notion/svg?seed=Shardul",
                         topic: "Machine Learning for Quantum Technology",
                         desc: "Working on Shadow Tomography. Self-funded.",
+                        email: "shardulbgharat@gmail.com",
                         socials: { googleScholar: "#", linkedin: "#" }
                     },
                     // Previous Team Members now individual
                     { 
                         name: "Shounak Kamutala", role: "B.Tech Project", img: "https://api.dicebear.com/7.x/notion/svg?seed=Shounak", 
-                        topic: "Machine Learning for Quantum Technology", desc: "Reinforcement Learning for Physics Package Development.", socials: { googleScholar: "#", linkedin: "#" }
+                        topic: "Machine Learning for Quantum Technology", desc: "Reinforcement Learning for Physics Package Development.", email: "email@example.com", socials: { googleScholar: "#", linkedin: "#" }
                     },
                     { 
                         name: "Karthik G.E. Saravanan", role: "B.Tech Project", img: "https://api.dicebear.com/7.x/notion/svg?seed=Karthik", 
-                        topic: "Machine Learning for Quantum Technology", desc: "Reinforcement Learning for Physics Package Development.", socials: { googleScholar: "#", linkedin: "#" }
+                        topic: "Machine Learning for Quantum Technology", desc: "Reinforcement Learning for Physics Package Development.", email: "email@example.com", socials: { googleScholar: "#", linkedin: "#" }
                     },
                     { 
                         name: "Sarang Anang Gund", role: "B.Tech Project", img: "https://api.dicebear.com/7.x/notion/svg?seed=Sarang", 
-                        topic: "Machine Learning for Quantum Technology", desc: "Reinforcement Learning for Physics Package Development.", socials: { googleScholar: "#", linkedin: "#" }
+                        topic: "Machine Learning for Quantum Technology", desc: "Reinforcement Learning for Physics Package Development.", email: "email@example.com", socials: { googleScholar: "#", linkedin: "#" }
                     },
                     { 
                         name: "Ritik Parihar", role: "B.Tech Project", img: "https://api.dicebear.com/7.x/notion/svg?seed=Ritik", 
-                        topic: "Machine Learning for Quantum Technology", desc: "Reinforcement Learning for Physics Package Development.", socials: { googleScholar: "#", linkedin: "#" }
+                        topic: "Machine Learning for Quantum Technology", desc: "Reinforcement Learning for Physics Package Development.", email: "email@example.com", socials: { googleScholar: "#", linkedin: "#" }
                     },
                     { 
                         name: "Dommeti Dinesh Krishna", role: "B.Tech Project", img: "https://api.dicebear.com/7.x/notion/svg?seed=Dommeti", 
-                        topic: "Machine Learning for Quantum Technology", desc: "Reinforcement Learning for Physics Package Development.", socials: { googleScholar: "#", linkedin: "#" }
+                        topic: "Machine Learning for Quantum Technology", desc: "Reinforcement Learning for Physics Package Development.", email: "email@example.com", socials: { googleScholar: "#", linkedin: "#" }
                     },
                     // Generic Placeholders to reach 20
-                    { name: "Arjun Reddy", role: "Project Student", img: "https://api.dicebear.com/7.x/notion/svg?seed=ArjunR", topic: "Machine Learning for Quantum Technology", desc: "Project details coming soon.", socials: {} },
-                    { name: "Priya Sharma", role: "Project Student", img: "https://api.dicebear.com/7.x/notion/svg?seed=PriyaS", topic: "Machine Learning for Quantum Technology", desc: "Project details coming soon.", socials: {} },
-                    { name: "Rohan Gupta", role: "Project Student", img: "https://api.dicebear.com/7.x/notion/svg?seed=RohanG", topic: "Machine Learning for Quantum Technology", desc: "Project details coming soon.", socials: {} },
-                    { name: "Sneha Patel", role: "Project Student", img: "https://api.dicebear.com/7.x/notion/svg?seed=Sneha", topic: "Machine Learning for Quantum Technology", desc: "Project details coming soon.", socials: {} },
-                    { name: "Vikram Singh", role: "Project Student", img: "https://api.dicebear.com/7.x/notion/svg?seed=Vikram", topic: "Machine Learning for Quantum Technology", desc: "Project details coming soon.", socials: {} },
-                    { name: "Ananya Das", role: "Project Student", img: "https://api.dicebear.com/7.x/notion/svg?seed=Ananya", topic: "Machine Learning for Quantum Technology", desc: "Project details coming soon.", socials: {} },
-                    { name: "Rahul Verma", role: "Project Student", img: "https://api.dicebear.com/7.x/notion/svg?seed=Rahul", topic: "Machine Learning for Quantum Technology", desc: "Project details coming soon.", socials: {} },
-                    { name: "Kavita Krishnan", role: "Project Student", img: "https://api.dicebear.com/7.x/notion/svg?seed=Kavita", topic: "Machine Learning for Quantum Technology", desc: "Project details coming soon.", socials: {} },
-                    { name: "Amit Shah", role: "Project Student", img: "https://api.dicebear.com/7.x/notion/svg?seed=Amit", topic: "Machine Learning for Quantum Technology", desc: "Project details coming soon.", socials: {} },
-                    { name: "Neha Iyer", role: "Project Student", img: "https://api.dicebear.com/7.x/notion/svg?seed=Neha", topic: "Machine Learning for Quantum Technology", desc: "Project details coming soon.", socials: {} },
-                    { name: "Siddharth Malhotra", role: "Project Student", img: "https://api.dicebear.com/7.x/notion/svg?seed=Sid", topic: "Machine Learning for Quantum Technology", desc: "Project details coming soon.", socials: {} },
-                    { name: "Pooja Hegde", role: "Project Student", img: "https://api.dicebear.com/7.x/notion/svg?seed=Pooja", topic: "Machine Learning for Quantum Technology", desc: "Project details coming soon.", socials: {} }
+                    { name: "Arjun Reddy", role: "Project Student", img: "https://api.dicebear.com/7.x/notion/svg?seed=ArjunR", topic: "Machine Learning for Quantum Technology", desc: "Project details coming soon.", email: "email@example.com", socials: {} },
+                    { name: "Priya Sharma", role: "Project Student", img: "https://api.dicebear.com/7.x/notion/svg?seed=PriyaS", topic: "Machine Learning for Quantum Technology", desc: "Project details coming soon.", email: "email@example.com", socials: {} },
+                    { name: "Rohan Gupta", role: "Project Student", img: "https://api.dicebear.com/7.x/notion/svg?seed=RohanG", topic: "Machine Learning for Quantum Technology", desc: "Project details coming soon.", email: "email@example.com", socials: {} },
+                    { name: "Sneha Patel", role: "Project Student", img: "https://api.dicebear.com/7.x/notion/svg?seed=Sneha", topic: "Machine Learning for Quantum Technology", desc: "Project details coming soon.", email: "email@example.com", socials: {} },
+                    { name: "Vikram Singh", role: "Project Student", img: "https://api.dicebear.com/7.x/notion/svg?seed=Vikram", topic: "Machine Learning for Quantum Technology", desc: "Project details coming soon.", email: "email@example.com", socials: {} },
+                    { name: "Ananya Das", role: "Project Student", img: "https://api.dicebear.com/7.x/notion/svg?seed=Ananya", topic: "Machine Learning for Quantum Technology", desc: "Project details coming soon.", email: "email@example.com", socials: {} },
+                    { name: "Rahul Verma", role: "Project Student", img: "https://api.dicebear.com/7.x/notion/svg?seed=Rahul", topic: "Machine Learning for Quantum Technology", desc: "Project details coming soon.", email: "email@example.com", socials: {} },
+                    { name: "Kavita Krishnan", role: "Project Student", img: "https://api.dicebear.com/7.x/notion/svg?seed=Kavita", topic: "Machine Learning for Quantum Technology", desc: "Project details coming soon.", email: "email@example.com", socials: {} },
+                    { name: "Amit Shah", role: "Project Student", img: "https://api.dicebear.com/7.x/notion/svg?seed=Amit", topic: "Machine Learning for Quantum Technology", desc: "Project details coming soon.", email: "email@example.com", socials: {} },
+                    { name: "Neha Iyer", role: "Project Student", img: "https://api.dicebear.com/7.x/notion/svg?seed=Neha", topic: "Machine Learning for Quantum Technology", desc: "Project details coming soon.", email: "email@example.com", socials: {} },
+                    { name: "Siddharth Malhotra", role: "Project Student", img: "https://api.dicebear.com/7.x/notion/svg?seed=Sid", topic: "Machine Learning for Quantum Technology", desc: "Project details coming soon.", email: "email@example.com", socials: {} },
+                    { name: "Pooja Hegde", role: "Project Student", img: "https://api.dicebear.com/7.x/notion/svg?seed=Pooja", topic: "Machine Learning for Quantum Technology", desc: "Project details coming soon.", email: "email@example.com", socials: {} }
                 ],
                 interns: [
                     { 
                         name: "Intern Name 1", role: "Summer Intern", img: "https://api.dicebear.com/7.x/notion/svg?seed=Intern1", 
-                        topic: "Quantum ML", desc: "Summer internship project on variational quantum circuits.", socials: {} 
+                        topic: "Quantum ML", desc: "Summer internship project on variational quantum circuits.", email: "intern1@example.com", socials: {} 
                     },
                     { 
                         name: "Intern Name 2", role: "Visiting Intern", img: "https://api.dicebear.com/7.x/notion/svg?seed=Intern2", 
-                        topic: "Quantum Control", desc: "Visiting from IIT Bombay.", socials: {} 
+                        topic: "Quantum Control", desc: "Visiting from IIT Bombay.", email: "intern2@example.com", socials: {} 
                     }
                 ],
                 visitors: [
                     { 
                         name: "Dr. Visiting Scholar", role: "Visiting Professor", img: "https://api.dicebear.com/7.x/notion/svg?seed=Visitor1", 
-                        topic: "Quantum Optics", desc: "Visiting from University of X for collaboration on open quantum systems.", socials: { googleScholar: "#" } 
+                        topic: "Quantum Optics", desc: "Visiting from University of X for collaboration on open quantum systems.", email: "visitor@example.com", socials: { googleScholar: "#" } 
                     }
                 ],
                 alumni: [
@@ -1060,6 +1073,7 @@ We welcome driven PhD Scholars and postdocs excited about Machine Learning, Quan
                         role: "Former PhD Scholar", 
                         img: "https://api.dicebear.com/7.x/notion/svg?seed=Aditi",
                         desc: "Graduated in 2024. Currently working as a Postdoc at ETH Zurich focusing on superconducting circuit design.",
+                        email: "aditi@example.com",
                         socials: { googleScholar: "#", linkedin: "#" }
                     }
                 ]
@@ -1095,125 +1109,116 @@ We welcome driven PhD Scholars and postdocs excited about Machine Learning, Quan
             publications: {
                 recent: [
                     {
+                        id: "p1",
                         title: "Non-Markovian feedback for optimized quantum error correction",
                         authors: "Matteo Puviani, <b>Sangkha Borah</b>, Remmy Zen, Jan Olle, Florian Marquardt",
                         journal: "Physical Review Letters, 134, 020601",
                         year: "2025",
-                        link: "https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.134.020601"
+                        link: "https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.134.020601",
+                        thumbnail: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=300&auto=format&fit=crop",
+                        abstract: "We introduce a novel feedback control strategy that leverages non-Markovian dynamics to optimize quantum error correction protocols, significantly extending qubit lifetimes."
                     },
                     {
+                        id: "p2",
                         title: "Uniaxial Tensile-Induced Phase Transition in Graphynes",
                         authors: "Jacques Kotoko, Komi Sodoga, Yusuf Shaidu, Nicola Seriani, <b>Sangkha Borah</b>, Katawoura Beltako",
                         journal: "Journal of Physical Chemistry C, 128, 17058",
                         year: "2024",
-                        link: "https://doi.org/10.1021/acs.jpcc.4c01233"
+                        link: "https://doi.org/10.1021/acs.jpcc.4c01233",
+                        thumbnail: "https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=300&auto=format&fit=crop",
+                        abstract: "We investigate the structural phase transitions in graphynes under uniaxial tension using first-principles calculations, revealing a potential for tunable electronic properties."
                     },
                     {
+                        id: "p3",
                         title: "No-collapse accurate quantum feedback control via conditional state tomography",
                         authors: "<b>Sangkha Borah</b>, Bijita Sarma",
                         journal: "Physical Review Letters, 131, 210803",
                         year: "2023",
-                        link: "https://doi.org/10.1103/PhysRevLett.131.210803"
+                        link: "https://doi.org/10.1103/PhysRevLett.131.210803",
+                        thumbnail: "https://images.unsplash.com/photo-1614726365207-688753d0859c?q=80&w=300&auto=format&fit=crop",
+                        abstract: "This paper demonstrates a method for accurate quantum feedback control that avoids wavefunction collapse by utilizing continuous weak measurements and conditional state tomography."
                     },
                     {
+                        id: "p4",
                         title: "Accelerated motional cooling with deep reinforcement learning",
                         authors: "Bijita Sarma, <b>Sangkha Borah</b>, A Kani, Jason Twamley",
                         journal: "Physical Review Research (Letter), 4, L042038",
                         year: "2022",
-                        link: "https://doi.org/10.1103/PhysRevResearch.4.L042038"
+                        link: "https://doi.org/10.1103/PhysRevResearch.4.L042038",
+                        thumbnail: "",
+                        abstract: "Deep reinforcement learning is applied to optimize cooling protocols for trapped ions, achieving faster cooling rates than traditional sideband cooling methods."
                     },
                     {
+                        id: "p5",
                         title: "Measurement based estimator scheme for continuous quantum error correction",
                         authors: "<b>Sangkha Borah</b>, Bijita Sarma, Michael Kewming, Fernando Quijandria, Gerard J. Milburn, Jason Twamley",
                         journal: "Physical Review Research, 4, 033207",
                         year: "2022",
-                        link: "https://doi.org/10.1103/PhysRevResearch.4.033207"
+                        link: "https://doi.org/10.1103/PhysRevResearch.4.033207",
+                        thumbnail: "",
+                        abstract: "We propose a continuous quantum error correction scheme that uses a measurement-based estimator to track errors in real-time, surpassing the break-even point for specific codes."
                     },
                     {
+                        id: "p6",
                         title: "Phonon-assisted carrier cooling in h-BN/graphene van der waals heterostructures",
                         authors: "<b>Sangkha Borah</b>, Dinesh Yadav, Maxim Trushin, Fabian Pauly",
                         journal: "Physical Review B, 105, 245419",
                         year: "2022",
-                        link: "https://journals.aps.org/prb/abstract/10.1103/PhysRevB.105.245419"
+                        link: "https://journals.aps.org/prb/abstract/10.1103/PhysRevB.105.245419",
+                        thumbnail: "",
+                        abstract: "A detailed theoretical study of carrier cooling pathways in graphene-hBN heterostructures, highlighting the role of phonon-assisted scattering."
                     },
                     {
-                        title: "Measurement-based feedback quantum control with deep reinforcement learning for a double-well nonlinear potential",
+                        id: "p7",
+                        title: "Measurement-based feedback quantum control with deep reinforcement learning",
                         authors: "<b>Sangkha Borah</b>, Bijita Sarma, Michael Kewming, Gerard J. Milburn, Jason Twamley",
                         journal: "Physical Review Letters, 127(19), 190403",
                         year: "2021",
-                        link: "https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.127.190403"
+                        link: "https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.127.190403",
+                        thumbnail: "",
+                        abstract: "RL agents are trained to control quantum systems under continuous measurement, successfully preparing non-classical states in a double-well potential."
                     },
                     {
+                        id: "p8",
                         title: "Flavan-based phytoconstituents inhibit mpro, a sars-cov-2 molecular target, in silico",
                         authors: "Soham Mukherjee, Deepika Sharma, Ajay Kumar Sharma, Shreya Jaiswal, Nancy Sharma, <b>Sangkha Borah</b>, Gurjot Kaur",
                         journal: "Journal of Biomolecular Structure and Dynamics, 40, 11545",
                         year: "2021",
-                        link: "https://www.tandfonline.com/doi/abs/10.1080/07391102.2021.1960196"
+                        link: "https://www.tandfonline.com/doi/abs/10.1080/07391102.2021.1960196",
+                        thumbnail: "",
+                        abstract: "In silico molecular docking studies identify flavan-based compounds as potential inhibitors of the SARS-CoV-2 main protease."
                     },
                     {
-                        title: "Spatially resolved hydration shells and dynamics of different sulfur species in water from first-principle molecular dynamics simulations",
+                        id: "p9",
+                        title: "Spatially resolved hydration shells and dynamics of different sulfur species in water",
                         authors: "<b>Sangkha Borah</b>",
                         journal: "Journal of Molecular Liquids, 312, 113387",
                         year: "2020",
-                        link: "https://www.sciencedirect.com/science/article/pii/S0167732220307121"
-                    },
-                    {
-                        title: "Hydration properties of H<sub>n</sub>PO<sup>n-3</sup><sub>4</sub> (n = 0 - 3) from ab initio molecular dynamics simulations",
-                        authors: "<b>Sangkha Borah</b>",
-                        journal: "The Journal of Physical Chemistry B, 124, 5454",
-                        year: "2020",
-                        link: "https://pubs.acs.org/doi/full/10.1021/acs.jpcb.0c01769"
-                    },
-                    {
-                        title: "Hydration structure of As-III aqueous solutions from ab initio molecular dynamics simulations",
-                        authors: "<b>Sangkha Borah</b>, P Padma Kumar",
-                        journal: "Journal of Molecular Liquids, 318, 114056",
-                        year: "2020",
-                        link: "https://doi.org/10.1016/j.molliq.2020.114056"
-                    },
-                    {
-                        title: "Accessing slow diffusion in solids employing metadynamics simulation",
-                        authors: "Krishnanjan Pramanik, <b>Sangkha Borah</b>, P Padma Kumar",
-                        journal: "Physical Chemistry Chemical Physics, 22, 22796",
-                        year: "2020",
-                        link: "https://pubs.rsc.org/en/content/articlehtml/2020/cp/d0cp03239e"
-                    },
-                    {
-                        title: "First-principle molecular dynamics investigation of waterborne As-V species",
-                        authors: "<b>Sangkha Borah</b>, P Padma Kumar",
-                        journal: "The Journal of Physical Chemistry B, 122, 3153",
-                        year: "2018",
-                        link: "https://pubs.acs.org/doi/full/10.1021/acs.jpcb.7b12482"
-                    },
-                    {
-                        title: "Ab initio molecular dynamics study of Se (IV) species in aqueous environment",
-                        authors: "<b>Sangkha Borah</b>, P Padma Kumar",
-                        journal: "Physical Chemistry Chemical Physics, 18, 26755",
-                        year: "2016",
-                        link: "https://pubs.rsc.org/en/content/articlehtml/2016/cp/c6cp04725d"
-                    },
-                    {
-                        title: "Ab initio molecular dynamics investigation of structural, dynamic and spectroscopic aspects of Se (VI) species in the aqueous environment",
-                        authors: "<b>Sangkha Borah</b>, P Padma Kumar",
-                        journal: "Physical Chemistry Chemical Physics, 18, 14561",
-                        year: "2016",
-                        link: "https://pubs.rsc.org/en/content/articlehtml/2016/cp/c6cp01835a"
+                        link: "https://www.sciencedirect.com/science/article/pii/S0167732220307121",
+                        thumbnail: "",
+                        abstract: "First-principles molecular dynamics simulations reveal the local hydration structure and dynamics around various sulfur species in aqueous solution."
                     }
                 ],
                 preprints: [
                     {
+                        id: "pp1",
                         title: "Transformer-based machine learning for fast and accurate readout of superconducting qubits",
                         authors: "A Kumar, S Borah",
                         journal: "arXiv preprint arXiv:2310.02100",
                         year: "2023",
-                        link: "#"
+                        link: "#",
+                        thumbnail: "https://images.unsplash.com/photo-1558494949-ef526b0042a0?q=80&w=300&auto=format&fit=crop",
+                        abstract: "We propose a Transformer-based architecture for processing readout signals from superconducting qubits, achieving higher fidelity and speed compared to traditional integration methods."
                     },
                     {
+                        id: "pp2",
                         title: "Quantum heat engine with a non-Markovian bath: performance and efficiency",
                         authors: "S Borah, S Das",
                         journal: "arXiv preprint arXiv:2205.11145",
                         year: "2022",
-                        link: "#"
+                        link: "#",
+                        thumbnail: "",
+                        abstract: "We analyze the thermodynamic performance of a quantum heat engine coupled to a non-Markovian bath, finding regimes of enhanced efficiency due to memory effects."
                     }
                 ],
                 news: [
@@ -1222,10 +1227,10 @@ We welcome driven PhD Scholars and postdocs excited about Machine Learning, Quan
                 ]
             },
             collaborators: [
-                { name: "Prof. John Doe", affiliation: "MIT, USA", img: "https://api.dicebear.com/7.x/avataaars/svg?seed=John" },
-                { name: "Dr. Jane Smith", affiliation: "ETH Zurich", img: "https://api.dicebear.com/7.x/avataaars/svg?seed=Jane" },
-                { name: "Prof. A. Kumar", affiliation: "IISc Bangalore", img: "https://api.dicebear.com/7.x/avataaars/svg?seed=Kumar" },
-                { name: "Dr. Sarah Lee", affiliation: "NUS Singapore", img: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah" }
+                { name: "Prof. John Doe", affiliation: "MIT, USA", img: "https://api.dicebear.com/7.x/avataaars/svg?seed=John", email: "john@mit.edu", socials: { googleScholar: "#", linkedin: "#" } },
+                { name: "Dr. Jane Smith", affiliation: "ETH Zurich", img: "https://api.dicebear.com/7.x/avataaars/svg?seed=Jane", email: "jane@ethz.ch", socials: { googleScholar: "#", linkedin: "#" } },
+                { name: "Prof. A. Kumar", affiliation: "IISc Bangalore", img: "https://api.dicebear.com/7.x/avataaars/svg?seed=Kumar", email: "kumar@iisc.ac.in", socials: { googleScholar: "#", linkedin: "#" } },
+                { name: "Dr. Sarah Lee", affiliation: "NUS Singapore", img: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah", email: "sarah@nus.edu.sg", socials: { googleScholar: "#", linkedin: "#" } }
             ],
             resources: [
                 { title: "QuantumNet", desc: "A PyTorch library for Quantum Neural Networks.", link: "github.com" },
@@ -1316,15 +1321,8 @@ We welcome driven PhD Scholars and postdocs excited about Machine Learning, Quan
             highlightContainer.appendChild(div);
         });
 
-        // Helper for Member Rows (Updated)
+        // Helper for Member Rows (Updated with Social Dock)
         function createMemberRow(member) {
-            // Optional Socials
-            const socialLinks = `
-                <div class="flex gap-3 mt-4 justify-center md:justify-start">
-                    ${member.socials?.googleScholar ? `<a href="${member.socials.googleScholar}" target="_blank" class="text-gray-400 hover:text-blue-600 transition-colors" title="Google Scholar"><i data-lucide="graduation-cap" class="w-5 h-5"></i></a>` : ''}
-                    ${member.socials?.linkedin ? `<a href="${member.socials.linkedin}" target="_blank" class="text-gray-400 hover:text-blue-700 transition-colors" title="LinkedIn"><i data-lucide="linkedin" class="w-5 h-5"></i></a>` : ''}
-                </div>
-            `;
             
             // Optional Funding Badge
             const fundingBadge = member.funding ? `
@@ -1332,6 +1330,26 @@ We welcome driven PhD Scholars and postdocs excited about Machine Learning, Quan
                     <i data-lucide="coins" class="w-3 h-3"></i> Funded by ${member.funding}
                 </div>
             ` : '';
+
+            // Enhanced Social Dock
+            const socialDock = `
+                <div class="flex gap-2 mt-4">
+                     ${member.email ? `
+                        <a href="mailto:${member.email}" class="flex items-center justify-center w-8 h-8 rounded-lg bg-gray-50 text-gray-500 hover:bg-black hover:text-white transition-all border border-gray-100" title="Email">
+                            <i data-lucide="mail" class="w-4 h-4"></i>
+                        </a>` : ''}
+                    
+                    ${member.socials?.googleScholar ? `
+                        <a href="${member.socials.googleScholar}" target="_blank" class="flex items-center justify-center w-8 h-8 rounded-lg bg-gray-50 text-gray-500 hover:bg-blue-600 hover:text-white transition-all border border-gray-100" title="Google Scholar">
+                            <i data-lucide="graduation-cap" class="w-4 h-4"></i>
+                        </a>` : ''}
+                    
+                    ${member.socials?.linkedin ? `
+                        <a href="${member.socials.linkedin}" target="_blank" class="flex items-center justify-center w-8 h-8 rounded-lg bg-gray-50 text-gray-500 hover:bg-blue-700 hover:text-white transition-all border border-gray-100" title="LinkedIn">
+                            <i data-lucide="linkedin" class="w-4 h-4"></i>
+                        </a>` : ''}
+                </div>
+            `;
 
             return `
                 <div class="card p-6 flex flex-col md:flex-row gap-6 items-start group hover:bg-white transition-all duration-300">
@@ -1344,7 +1362,7 @@ We welcome driven PhD Scholars and postdocs excited about Machine Learning, Quan
                         ${fundingBadge}
                         <div class="h-3"></div>
                         <p class="text-gray-600 text-sm leading-relaxed mb-4 text-justify">${member.desc || member.current || "Research details to be added."}</p>
-                        ${socialLinks}
+                        ${socialDock}
                     </div>
                 </div>
             `;
@@ -1370,25 +1388,57 @@ We welcome driven PhD Scholars and postdocs excited about Machine Learning, Quan
             </div>
         `).join('');
 
-        // Helper for Publications
-        function createPubRow(pub) {
+        // Helper for Publications (REDESIGNED LAYOUT)
+        function createDetailedPubRow(pub) {
+             // Fallback if no thumbnail
+             const thumb = pub.thumbnail || 'https://via.placeholder.com/150?text=Paper';
+             const thumbDisplay = pub.thumbnail ? 
+                 `<img src="${thumb}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">` :
+                 `<div class="w-full h-full bg-gray-100 flex items-center justify-center text-gray-300"><i data-lucide="file-text" class="w-12 h-12"></i></div>`;
+
              return `
-                <div class="group block border-b border-gray-100 last:border-0 pb-4 mb-4">
-                    <h4 class="text-lg font-semibold text-black mb-1 group-hover:text-blue-600 transition-colors">
-                        <a href="${pub.link}" target="_blank">${pub.title}</a>
-                    </h4>
-                    <p class="text-sm text-gray-600 mb-1">${pub.authors}</p>
-                    <div class="flex items-center gap-3 text-xs font-medium text-gray-400 uppercase tracking-wide">
-                        <span class="bg-gray-100 px-2 py-0.5 rounded text-gray-600">${pub.year}</span>
-                        <span>${pub.journal}</span>
+                <div class="flex flex-col md:flex-row gap-6 bg-white p-6 rounded-2xl shadow-sm border border-gray-100 mb-4 transition-all hover:shadow-md">
+                    <!-- Image -->
+                    <div class="shrink-0 w-full md:w-48 h-48 bg-gray-50 rounded-xl overflow-hidden relative border border-gray-100">
+                         ${thumbDisplay}
+                    </div>
+                    
+                    <!-- Content -->
+                    <div class="flex-1 flex flex-col justify-center">
+                         <h3 class="text-xl font-bold text-gray-900 mb-2 leading-tight">${pub.title}</h3>
+                         <p class="text-gray-600 mb-3 text-sm">${pub.authors}</p>
+                         
+                         <div class="text-sm text-gray-500 mb-3">
+                             <span class="font-mono bg-gray-100 px-2 py-1 rounded text-gray-700 text-xs uppercase tracking-wide mr-2">Journal</span>
+                             <span>${pub.journal} (${pub.year})</span>
+                         </div>
+                         
+                         <div class="flex flex-wrap gap-4 text-sm font-semibold mt-2">
+                             <a href="${pub.link}" target="_blank" class="text-teal-600 hover:text-teal-800 flex items-center gap-1 transition-colors">
+                                Preprint <i data-lucide="external-link" class="w-3 h-3"></i>
+                             </a>
+                             <span class="text-gray-300">|</span>
+                             <a href="${pub.link}" target="_blank" class="text-teal-600 hover:text-teal-800 flex items-center gap-1 transition-colors">
+                                PDF <i data-lucide="file-down" class="w-3 h-3"></i>
+                             </a>
+                             
+                             <button id="btn-abstract-${pub.id}" onclick="toggleAbstract('${pub.id}')" class="ml-auto text-blue-600 hover:text-blue-800 flex items-center gap-1 transition-colors">
+                                Abstract <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                             </button>
+                         </div>
+                         
+                         <!-- Abstract Dropdown -->
+                         <div id="abstract-${pub.id}" class="hidden mt-4 text-sm text-gray-600 bg-gray-50 p-4 rounded-lg border border-gray-100 leading-relaxed">
+                             ${pub.abstract || "Abstract not available for this publication."}
+                         </div>
                     </div>
                 </div>
             `;
         }
 
         // Render Publications (Categorized)
-        document.getElementById('publications-recent-container').innerHTML = groupData.publications.recent.map(createPubRow).join('');
-        document.getElementById('publications-preprint-container').innerHTML = groupData.publications.preprints.map(createPubRow).join('');
+        document.getElementById('publications-recent-container').innerHTML = groupData.publications.recent.map(createDetailedPubRow).join('');
+        document.getElementById('publications-preprint-container').innerHTML = groupData.publications.preprints.map(createDetailedPubRow).join('');
         
         // Render News
         document.getElementById('news-container').innerHTML = groupData.publications.news.map(n => `
@@ -1399,12 +1449,24 @@ We welcome driven PhD Scholars and postdocs excited about Machine Learning, Quan
             </div>
         `).join('');
 
-        // Render Collaborators
+        // Render Collaborators (UPDATED with Contact Info)
         document.getElementById('collaborators-container').innerHTML = groupData.collaborators.map(collab => `
-            <div class="flex flex-col items-center text-center">
-                <img src="${collab.img}" alt="${collab.name}" class="w-20 h-20 rounded-full mb-3 object-cover shadow-sm bg-gray-100">
+            <div class="flex flex-col items-center text-center p-4 rounded-xl hover:bg-white hover:shadow-sm transition-all group">
+                <div class="relative">
+                    <img src="${collab.img}" alt="${collab.name}" class="w-20 h-20 rounded-full mb-3 object-cover shadow-sm bg-gray-100">
+                    <div class="absolute -bottom-2 -right-2 bg-white rounded-full p-1 shadow-sm opacity-0 group-hover:opacity-100 transition-opacity">
+                         <i data-lucide="network" class="w-4 h-4 text-blue-500"></i>
+                    </div>
+                </div>
                 <h5 class="font-bold text-sm text-gray-900">${collab.name}</h5>
-                <p class="text-xs text-gray-500">${collab.affiliation}</p>
+                <p class="text-xs text-gray-500 mb-3">${collab.affiliation}</p>
+                
+                <!-- Tiny Social Dock -->
+                <div class="flex gap-2 justify-center opacity-60 hover:opacity-100 transition-opacity">
+                    ${collab.email ? `<a href="mailto:${collab.email}" class="text-gray-400 hover:text-black"><i data-lucide="mail" class="w-3 h-3"></i></a>` : ''}
+                    ${collab.socials?.googleScholar ? `<a href="${collab.socials.googleScholar}" class="text-gray-400 hover:text-blue-600"><i data-lucide="graduation-cap" class="w-3 h-3"></i></a>` : ''}
+                    ${collab.socials?.linkedin ? `<a href="${collab.socials.linkedin}" class="text-gray-400 hover:text-blue-700"><i data-lucide="linkedin" class="w-3 h-3"></i></a>` : ''}
+                </div>
             </div>
         `).join('');
 
