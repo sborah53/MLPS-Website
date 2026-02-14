@@ -100,12 +100,13 @@
             </a>
             
             <!-- Desktop Menu -->
-            <div class="hidden md:flex space-x-6 lg:space-x-8 text-xs font-medium text-gray-500 tracking-wide uppercase">
+            <div class="hidden md:flex space-x-4 lg:space-x-6 text-xs font-medium text-gray-500 tracking-wide uppercase">
                 <button onclick="switchTab('home')" class="nav-link hover:text-black transition-colors" id="nav-home">Home</button>
                 <button onclick="switchTab('about')" class="nav-link hover:text-black transition-colors" id="nav-about">About PI</button>
                 <button onclick="switchTab('group')" class="nav-link hover:text-black transition-colors" id="nav-group">Group</button>
                 <button onclick="switchTab('research')" class="nav-link hover:text-black transition-colors" id="nav-research">Research</button>
                 <button onclick="switchTab('conferences')" class="nav-link hover:text-black transition-colors" id="nav-conferences">Conferences</button>
+                <button onclick="switchTab('funding')" class="nav-link hover:text-black transition-colors" id="nav-funding">Funding</button>
                 <button onclick="switchTab('resources')" class="nav-link hover:text-black transition-colors" id="nav-resources">Resources</button>
                 <button onclick="switchTab('teaching')" class="nav-link hover:text-black transition-colors" id="nav-teaching">Teaching</button>
                 <button onclick="switchTab('gallery')" class="nav-link hover:text-black transition-colors" id="nav-gallery">Gallery</button>
@@ -124,6 +125,7 @@
             <button onclick="switchTab('group'); toggleMobileMenu()" class="text-left text-sm font-medium text-gray-800">Group</button>
             <button onclick="switchTab('research'); toggleMobileMenu()" class="text-left text-sm font-medium text-gray-800">Research</button>
             <button onclick="switchTab('conferences'); toggleMobileMenu()" class="text-left text-sm font-medium text-gray-800">Conferences</button>
+            <button onclick="switchTab('funding'); toggleMobileMenu()" class="text-left text-sm font-medium text-gray-800">Funding</button>
             <button onclick="switchTab('resources'); toggleMobileMenu()" class="text-left text-sm font-medium text-gray-800">Resources</button>
             <button onclick="switchTab('teaching'); toggleMobileMenu()" class="text-left text-sm font-medium text-gray-800">Teaching</button>
             <button onclick="switchTab('gallery'); toggleMobileMenu()" class="text-left text-sm font-medium text-gray-800">Gallery</button>
@@ -580,6 +582,22 @@ We welcome driven PhD students and postdocs excited about Machine Learning, Quan
             </div>
             
             <div class="space-y-16">
+                 <!-- PI -->
+                <div>
+                     <h3 class="text-xl font-medium text-gray-900 mb-6 flex items-center gap-2 border-b border-gray-200 pb-2">
+                        <span class="w-2 h-2 rounded-full bg-black"></span> Principal Investigator
+                    </h3>
+                    <div id="pi-group-container" class="space-y-4"></div>
+                </div>
+
+                <!-- PostDocs -->
+                <div>
+                    <h3 class="text-xl font-medium text-gray-900 mb-6 flex items-center gap-2 border-b border-gray-200 pb-2">
+                        <span class="w-2 h-2 rounded-full bg-red-500"></span> Postdoctoral Researchers
+                    </h3>
+                    <div id="postdoc-container" class="space-y-4"></div>
+                </div>
+
                 <!-- PhD Students -->
                 <div>
                     <h3 class="text-xl font-medium text-gray-900 mb-6 flex items-center gap-2 border-b border-gray-200 pb-2">
@@ -588,12 +606,28 @@ We welcome driven PhD students and postdocs excited about Machine Learning, Quan
                     <div id="phd-container" class="space-y-4"></div>
                 </div>
 
-                <!-- Project Students -->
+                <!-- Project Students (Expanded to 20) -->
                 <div>
                     <h3 class="text-xl font-medium text-gray-900 mb-6 flex items-center gap-2 border-b border-gray-200 pb-2">
                         <span class="w-2 h-2 rounded-full bg-purple-500"></span> Project Students
                     </h3>
                     <div id="project-container" class="space-y-4"></div>
+                </div>
+
+                <!-- Interns -->
+                <div>
+                    <h3 class="text-xl font-medium text-gray-900 mb-6 flex items-center gap-2 border-b border-gray-200 pb-2">
+                        <span class="w-2 h-2 rounded-full bg-yellow-500"></span> Interns
+                    </h3>
+                    <div id="interns-container" class="space-y-4"></div>
+                </div>
+
+                <!-- Visitors -->
+                <div>
+                    <h3 class="text-xl font-medium text-gray-900 mb-6 flex items-center gap-2 border-b border-gray-200 pb-2">
+                        <span class="w-2 h-2 rounded-full bg-orange-500"></span> Visitors
+                    </h3>
+                    <div id="visitors-container" class="space-y-4"></div>
                 </div>
 
                 <!-- Alumni -->
@@ -694,7 +728,30 @@ We welcome driven PhD students and postdocs excited about Machine Learning, Quan
                         </div>
                     </div>
                 </section>
+
+                 <!-- Outreach -->
+                 <section>
+                    <h3 class="text-2xl font-bold mb-8 flex items-center gap-3">
+                        <span class="flex items-center justify-center w-8 h-8 rounded-full bg-indigo-500 text-white"><i data-lucide="megaphone" class="w-4 h-4"></i></span>
+                        Outreach Activities
+                    </h3>
+                    <div class="card p-8 md:p-12">
+                         <div id="outreach-container" class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+                            <!-- Injected JS -->
+                        </div>
+                    </div>
+                </section>
             </div>
+        </div>
+
+        <!-- ================= VIEW: FUNDING ================= -->
+        <div id="view-funding" class="view-section hidden-tab fade-in">
+            <div class="mb-12">
+                <h2 class="text-4xl font-bold mb-4">Funding & Grants</h2>
+                <p class="text-gray-500 text-lg">We gratefully acknowledge support from the following agencies.</p>
+            </div>
+
+            <div id="grants-container" class="grid grid-cols-2 md:grid-cols-4 gap-6"></div>
         </div>
 
         <!-- ================= VIEW: RESOURCES ================= -->
@@ -843,15 +900,6 @@ We welcome driven PhD students and postdocs excited about Machine Learning, Quan
                     size: "md:col-span-1 md:row-span-1",
                     bgImage: "" 
                 },
-                // {
-                //     type: "featured",
-                //     title: "Deep RL for Quantum Control",
-                //     desc: "Phys. Rev. Lett (2021): Measurement-based feedback quantum control for nonlinear potentials.",
-                //     link: "https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.127.190403",
-                //     color: "bg-gray-900 text-white",
-                //     size: "md:col-span-1 md:row-span-1",
-                //     bgImage: "https://images.unsplash.com/photo-1591453089816-0fbb971b454c?q=80&w=600&auto=format&fit=crop"
-                // },
                 {
                     type: "news",
                     title: "New Joining",
@@ -863,20 +911,187 @@ We welcome driven PhD students and postdocs excited about Machine Learning, Quan
                 }
             ],
             team: {
+                // Manually add PI to the team data structure for Group View consistency
+                pi: [
+                   {
+                        name: "Sangkha Borah",
+                        role: "Principal Investigator",
+                        img: "https://api.dicebear.com/7.x/initials/svg?seed=SB&backgroundColor=1a1a1a",
+                        desc: "I work as a quantum physicist at the intersection of machine learning and quantum technologies, where I develop algorithms to enhance quantum computing, quantum error correction, and quantum metrology for next‑generation devices. My research often focuses on learning‑based decoders and quantum machine‑learning models that can identify and correct errors in noisy quantum processors, as well as protocols that use entanglement and error correction to improve sensing precision beyond classical limits. I am particularly interested in how ideas from modern AI—such as neural networks and representation learning—can be adapted to the constraints of near‑term quantum hardware to make experiments more robust, scalable, and informative. Outside the lab, I enjoy intellectually engaging hobbies like reading, exploring new developments in physics and computer science, and other activities that help me think creatively and unwind so I can return to research with fresh perspectives.",
+                        socials: {
+                            googleScholar: "https://scholar.google.com/citations?user=qfByhykAAAAJ&hl=en",
+                            linkedin: "#"
+                        }
+                   } 
+                ],
+                postdocs: [
+                    // Placeholder for future postdocs
+                    {
+                        name: "Dr. Future PostDoc",
+                        role: "Postdoctoral Researcher",
+                        img: "https://api.dicebear.com/7.x/notion/svg?seed=Postdoc1",
+                        funding: "Institute/External Grant",
+                        desc: "Interested in quantum control and feedback. Looking for new ways to apply RL in experiment design.",
+                        socials: { googleScholar: "#", linkedin: "#" }
+                    }
+                ],
                 phd: [
-                    { name: "Akash Kumar Saw", year: "Quantum Error Correction", topic: "Hi I am Akash Kumar Saw", img: "https://api.dicebear.com/7.x/notion/svg?seed=Priya" },
-                    { name: "Anjana K", year: "Quantum Machine Learning", topic: "I like reading", img: "https://api.dicebear.com/7.x/notion/svg?seed=Arjun" },
-                    { name: "Subodh Roushan", year: "Quantum Neuromorphic Computing", topic:"I like this", img: "https://api.dicebear.com/7.x/notion/svg?seed=Arjun" },
-                    { name: "Majji Siva (jointly with Prof. Vandana Sharma)", year: "Machine Learning for Photonics", topic: Hi I", img: "https://api.dicebear.com/7.x/notion/svg?seed=Arjun" },
-                    { name: "Harish Paddagiri (jointly with Dr. Mahesh Padigarri)", year: "Artificial Material Discovery", topic: "Hi", img: "https://api.dicebear.com/7.x/notion/svg?seed=Arjun" }
+                    { 
+                        name: "Akash Kumar Saw", 
+                        role: "Quantum Error Correction", 
+                        img: "https://api.dicebear.com/7.x/notion/svg?seed=Akash",
+                        funding: "CSIR-JRF Fellowship",
+                        desc: "Working on Quantum Error Correction.",
+                        socials: { googleScholar: "#", linkedin: "#" }
+                    },
+                    { 
+                        name: "Anjana K", 
+                        role: "Quantum Machine Learning", 
+                        img: "https://api.dicebear.com/7.x/notion/svg?seed=Anjana",
+                        funding: "DST-Inspire Fellowship",
+                        desc: "Working on Quantum Machine Learning.",
+                        socials: { googleScholar: "#", linkedin: "#" }
+                    },
+                    { 
+                        name: "Subodh Roushan", 
+                        role: "Neuromorphic Quantum Computing", 
+                        img: "https://api.dicebear.com/7.x/notion/svg?seed=Subodh",
+                        funding: "UGC-JRF Fellowship",
+                        desc: "Working on Neuromorphic Quantum Computing.",
+                        socials: { googleScholar: "#", linkedin: "#" }
+                    },
+                    { 
+                        name: "Majji Siva", 
+                        role: "Machine Learning for Photonics", 
+                        img: "https://api.dicebear.com/7.x/notion/svg?seed=Siva",
+                        funding: "UGC-JRF Fellowship",
+                        desc: "Co-guided with Prof. Vandana Sharma, IIT Hyderabad. Working on Machine Learning for Photonics.",
+                        socials: { googleScholar: "#", linkedin: "#" }
+                    },
+                    { 
+                        name: "Harish Chalwadi", 
+                        role: "ML for Condensed Matter Physics", 
+                        img: "https://api.dicebear.com/7.x/notion/svg?seed=Harish",
+                        funding: "MOE Fellowship",
+                        desc: "Co-guided with Dr. Mahesh Peddigari, IIT Hyderabad. Working on Machine Learning for Condensed Matter Physics.",
+                        socials: { googleScholar: "#", linkedin: "#" }
+                    }
                 ],
                 project: [
-                    { name: "Rohan Das", year: "M.Sc Thesis", topic: "Variational Quantum Eigensolvers", img: "https://api.dicebear.com/7.x/notion/svg?seed=Rohan" }
+                    // Real Project Students from previous list
+                    { 
+                        name: "Raghav Sundararaman", 
+                        role: "B.Tech Project", 
+                        img: "https://api.dicebear.com/7.x/notion/svg?seed=Raghav",
+                        topic: "Machine Learning for Quantum Technology",
+                        desc: "Working on Neuromorphic Computing.",
+                        socials: { googleScholar: "#", linkedin: "#" }
+                    },
+                     { 
+                        name: "Harshit Lakshakar", 
+                        role: "M.Sc Project", 
+                        img: "https://api.dicebear.com/7.x/notion/svg?seed=Harshit",
+                        topic: "Machine Learning for Quantum Technology",
+                        desc: "Co-guided with Prof. Vandana Sharma. Working on Machine Learning for Photonics.",
+                        socials: { googleScholar: "#", linkedin: "#" }
+                    },
+                     { 
+                        name: "Shardul Bharat Gharat", 
+                        role: "Project Associate / Intern", 
+                        img: "https://api.dicebear.com/7.x/notion/svg?seed=Shardul",
+                        topic: "Machine Learning for Quantum Technology",
+                        desc: "Working on Shadow Tomography. Self-funded.",
+                        socials: { googleScholar: "#", linkedin: "#" }
+                    },
+                    // Previous Team Members now individual
+                    { 
+                        name: "Shounak Kamutala", role: "B.Tech Project", img: "https://api.dicebear.com/7.x/notion/svg?seed=Shounak", 
+                        topic: "Machine Learning for Quantum Technology", desc: "Reinforcement Learning for Physics Package Development.", socials: { googleScholar: "#", linkedin: "#" }
+                    },
+                    { 
+                        name: "Karthik G.E. Saravanan", role: "B.Tech Project", img: "https://api.dicebear.com/7.x/notion/svg?seed=Karthik", 
+                        topic: "Machine Learning for Quantum Technology", desc: "Reinforcement Learning for Physics Package Development.", socials: { googleScholar: "#", linkedin: "#" }
+                    },
+                    { 
+                        name: "Sarang Anang Gund", role: "B.Tech Project", img: "https://api.dicebear.com/7.x/notion/svg?seed=Sarang", 
+                        topic: "Machine Learning for Quantum Technology", desc: "Reinforcement Learning for Physics Package Development.", socials: { googleScholar: "#", linkedin: "#" }
+                    },
+                    { 
+                        name: "Ritik Parihar", role: "B.Tech Project", img: "https://api.dicebear.com/7.x/notion/svg?seed=Ritik", 
+                        topic: "Machine Learning for Quantum Technology", desc: "Reinforcement Learning for Physics Package Development.", socials: { googleScholar: "#", linkedin: "#" }
+                    },
+                    { 
+                        name: "Dommeti Dinesh Krishna", role: "B.Tech Project", img: "https://api.dicebear.com/7.x/notion/svg?seed=Dommeti", 
+                        topic: "Machine Learning for Quantum Technology", desc: "Reinforcement Learning for Physics Package Development.", socials: { googleScholar: "#", linkedin: "#" }
+                    },
+                    // Generic Placeholders to reach 20
+                    { name: "Arjun Reddy", role: "Project Student", img: "https://api.dicebear.com/7.x/notion/svg?seed=ArjunR", topic: "Machine Learning for Quantum Technology", desc: "Project details coming soon.", socials: {} },
+                    { name: "Priya Sharma", role: "Project Student", img: "https://api.dicebear.com/7.x/notion/svg?seed=PriyaS", topic: "Machine Learning for Quantum Technology", desc: "Project details coming soon.", socials: {} },
+                    { name: "Rohan Gupta", role: "Project Student", img: "https://api.dicebear.com/7.x/notion/svg?seed=RohanG", topic: "Machine Learning for Quantum Technology", desc: "Project details coming soon.", socials: {} },
+                    { name: "Sneha Patel", role: "Project Student", img: "https://api.dicebear.com/7.x/notion/svg?seed=Sneha", topic: "Machine Learning for Quantum Technology", desc: "Project details coming soon.", socials: {} },
+                    { name: "Vikram Singh", role: "Project Student", img: "https://api.dicebear.com/7.x/notion/svg?seed=Vikram", topic: "Machine Learning for Quantum Technology", desc: "Project details coming soon.", socials: {} },
+                    { name: "Ananya Das", role: "Project Student", img: "https://api.dicebear.com/7.x/notion/svg?seed=Ananya", topic: "Machine Learning for Quantum Technology", desc: "Project details coming soon.", socials: {} },
+                    { name: "Rahul Verma", role: "Project Student", img: "https://api.dicebear.com/7.x/notion/svg?seed=Rahul", topic: "Machine Learning for Quantum Technology", desc: "Project details coming soon.", socials: {} },
+                    { name: "Kavita Krishnan", role: "Project Student", img: "https://api.dicebear.com/7.x/notion/svg?seed=Kavita", topic: "Machine Learning for Quantum Technology", desc: "Project details coming soon.", socials: {} },
+                    { name: "Amit Shah", role: "Project Student", img: "https://api.dicebear.com/7.x/notion/svg?seed=Amit", topic: "Machine Learning for Quantum Technology", desc: "Project details coming soon.", socials: {} },
+                    { name: "Neha Iyer", role: "Project Student", img: "https://api.dicebear.com/7.x/notion/svg?seed=Neha", topic: "Machine Learning for Quantum Technology", desc: "Project details coming soon.", socials: {} },
+                    { name: "Siddharth Malhotra", role: "Project Student", img: "https://api.dicebear.com/7.x/notion/svg?seed=Sid", topic: "Machine Learning for Quantum Technology", desc: "Project details coming soon.", socials: {} },
+                    { name: "Pooja Hegde", role: "Project Student", img: "https://api.dicebear.com/7.x/notion/svg?seed=Pooja", topic: "Machine Learning for Quantum Technology", desc: "Project details coming soon.", socials: {} }
+                ],
+                interns: [
+                    { 
+                        name: "Intern Name 1", role: "Summer Intern", img: "https://api.dicebear.com/7.x/notion/svg?seed=Intern1", 
+                        topic: "Quantum ML", desc: "Summer internship project on variational quantum circuits.", socials: {} 
+                    },
+                    { 
+                        name: "Intern Name 2", role: "Visiting Intern", img: "https://api.dicebear.com/7.x/notion/svg?seed=Intern2", 
+                        topic: "Quantum Control", desc: "Visiting from IIT Bombay.", socials: {} 
+                    }
+                ],
+                visitors: [
+                    { 
+                        name: "Dr. Visiting Scholar", role: "Visiting Professor", img: "https://api.dicebear.com/7.x/notion/svg?seed=Visitor1", 
+                        topic: "Quantum Optics", desc: "Visiting from University of X for collaboration on open quantum systems.", socials: { googleScholar: "#" } 
+                    }
                 ],
                 alumni: [
-                    { name: "Dr. Aditi Verma", role: "Former PhD", current: "Postdoc at ETH Zurich", img: "https://api.dicebear.com/7.x/notion/svg?seed=Aditi" }
+                    { 
+                        name: "Dr. Aditi Verma", 
+                        role: "Former PhD Student", 
+                        img: "https://api.dicebear.com/7.x/notion/svg?seed=Aditi",
+                        desc: "Graduated in 2024. Currently working as a Postdoc at ETH Zurich focusing on superconducting circuit design.",
+                        socials: { googleScholar: "#", linkedin: "#" }
+                    }
                 ]
             },
+            grants: [
+                { name: "CSIR", full: "Council of Scientific & Industrial Research", type: "Fellowship" },
+                { name: "DST", full: "Department of Science and Technology", type: "Fellowship" },
+                { name: "UGC", full: "University Grants Commission", type: "Fellowship" },
+                { name: "MOE", full: "Ministry of Education", type: "Fellowship" }
+            ],
+            conferences: [
+                { name: "APS March Meeting 2025", location: "Los Angeles", role: "Invited Talk" },
+                { name: "QML Workshop 2024", location: "Zurich", role: "Poster Presentation" },
+                { name: "IEEE Quantum Week", location: "Seattle", role: "Keynote" },
+                { name: "Indian Science Congress", location: "Kolkata", role: "Invited Talk" }
+            ],
+            outreach: [
+                 { name: "Science Day Demo", location: "IIT Hyderabad", role: "Live Quantum Computing Demo for High School Students" },
+                 { name: "Public Lecture", location: "Hyderabad Regional Library", role: "Introduction to Quantum Mechanics for General Public" }
+            ],
+            events_organized: [
+                { 
+                    title: "Workshop on Quantum Machine Learning", 
+                    date: "Dec 2024", 
+                    desc: "A 3-day intense workshop covering VQEs and Quantum Kernels, attended by over 50 participants from across India." 
+                },
+                { 
+                    title: "Winter School on Mathematical Physics", 
+                    date: "Jan 2025", 
+                    desc: "Lectures on topology and geometry in physics, featuring guest speakers from TIFR and IISc." 
+                }
+            ],
             publications: {
                 recent: [
                     {
@@ -1012,24 +1227,6 @@ We welcome driven PhD students and postdocs excited about Machine Learning, Quan
                 { name: "Prof. A. Kumar", affiliation: "IISc Bangalore", img: "https://api.dicebear.com/7.x/avataaars/svg?seed=Kumar" },
                 { name: "Dr. Sarah Lee", affiliation: "NUS Singapore", img: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah" }
             ],
-            conferences: [
-                { name: "APS March Meeting 2025", location: "Los Angeles", role: "Invited Talk" },
-                { name: "QML Workshop 2024", location: "Zurich", role: "Poster Presentation" },
-                { name: "IEEE Quantum Week", location: "Seattle", role: "Keynote" },
-                { name: "Indian Science Congress", location: "Kolkata", role: "Invited Talk" }
-            ],
-            events_organized: [
-                { 
-                    title: "Workshop on Quantum Machine Learning", 
-                    date: "Dec 2024", 
-                    desc: "A 3-day intense workshop covering VQEs and Quantum Kernels, attended by over 50 participants from across India." 
-                },
-                { 
-                    title: "Winter School on Mathematical Physics", 
-                    date: "Jan 2025", 
-                    desc: "Lectures on topology and geometry in physics, featuring guest speakers from TIFR and IISc." 
-                }
-            ],
             resources: [
                 { title: "QuantumNet", desc: "A PyTorch library for Quantum Neural Networks.", link: "github.com" },
                 { title: "TopoLearn", desc: "Dataset for topological phases of matter.", link: "github.com" },
@@ -1119,24 +1316,59 @@ We welcome driven PhD students and postdocs excited about Machine Learning, Quan
             highlightContainer.appendChild(div);
         });
 
-        // Helper for Member Rows
+        // Helper for Member Rows (Updated)
         function createMemberRow(member) {
+            // Optional Socials
+            const socialLinks = `
+                <div class="flex gap-3 mt-4 justify-center md:justify-start">
+                    ${member.socials?.googleScholar ? `<a href="${member.socials.googleScholar}" target="_blank" class="text-gray-400 hover:text-blue-600 transition-colors" title="Google Scholar"><i data-lucide="graduation-cap" class="w-5 h-5"></i></a>` : ''}
+                    ${member.socials?.linkedin ? `<a href="${member.socials.linkedin}" target="_blank" class="text-gray-400 hover:text-blue-700 transition-colors" title="LinkedIn"><i data-lucide="linkedin" class="w-5 h-5"></i></a>` : ''}
+                </div>
+            `;
+            
+            // Optional Funding Badge
+            const fundingBadge = member.funding ? `
+                <div class="inline-flex items-center gap-1.5 px-3 py-1 mt-2 rounded-full bg-green-50 text-green-700 border border-green-100 text-xs font-semibold">
+                    <i data-lucide="coins" class="w-3 h-3"></i> Funded by ${member.funding}
+                </div>
+            ` : '';
+
             return `
-                <div class="card p-4 md:p-6 flex flex-col md:flex-row items-center md:items-start gap-6 group hover:bg-white">
-                    <img src="${member.img}" alt="${member.name}" class="w-24 h-24 rounded-full md:rounded-2xl object-cover bg-gray-100 shadow-sm group-hover:scale-105 transition-transform duration-300">
+                <div class="card p-6 flex flex-col md:flex-row gap-6 items-start group hover:bg-white transition-all duration-300">
+                    <div class="shrink-0 w-full md:w-48 flex flex-col items-center">
+                        <img src="${member.img}" alt="${member.name}" class="w-32 h-32 md:w-40 md:h-40 rounded-full md:rounded-2xl object-cover shadow-sm group-hover:shadow-md transition-all duration-300 bg-gray-200">
+                    </div>
                     <div class="flex-1 text-center md:text-left">
-                        <h4 class="text-lg font-bold text-black">${member.name}</h4>
-                        <p class="text-sm font-medium text-blue-600 mb-2">${member.year || member.role}</p>
-                        <p class="text-sm text-gray-500 leading-relaxed">${member.topic || member.current}</p>
+                        <h4 class="text-xl font-bold text-black mb-1">${member.name}</h4>
+                        <p class="text-sm font-semibold text-blue-600 uppercase tracking-wide mb-1">${member.role || member.topic || 'Researcher'}</p>
+                        ${fundingBadge}
+                        <div class="h-3"></div>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-4 text-justify">${member.desc || member.current || "Research details to be added."}</p>
+                        ${socialLinks}
                     </div>
                 </div>
             `;
         }
 
         // Render Group
+        document.getElementById('pi-group-container').innerHTML = groupData.team.pi.map(createMemberRow).join('');
+        document.getElementById('postdoc-container').innerHTML = groupData.team.postdocs.map(createMemberRow).join('');
         document.getElementById('phd-container').innerHTML = groupData.team.phd.map(createMemberRow).join('');
         document.getElementById('project-container').innerHTML = groupData.team.project.map(createMemberRow).join('');
+        document.getElementById('interns-container').innerHTML = groupData.team.interns.map(createMemberRow).join('');
+        document.getElementById('visitors-container').innerHTML = groupData.team.visitors.map(createMemberRow).join('');
         document.getElementById('alumni-container').innerHTML = groupData.team.alumni.map(createMemberRow).join('');
+
+        // Render Grants
+        document.getElementById('grants-container').innerHTML = groupData.grants.map(grant => `
+            <div class="p-6 rounded-2xl bg-gray-50 border border-gray-100 flex flex-col items-center justify-center text-center hover:bg-white hover:shadow-md transition-all">
+                <div class="w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-sm mb-4 text-xl font-black text-gray-800 border border-gray-100">
+                    ${grant.name}
+                </div>
+                <h4 class="font-bold text-gray-900">${grant.name}</h4>
+                <p class="text-xs text-gray-500 mt-1">${grant.full}</p>
+            </div>
+        `).join('');
 
         // Helper for Publications
         function createPubRow(pub) {
@@ -1184,6 +1416,17 @@ We welcome driven PhD students and postdocs excited about Machine Learning, Quan
                 <div>
                     <h5 class="text-base font-bold text-gray-900">${conf.name}</h5>
                     <p class="text-sm text-gray-500 mt-1">${conf.location} • <span class="font-medium text-blue-600">${conf.role}</span></p>
+                </div>
+            </div>
+        `).join('');
+
+        // Render Outreach
+        document.getElementById('outreach-container').innerHTML = groupData.outreach.map(item => `
+            <div class="flex gap-4 items-start p-2">
+                <div class="mt-2 w-2 h-2 rounded-full bg-indigo-500 shrink-0"></div>
+                <div>
+                    <h5 class="text-base font-bold text-gray-900">${item.name}</h5>
+                    <p class="text-sm text-gray-500 mt-1">${item.location} • <span class="font-medium text-indigo-600">${item.role}</span></p>
                 </div>
             </div>
         `).join('');
@@ -1269,5 +1512,3 @@ We welcome driven PhD students and postdocs excited about Machine Learning, Quan
 </body>
 
 </html>
-
-
