@@ -106,7 +106,7 @@
                 <button onclick="switchTab('group')" class="nav-link hover:text-black transition-colors" id="nav-group">Group</button>
                 <button onclick="switchTab('research')" class="nav-link hover:text-black transition-colors" id="nav-research">Research</button>
                 <button onclick="switchTab('conferences')" class="nav-link hover:text-black transition-colors" id="nav-conferences">Conferences</button>
-                <button onclick="switchTab('funding')" class="nav-link hover:text-black transition-colors" id="nav-funding">Funding</button>
+                <!-- <button onclick="switchTab('funding')" class="nav-link hover:text-black transition-colors" id="nav-funding">Funding</button> -->
                 <button onclick="switchTab('resources')" class="nav-link hover:text-black transition-colors" id="nav-resources">Resources</button>
                 <button onclick="switchTab('teaching')" class="nav-link hover:text-black transition-colors" id="nav-teaching">Teaching</button>
                 <button onclick="switchTab('gallery')" class="nav-link hover:text-black transition-colors" id="nav-gallery">Gallery</button>
@@ -125,7 +125,7 @@
             <button onclick="switchTab('group'); toggleMobileMenu()" class="text-left text-sm font-medium text-gray-800">Group</button>
             <button onclick="switchTab('research'); toggleMobileMenu()" class="text-left text-sm font-medium text-gray-800">Research</button>
             <button onclick="switchTab('conferences'); toggleMobileMenu()" class="text-left text-sm font-medium text-gray-800">Conferences</button>
-            <button onclick="switchTab('funding'); toggleMobileMenu()" class="text-left text-sm font-medium text-gray-800">Funding</button>
+            <!-- <button onclick="switchTab('funding'); toggleMobileMenu()" class="text-left text-sm font-medium text-gray-800">Funding</button> -->
             <button onclick="switchTab('resources'); toggleMobileMenu()" class="text-left text-sm font-medium text-gray-800">Resources</button>
             <button onclick="switchTab('teaching'); toggleMobileMenu()" class="text-left text-sm font-medium text-gray-800">Teaching</button>
             <button onclick="switchTab('gallery'); toggleMobileMenu()" class="text-left text-sm font-medium text-gray-800">Gallery</button>
@@ -437,90 +437,8 @@ We welcome driven PhD Scholars and postdocs excited about Machine Learning, Quan
                     </div>
                 </div>
 
-                <!-- Research Summary (Detailed) -->
-                <div class="mb-16">
-                    <h3 class="text-2xl font-bold text-black mb-8 border-b border-gray-100 pb-4">Detailed Research Summary</h3>
-                    <div class="space-y-8">
-                        <div class="bg-gray-50 p-8 rounded-3xl">
-                            <h4 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                                <span class="w-2 h-8 bg-blue-600 rounded-full"></span>
-                                Max Planck Institute for the Science of Light (Germany)
-                            </h4>
-                            <div class="grid md:grid-cols-2 gap-8 text-sm leading-relaxed text-gray-600">
-                                <div>
-                                    <strong class="block text-gray-900 mb-2">Focus Projects</strong>
-                                    <ul class="list-disc ml-4 space-y-1">
-                                        <li>No-collapse accurate measurement-based feedback control.</li>
-                                        <li>Quantum parameter estimation via continuous observation.</li>
-                                        <li>Non-Markovian feedback for optimized QEC.</li>
-                                        <li>RL for quantum computing experiments.</li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <strong class="block text-gray-900 mb-2">Key Contributions</strong>
-                                    <p class="mb-2">Introduced protocols for precisely estimating noise-free signals and full density matrices for feedback control, significantly improving RL training efficiency.</p>
-                                    <p>Developed a recurrent neural network approach for measurement-based QEC that builds an internal representation of the quantum state, extending logical qubit lifetimes beyond current best protocols.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="bg-gray-50 p-8 rounded-3xl">
-                            <h4 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                                <span class="w-2 h-8 bg-purple-600 rounded-full"></span>
-                                Okinawa Institute of Science and Technology (OIST), Japan
-                            </h4>
-                            <div class="grid md:grid-cols-2 gap-8 text-sm leading-relaxed text-gray-600">
-                                <div>
-                                    <strong class="block text-gray-900 mb-2">Focus Projects</strong>
-                                    <ul class="list-disc ml-4 space-y-1">
-                                        <li>Phonon-assisted carrier cooling in graphene.</li>
-                                        <li>Measurement-Based Feedback with RL.</li>
-                                        <li>Estimator scheme for continuous QEC.</li>
-                                        <li>Open-loop control for motional cooling.</li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <strong class="block text-gray-900 mb-2">Key Contributions</strong>
-                                    <p class="mb-2">Demonstrated that RL can discover real-time controls for complex systems undergoing continuous measurement, specifically for preparing non-classical cat states.</p>
-                                    <p>Proposed a QEC method using real-time estimators that exceeds the break-even point for small codes.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- Two Column Layout for Expertise and Service -->
                 <div class="grid grid-cols-1 lg:grid-cols-1 gap-12 mb-16">
-                    
-                    <!-- Expertise -->
-                    <!-- <div>
-                        <h3 class="text-2xl font-bold text-black mb-6 border-b border-gray-100 pb-4">Expertise</h3>
-                        <div class="space-y-4">
-                            <div class="flex gap-4 items-start">
-                                <div class="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600 shrink-0"><i data-lucide="atom" class="w-6 h-6"></i></div>
-                                <div>
-                                    <h5 class="font-bold text-gray-900">Theory</h5>
-                                    <p class="text-sm text-gray-600 mt-1">Quantum Control, Measurement-Based Feedback, Quantum Computing, ML, MD, DFT, AIMD.</p>
-                                </div>
-                            </div>
-                            <div class="flex gap-4 items-start">
-                                <div class="w-12 h-12 rounded-xl bg-purple-50 flex items-center justify-center text-purple-600 shrink-0"><i data-lucide="cpu" class="w-6 h-6"></i></div>
-                                <div>
-                                    <h5 class="font-bold text-gray-900">Computational</h5>
-                                    <p class="text-sm text-gray-600 mt-1">Machine Learning (RL), Optimcal Control, MD, DFT.</p>
-                                </div>
-                            </div>
-                            <div class="flex gap-4 items-start">
-                                <div class="w-12 h-12 rounded-xl bg-green-50 flex items-center justify-center text-green-600 shrink-0"><i data-lucide="code-2" class="w-6 h-6"></i></div>
-                                <div>
-                                    <h5 class="font-bold text-gray-900">Toolkit</h5>
-                                    <p class="text-sm text-gray-600 mt-1"><strong>Software:</strong> QuTiP, Qiskit, PennyLane, QuantumEspresso, CP2K.</p>
-                                    <p class="text-sm text-gray-600 mt-1"><strong>Coding:</strong> Python (JAX, PyTorch, TensorFlow), Fortran 90.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
-
                     <!-- Service -->
                     <div>
                         <h3 class="text-2xl font-bold text-black mb-6 border-b border-gray-100 pb-4">Academic Service</h3>
@@ -550,6 +468,117 @@ We welcome driven PhD Scholars and postdocs excited about Machine Learning, Quan
                         </div>
                     </div>
                 </div>
+
+                <!-- Conferences & Presentations -->
+                <div class="mb-16">
+                    <h3 class="text-2xl font-bold text-black mb-6 border-b border-gray-100 pb-4">Conferences & Presentations</h3>
+                    <div class="bg-gray-50 rounded-2xl p-6">
+                        <ul class="space-y-4 text-sm text-gray-600">
+                            <li class="flex items-start gap-3">
+                                <span class="w-1.5 h-1.5 rounded-full bg-blue-600 mt-1.5 shrink-0"></span>
+                                <div><strong class="text-gray-900">Poster</strong>, <em>Munich Quantum Valley Annual Meeting</em>, Eichstätt, Germany (Oct 08 - Oct 11, 2024). Topic: Fault-tolerant Quantum Error Correction with Reinforcement Learning.</div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-1.5 h-1.5 rounded-full bg-blue-600 mt-1.5 shrink-0"></span>
+                                <div><strong class="text-gray-900">Participant</strong>, <em>Intensive Course on Machine Learning: From Basics to Advanced Concepts</em>, Max Planck Institute for the Science of Light, Erlangen, Germany (May 06 - May 08, 2024). Topic: Machine learning for quantum control.</div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-1.5 h-1.5 rounded-full bg-blue-600 mt-1.5 shrink-0"></span>
+                                <div><strong class="text-gray-900">Talk</strong>, <em>DPG Spring March Meeting 2024</em>, Technische Universität Berlin, Germany (Mar 17 - Mar 22, 2024). Topic: Accurate Quantum Feedback Control via Conditional State Tomography with Reinforcement Learning.</div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-1.5 h-1.5 rounded-full bg-blue-600 mt-1.5 shrink-0"></span>
+                                <div><strong class="text-gray-900">Talk</strong>, <em>APS March Meeting 2024</em>, Minneapolis, United States (Mar 02 - Mar 08, 2024). Topic: Accurate real-time feedback quantum control with reinforcement learning.</div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-1.5 h-1.5 rounded-full bg-blue-600 mt-1.5 shrink-0"></span>
+                                <div><strong class="text-gray-900">Poster</strong>, <em>Munich Quantum Valley Annual Meeting</em>, Eichstätt, Germany (Sep 26 - Sep 28, 2023). Topic: Gottesman-Kitaev-Preskill quantum error correction with non-Markovian feedback.</div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-1.5 h-1.5 rounded-full bg-blue-600 mt-1.5 shrink-0"></span>
+                                <div><strong class="text-gray-900">Attendee</strong>, <em>Frontiers of Neuromorphic Computing</em>, Max Planck Institute for the Science of Light, Germany (Sep 5 - Sep 7, 2023).</div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-1.5 h-1.5 rounded-full bg-blue-600 mt-1.5 shrink-0"></span>
+                                <div><strong class="text-gray-900">Talk</strong>, <em>FAU Quantum Theory Summer Symposium 2023</em>, Friedrich-Alexander-Universität Erlangen-Nürnberg (FAU) (Aug 2, 2023). Topic: Model-based Reinforcement Learning for Feedback-control of Quantum System.</div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-1.5 h-1.5 rounded-full bg-blue-600 mt-1.5 shrink-0"></span>
+                                <div><strong class="text-gray-900">Internal Meeting</strong>, <em>MQV K8 Consortia (Hardware adapted theory)</em>, Max Planck Institute of Quantum Optics Garching, Germany (June 14, 2023).</div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-1.5 h-1.5 rounded-full bg-blue-600 mt-1.5 shrink-0"></span>
+                                <div><strong class="text-gray-900">Discussion Meeting</strong>, <em>Theoretical Quantum Computing (Consortia K4 MQV)</em>, Max Planck Institute of Quantum Optics Garching, Germany (May 2, 2023).</div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-1.5 h-1.5 rounded-full bg-blue-600 mt-1.5 shrink-0"></span>
+                                <div><strong class="text-gray-900">Attendee</strong>, <em>Quantum Machine Learning - Integrating Hardware and Software Developments</em>, FAU and Max Planck Institute for Science of Light, Germany (Feb 14 - Feb 16, 2023).</div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-1.5 h-1.5 rounded-full bg-blue-600 mt-1.5 shrink-0"></span>
+                                <div><strong class="text-gray-900">Invited Offline Talk</strong>, <em>Max Planck Institute for Science of Light and FAU</em>, Germany (Nov 29, 2022). Topic: Reinforcement learning for quantum control.</div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-1.5 h-1.5 rounded-full bg-blue-600 mt-1.5 shrink-0"></span>
+                                <div><strong class="text-gray-900">Invited Zoom Talk</strong>, <em>Prof. Florian Marquardt group at Max Planck Institute for Science of Light</em>, Erlangen, Germany (Jul 19, 2022). Topic: Measurement-based feedback control, Quantum error correction, and Deep reinforcement learning for closed and open loop control.</div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-1.5 h-1.5 rounded-full bg-blue-600 mt-1.5 shrink-0"></span>
+                                <div><strong class="text-gray-900">Poster Presentation</strong>, <em>The 29th International Conference on Low Temperature Physics, LT29</em>, Sapporo, Japan (Aug 18 - 24, 2022). Topic: MBE-CQEC: A new method for continuous quantum error correction.</div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-1.5 h-1.5 rounded-full bg-blue-600 mt-1.5 shrink-0"></span>
+                                <div><strong class="text-gray-900">Invited Talk</strong>, <em>Macroscopic Quantum Machines Seminar</em>, Okinawa Institute of Science and Technology Graduate University, Japan (Apr 7, 2022). Topic: Measurement based estimator scheme for continuous quantum error correction.</div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-1.5 h-1.5 rounded-full bg-blue-600 mt-1.5 shrink-0"></span>
+                                <div><strong class="text-gray-900">Poster Presentation</strong>, <em>International School and Symposium on Nanoscale Transport and phoTonics 2019</em>, NTT Atsugi R&D Center, Japan (Nov 18 - 22, 2019). Topic: Ultra-fast Hot Carrier Relaxation Dynamics in 2D Materials.</div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-1.5 h-1.5 rounded-full bg-blue-600 mt-1.5 shrink-0"></span>
+                                <div><strong class="text-gray-900">Invited Talk Workshop</strong>, <em>Basics of PARAM-ISHAN</em>, IIT Guwahati, Assam, India (Jan 28, 2018). Topic: Working with ab initio molecular dynamics.</div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-1.5 h-1.5 rounded-full bg-blue-600 mt-1.5 shrink-0"></span>
+                                <div><strong class="text-gray-900">Oral Presentation</strong>, <em>REFLUX-201</em>, IIT Guwahati, Assam, India (Mar 16–18, 2018). Topic: Ab Initio Molecular Dynamics Studies of Waterborne Selenium Species.</div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-1.5 h-1.5 rounded-full bg-blue-600 mt-1.5 shrink-0"></span>
+                                <div><strong class="text-gray-900">Resource Person (Invited)</strong>, <em>Atomistic Computer Simulation Techniques (workshop)</em>, Assam University, Silchar, India (Oct 31 – Dec 1, 2017). Topic: A Simple Fortran 90 Program for Argon; Visualization and Analysis using VMD.</div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-1.5 h-1.5 rounded-full bg-blue-600 mt-1.5 shrink-0"></span>
+                                <div><strong class="text-gray-900">Poster Presentation</strong>, <em>Recent Advances in Modelling Rare Events (RARE)</em>, Agra, India (Dec 7 – 10, 2017). Topic: AIMD Studies of Waterborne Selenium Species.</div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-1.5 h-1.5 rounded-full bg-blue-600 mt-1.5 shrink-0"></span>
+                                <div><strong class="text-gray-900">Oral Presentation</strong>, <em>Department Day, Physics</em>, IIT Guwahati, Assam, India (Mar 12, 2017). Topic: Ab Initio Atomistic Simulation Techniques and Applications.</div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-1.5 h-1.5 rounded-full bg-blue-600 mt-1.5 shrink-0"></span>
+                                <div><strong class="text-gray-900">Poster Presentation</strong>, <em>5th Symposium on Advanced Biological Inorganic Chemistry (SABIC)</em>, Kolkata, India (Jan 7 – 11, 2017). Topic: Ab Initio Molecular Dynamics Studies of Waterborne Se Species.</div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-1.5 h-1.5 rounded-full bg-blue-600 mt-1.5 shrink-0"></span>
+                                <div><strong class="text-gray-900">Poster Presentation</strong>, <em>Research Conclave</em>, IIT Guwahati, Assam, India (Mar 17 – 20, 2016). Topic: First Principle Molecular Dynamics Studies of Various Selenium Species in Aqueous Environments.</div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-1.5 h-1.5 rounded-full bg-blue-600 mt-1.5 shrink-0"></span>
+                                <div><strong class="text-gray-900">Instructor</strong>, <em>National Workshop on Atomistic Simulation Techniques</em>, IIT Guwahati, Assam, India (Dec 21 – Dec 24, 2015). Topic: Writing a Basic Molecular Dynamics Code in Fortran-90; Visualization using VMD.</div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-1.5 h-1.5 rounded-full bg-blue-600 mt-1.5 shrink-0"></span>
+                                <div><strong class="text-gray-900">Poster Presentation</strong>, <em>XXVII IUPAP Conference on Computational Physics (CCP-2015)</em>, IIT Guwahati, Assam, India (Dec 2 – 5, 2015). Topic: Ab Initio Molecular Dynamics Studies of Selenic Acid in Water.</div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-1.5 h-1.5 rounded-full bg-blue-600 mt-1.5 shrink-0"></span>
+                                <div><strong class="text-gray-900">School and Seminar Presentation</strong>, <em>DST-SERB School on Density Functional Theory and Beyond</em>, Maharaja Sayajirao University of Baroda, Vadodara, India (Nov 24 – Dec 13, 2014). Topic: Basics of Car-Parrinello Molecular Dynamics.</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                
 
                 <!-- Referees Grid -->
                 <div>
@@ -812,7 +841,7 @@ We welcome driven PhD Scholars and postdocs excited about Machine Learning, Quan
         <div id="view-conferences" class="view-section hidden-tab fade-in">
              <div class="mb-12">
                 <h2 class="text-4xl font-bold mb-4">Conferences & Workshops</h2>
-                <p class="text-gray-500 text-lg">Workshops organized by the group and international talks.</p>
+                <p class="text-gray-500 text-lg">Conferences & Workshops Organized by the Group and Talks, Conferences, Workshops Attended by the Group Members.</p>
             </div>
 
             <div class="space-y-16">
@@ -824,19 +853,6 @@ We welcome driven PhD Scholars and postdocs excited about Machine Learning, Quan
                     </h3>
                     <div id="events-container" class="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <!-- Injected JS -->
-                    </div>
-                </section>
-
-                <!-- Talks & Attended -->
-                <section>
-                    <h3 class="text-2xl font-bold mb-8 flex items-center gap-3">
-                        <span class="flex items-center justify-center w-8 h-8 rounded-full bg-gray-200 text-gray-600"><i data-lucide="mic-2" class="w-4 h-4"></i></span>
-                        Talks & Conferences Attended
-                    </h3>
-                    <div class="card p-8 md:p-12">
-                        <div id="conferences-container" class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
-                            <!-- Injected JS -->
-                        </div>
                     </div>
                 </section>
 
@@ -852,18 +868,31 @@ We welcome driven PhD Scholars and postdocs excited about Machine Learning, Quan
                         </div>
                     </div>
                 </section>
+
+                <!-- Talks & Attended -->
+                <section>
+                    <h3 class="text-2xl font-bold mb-8 flex items-center gap-3">
+                        <span class="flex items-center justify-center w-8 h-8 rounded-full bg-gray-200 text-gray-600"><i data-lucide="mic-2" class="w-4 h-4"></i></span>
+                        Talks & Conferences Attended (all group members)
+                    </h3>
+                    <div class="card p-8 md:p-12">
+                        <div id="conferences-container" class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+                            <!-- Injected JS -->
+                        </div>
+                    </div>
+                </section>
             </div>
         </div>
 
         <!-- ================= VIEW: FUNDING ================= -->
-        <div id="view-funding" class="view-section hidden-tab fade-in">
+        <!-- <div id="view-funding" class="view-section hidden-tab fade-in">
             <div class="mb-12">
                 <h2 class="text-4xl font-bold mb-4">Funding & Grants</h2>
                 <p class="text-gray-500 text-lg">We gratefully acknowledge support from the following agencies.</p>
             </div>
 
-            <div id="grants-container" class="grid grid-cols-2 md:grid-cols-4 gap-6"></div>
-        </div>
+            <div id="grants-container" class="grid grid-cols-1 md:grid-cols-2 gap-2"></div>
+        </div> -->
 
         <!-- ================= VIEW: RESOURCES ================= -->
         <div id="view-resources" class="view-section hidden-tab fade-in">
@@ -1351,33 +1380,50 @@ We welcome driven PhD Scholars and postdocs excited about Machine Learning, Quan
 
                 ]
             },
-            grants: [
-                { name: "CSIR", full: "Council of Scientific & Industrial Research", type: "Fellowship" },
-                { name: "DST", full: "Department of Science and Technology", type: "Fellowship" },
-                { name: "UGC", full: "University Grants Commission", type: "Fellowship" },
-                { name: "MOE", full: "Ministry of Education", type: "Fellowship" }
-            ],
+            // grants: [
+            //     { name: "CSIR", full: "Council of Scientific & Industrial Research", type: "Fellowship" },
+            //     { name: "DST", full: "Department of Science and Technology", type: "Fellowship" },
+            //     { name: "UGC", full: "University Grants Commission", type: "Fellowship" },
+            //     { name: "MOE", full: "Ministry of Education", type: "Fellowship" },
+            //     { name: "Seed Grant from IIT Hyderabad", full: "Worth: 34 Lacs INR", type: "Project Grant" }
+            // ],
             conferences: [
-                { name: "APS March Meeting 2025", location: "Los Angeles", role: "Invited Talk" },
-                { name: "QML Workshop 2024", location: "Zurich", role: "Poster Presentation" },
-                { name: "IEEE Quantum Week", location: "Seattle", role: "Keynote" },
-                { name: "Indian Science Congress", location: "Kolkata", role: "Invited Talk" }
+                { name: "Munich Quantum Valley Annual Meeting (2024, Oct 08 - Oct 11)", location: "Eichstätt, Germany", role: "Poster (Sangkha Borah, Topic: Fault-tolerant Quantum Error Correction with Reinforcement Learning)" },
+                { name: "Intensive Course on Machine Learning (2024, May 06 - May 08)", location: "Max Planck Institute for the Science of Light, Erlangen, Germany", role: "Instructor (Sangkha Borah, Topic: Machine learning for quantum control)" },
+                { name: "DPG Spring March Meeting 2024 (2024, Mar 17 - Mar 22)", location: "Technische Universität Berlin, Germany", role: "Talk (Sangkha Borah, Topic: Accurate Quantum Feedback Control via Conditional State Tomography with Reinforcement Learning)" },
+                { name: "APS March Meeting 2024 (2024, Mar 02 - Mar 08)", location: "Minneapolis, United States", role: "Talk (Sangkha Borah, Topic: Accurate real-time feedback quantum control with reinforcement learning)" },
+                { name: "Munich Quantum Valley Annual Meeting (2023, Sep 26 - Sep 28)", location: "Eichstätt, Germany", role: "Poster (Sangkha Borah, Topic: Gottesman-Kitaev-Preskill quantum error correction with non-Markovian feedback)" },
+                { name: "Frontiers of Neuromorphic Computing (2023, Sep 5 - Sep 7)", location: "Max Planck Institute for the Science of Light, Germany", role: "Attendee" },
+                { name: "FAU Quantum Theory Summer Symposium 2023 (2023, Aug 2)", location: "Friedrich-Alexander-Universität Erlangen-Nürnberg (FAU), Germany", role: "Talk (Sangkha Borah, Topic: Model-based Reinforcement Learning for Feedback-control of Quantum System)" },
+                { name: "MQV K8 Consortia internal meeting (2023, June 14)", location: "Max Planck Institute of Quantum Optics Garching, Germany", role: "Attendee" },
+                { name: "Discussion meeting on Theoretical Quantum Computing (2023, May 2)", location: "Max Planck Institute of Quantum Optics Garching, Germany", role: "Attendee" },
+                { name: "Quantum Machine Learning (2023, Feb 14 - Feb 16)", location: "FAU and Max Planck Institute for Science of Light, Germany", role: "Attendee" },
+                { name: "Max Planck Institute for Science of Light and FAU Seminar (2022, Nov 29)", location: "Germany", role: "Invited Talk (Sangkha Borah, Topic: Reinforcement learning for quantum control)" },
+                { name: "Prof. Florian Marquardt group Seminar (2022, Jul 19)", location: "Max Planck Institute for Science of Light, Erlangen, Germany", role: "Invited Talk (Sangkha Borah, Topic: Measurement-based feedback control, Quantum error correction, and Deep reinforcement learning for closed and open loop control)" },
+                { name: "The 29th International Conference on Low Temperature Physics, LT29 (2022, Aug 18 - 24)", location: "Sapporo, Japan", role: "Poster (Sangkha Borah, Topic: MBE-CQEC: A new method for continuous quantum error correction)" },
+                { name: "Macroscopic Quantum Machines Seminar (2022, Apr 7)", location: "Okinawa Institute of Science and Technology Graduate University, Japan", role: "Invited Talk (Sangkha Borah, Topic: Measurement based estimator scheme for continuous quantum error correction)" },
+                { name: "International School and Symposium on Nanoscale Transport and phoTonics 2019 (2019, Nov 18 - 22)", location: "NTT Atsugi R&D Center, Japan", role: "Poster (Sangkha Borah, Topic: Ultra-fast Hot Carrier Relaxation Dynamics in 2D Materials)" },
+                { name: "Basics of PARAM-ISHAN Workshop (2018, Jan 28)", location: "IIT Guwahati, Assam, India", role: "Invited Talk (Sangkha Borah, Topic: Working with ab initio molecular dynamics)" },
+                { name: "REFLUX-201 (2018, Mar 16 - 18)", location: "IIT Guwahati, Assam, India", role: "Oral (Sangkha Borah, Topic: Ab Initio Molecular Dynamics Studies of Waterborne Selenium Species)" },
+                { name: "Atomistic Computer Simulation Techniques Workshop (2017, Oct 31 - Dec 1)", location: "Assam University, Silchar, India", role: "Resource Person, Invited (Sangkha Borah, Topic: A Simple Fortran 90 Program for Argon; Visualization and Analysis using VMD)" },
+                { name: "Recent Advances in Modelling Rare Events (RARE) (2017, Dec 7 - 10)", location: "Agra, India", role: "Poster (Sangkha Borah, Topic: AIMD Studies of Waterborne Selenium Species)" },
+                { name: "Department Day, Physics (2017, Mar 12)", location: "IIT Guwahati, Assam, India", role: "Oral (Sangkha Borah, Topic: Ab Initio Atomistic Simulation Techniques and Applications)" },
+                { name: "5th Symposium on Advanced Biological Inorganic Chemistry (SABIC) (2017, Jan 7 - 11)", location: "Kolkata, India", role: "Poster (Sangkha Borah, Topic: Ab Initio Molecular Dynamics Studies of Waterborne Se Species)" },
+                { name: "Research Conclave (2016, Mar 17 - 20)", location: "IIT Guwahati, Assam, India", role: "Poster (Sangkha Borah, Topic: First Principle Molecular Dynamics Studies of Various Selenium Species in Aqueous Environments)" },
+                { name: "National Workshop on Atomistic Simulation Techniques (2015, Dec 21 - Dec 24)", location: "IIT Guwahati, Assam, India", role: "Instructor (Sangkha Borah, Topic: Writing a Basic Molecular Dynamics Code in Fortran-90; Visualization using VMD)" },
+                { name: "XXVII IUPAP Conference on Computational Physics (CCP-2015) (2015, Dec 2 - 5)", location: "IIT Guwahati, Assam, India", role: "Poster (Sangkha Borah, Topic: Ab Initio Molecular Dynamics Studies of Selenic Acid in Water)" },
+                { name: "DST-SERB School on Density Functional Theory and Beyond (2014, Nov 24 - Dec 13)", location: "Maharaja Sayajirao University of Baroda, Vadodara, India", role: "Seminar (Sangkha Borah, Topic: Basics of Car-Parrinello Molecular Dynamics)" }
             ],
+
             outreach: [
-                 { name: "Science Day Demo", location: "IIT Hyderabad", role: "Live Quantum Computing Demo for High School Students" },
-                 { name: "Public Lecture", location: "Hyderabad Regional Library", role: "Introduction to Quantum Mechanics for General Public" }
+                 { name: "To be announced", location: "To be announced", role: "To be announced" }
             ],
             events_organized: [
                 { 
-                    title: "Workshop on Quantum Machine Learning", 
-                    date: "Dec 2024", 
-                    desc: "A 3-day intense workshop covering VQEs and Quantum Kernels, attended by over 50 participants from across India." 
+                    title: "To be announced", 
+                    date: "To be announced", 
+                    desc: "To be announced" 
                 },
-                { 
-                    title: "Winter School on Mathematical Physics", 
-                    date: "Jan 2025", 
-                    desc: "Lectures on topology and geometry in physics, featuring guest speakers from TIFR and IISc." 
-                }
             ],
             publications: {
                 recent: [
@@ -1577,8 +1623,24 @@ We welcome driven PhD Scholars and postdocs excited about Machine Learning, Quan
                     }
                 ],
                 news: [
-                    { title: "Cover Story in Physics Today", desc: "Our work on RL control was featured on the cover.", date: "Jan 2025", link: "#" },
-                    { title: "Best Paper Award", desc: "Won at QML Workshop Zurich.", date: "Dec 2024", link: "#" }
+                    {
+                        title: "Machine learning a useful tool for quantum control", 
+                        desc: "This news report a simulation study showing that deep reinforcement learning can autonomously perform real-time, measurement-based feedback control of a nonlinear quantum system—a particle in a double-well potential—using only noisy continuous weak measurements, successfully stabilizing it in the quantum ground-state superposition where no efficient conventional control method is known. Research article: Physical Review Letters 127, 190403 (2021). DOI: 10.1103/PhysRevLett.127.190403", 
+                        date: "Nov 4, 2021", 
+                        link: "https://phys.org/news/2021-11-machine-tool-quantum.html" 
+                    },
+                    { 
+                        title: "MBE-CQEC: A new scheme to correct quantum errors", 
+                        desc: "MBE-CQEC is a proposed continuous quantum error-correction scheme in which an external classical estimator continuously monitors noisy, partial parity (syndrome) information from entangled data qubits and, via real-time filtering of the measurement record, infers decoherence-induced rotations and applies feedback operations to correct them faster and with fewer ancillas than projective-measurement-based QEC, though at the cost of an estimator whose real-time simulation becomes exponentially hard as the number of qubits grows and which has not yet been experimentally demonstrated on a quantum processor. Research article: Physical Review Research 4, 033207 (2022). DOI: 10.1103/PhysRevResearch.4.033207", 
+                        date: "Sep 15, 2022", 
+                        link: "https://phys.org/news/2022-09-mbe-cqec-scheme-quantum-errors.html"  
+                    },
+                    { 
+                        title: "Pulses driven by artificial intelligence tame quantum systems", 
+                        desc: "The article reports on work from OIST showing that deep reinforcement learning can autonomously discover non‑intuitive sequences of control pulses (light or voltage) that rapidly cool and stabilize micro‑mechanical oscillators to their ground state in the presence of damping and environmental noise, achieving faster cooling than standard control schemes and pointing toward AI‑driven quantum control for ultra‑sensitive mechanical sensors and high‑speed quantum information processing and computing, including the prospect of “self‑driving” quantum machines analogous to self‑driving cars. Research article: Physical Review Research 4, L042038 (2022). DOI: 10.1103/PhysRevResearch.4.L042038", 
+                        date: "Nov 30, 2022", 
+                        link: "https://phys.org/news/2022-11-pulses-driven-artificial-intelligence-quantum.html" 
+                    }
                 ]
             },
             collaborators: [
@@ -1827,16 +1889,16 @@ We welcome driven PhD Scholars and postdocs excited about Machine Learning, Quan
         document.getElementById('visitors-container').innerHTML = groupData.team.visitors.map(createMemberRow).join('');
         document.getElementById('alumni-container').innerHTML = groupData.team.alumni.map(createMemberRow).join('');
 
-        // Render Grants
-        document.getElementById('grants-container').innerHTML = groupData.grants.map(grant => `
-            <div class="p-6 rounded-2xl bg-gray-50 border border-gray-100 flex flex-col items-center justify-center text-center hover:bg-white hover:shadow-md transition-all">
-                <div class="w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-sm mb-4 text-xl font-black text-gray-800 border border-gray-100">
-                    ${grant.name}
-                </div>
-                <h4 class="font-bold text-gray-900">${grant.name}</h4>
-                <p class="text-xs text-gray-500 mt-1">${grant.full}</p>
-            </div>
-        `).join('');
+        // // Render Grants
+        // document.getElementById('grants-container').innerHTML = groupData.grants.map(grant => `
+        //     <div class="p-6 rounded-2xl bg-gray-50 border border-gray-100 flex flex-col items-center justify-center text-center hover:bg-white hover:shadow-md transition-all">
+        //         <div class="w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-sm mb-4 text-xl font-black text-gray-800 border border-gray-100">
+        //             ${grant.name}
+        //         </div>
+        //         <h4 class="font-bold text-gray-900">${grant.name}</h4>
+        //         <p class="text-xs text-gray-500 mt-1">${grant.full}</p>
+        //     </div>
+        // `).join('');
 
         // Helper for Publications (REDESIGNED LAYOUT)
         function createDetailedPubRow(pub) {
@@ -1925,7 +1987,7 @@ We welcome driven PhD Scholars and postdocs excited about Machine Learning, Quan
 
         // Render Conferences (Talks/Attended)
         document.getElementById('conferences-container').innerHTML = groupData.conferences.map(conf => `
-            <div class="flex gap-4 items-start p-2">
+            <div class="flex gap-1 items-start p-1">
                 <div class="mt-2 w-2 h-2 rounded-full bg-blue-600 shrink-0"></div>
                 <div>
                     <h5 class="text-base font-bold text-gray-900">${conf.name}</h5>
