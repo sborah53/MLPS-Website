@@ -819,7 +819,7 @@ We welcome driven PhD Scholars and postdocs excited about Machine Learning, Quan
                     <h3 class="text-xl font-bold mb-6 flex items-center gap-2 text-black">
                         <i data-lucide="newspaper" class="w-5 h-5 text-gray-400"></i> In The News
                     </h3>
-                    <div id="news-container" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div id="news-container" class="grid grid-cols-1 md:grid-cols-1 gap-3">
                         <!-- JS Injected -->
                     </div>
                 </section>
@@ -1624,19 +1624,19 @@ We welcome driven PhD Scholars and postdocs excited about Machine Learning, Quan
                 ],
                 news: [
                     {
-                        title: "Machine learning a useful tool for quantum control", 
+                        title: "Phys.org: Machine learning a useful tool for quantum control", 
                         desc: "This news report a simulation study showing that deep reinforcement learning can autonomously perform real-time, measurement-based feedback control of a nonlinear quantum system—a particle in a double-well potential—using only noisy continuous weak measurements, successfully stabilizing it in the quantum ground-state superposition where no efficient conventional control method is known. Research article: Physical Review Letters 127, 190403 (2021). DOI: 10.1103/PhysRevLett.127.190403", 
                         date: "Nov 4, 2021", 
                         link: "https://phys.org/news/2021-11-machine-tool-quantum.html" 
                     },
                     { 
-                        title: "MBE-CQEC: A new scheme to correct quantum errors", 
+                        title: "Phys.org: MBE-CQEC - A new scheme to correct quantum errors", 
                         desc: "MBE-CQEC is a proposed continuous quantum error-correction scheme in which an external classical estimator continuously monitors noisy, partial parity (syndrome) information from entangled data qubits and, via real-time filtering of the measurement record, infers decoherence-induced rotations and applies feedback operations to correct them faster and with fewer ancillas than projective-measurement-based QEC, though at the cost of an estimator whose real-time simulation becomes exponentially hard as the number of qubits grows and which has not yet been experimentally demonstrated on a quantum processor. Research article: Physical Review Research 4, 033207 (2022). DOI: 10.1103/PhysRevResearch.4.033207", 
                         date: "Sep 15, 2022", 
                         link: "https://phys.org/news/2022-09-mbe-cqec-scheme-quantum-errors.html"  
                     },
                     { 
-                        title: "Pulses driven by artificial intelligence tame quantum systems", 
+                        title: "Phys.org: Pulses driven by artificial intelligence tame quantum systems", 
                         desc: "The article reports on work from OIST showing that deep reinforcement learning can autonomously discover non‑intuitive sequences of control pulses (light or voltage) that rapidly cool and stabilize micro‑mechanical oscillators to their ground state in the presence of damping and environmental noise, achieving faster cooling than standard control schemes and pointing toward AI‑driven quantum control for ultra‑sensitive mechanical sensors and high‑speed quantum information processing and computing, including the prospect of “self‑driving” quantum machines analogous to self‑driving cars. Research article: Physical Review Research 4, L042038 (2022). DOI: 10.1103/PhysRevResearch.4.L042038", 
                         date: "Nov 30, 2022", 
                         link: "https://phys.org/news/2022-11-pulses-driven-artificial-intelligence-quantum.html" 
@@ -1954,14 +1954,33 @@ We welcome driven PhD Scholars and postdocs excited about Machine Learning, Quan
         document.getElementById('publications-recent-container').innerHTML = groupData.publications.recent.map(createDetailedPubRow).join('');
         document.getElementById('publications-preprint-container').innerHTML = groupData.publications.preprints.map(createDetailedPubRow).join('');
         
-        // Render News
-        document.getElementById('news-container').innerHTML = groupData.publications.news.map(n => `
+        // // Render News
+
+        document.getElementById('news-container').innerHTML =
+        groupData.publications.news.map(n => `
             <div class="card p-6 border-l-4 border-blue-500">
-                <span class="text-xs font-bold text-gray-400 uppercase mb-2 block">${n.date}</span>
-                <h4 class="font-bold text-lg mb-1">${n.title}</h4>
-                <p class="text-sm text-gray-500">${n.desc}</p>
+            <span class="text-xs font-bold text-gray-400 uppercase mb-2 block">
+                ${n.date}
+            </span>
+
+            <!-- Clickable title -->
+            <h4 class="font-bold text-lg mb-1">
+                <a href="${n.link}" target="_blank" class="text-blue-600 hover:underline">
+                ${n.title}
+                </a>
+            </h4>
+
+            <p class="text-sm text-gray-500 mb-2">${n.desc}</p>
+
+            <!-- Clickable "DOI" label pointing to the same link for now -->
+            <a href="${n.link}" target="_blank"
+                class="text-blue-600 text-xs underline">
+                Find out more here!
+            </a>
             </div>
         `).join('');
+
+
 
         // Render Collaborators (UPDATED with Contact Info)
         document.getElementById('collaborators-container').innerHTML = groupData.collaborators.map(collab => `
