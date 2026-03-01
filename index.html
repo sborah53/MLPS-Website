@@ -1861,11 +1861,9 @@ We welcome driven PhD Scholars and postdocs excited about Machine Learning, Quan
             
 
             gallery: [
-                { title: "Lab Birthday Party", date: "Sep 2025", img: "assets/images/GL-2025-2.png" },
-                { title: "Celebrating Achievements", date: "Jan 2026", img: "assets/images/GL-2026-1.png" },
-                { title: "Celebrating Achievements", date: "Feb 2026", img: "assets/images/GL-2026-3.png" },
-                { title: "Annual Science Day", date: "Feb 2024", img: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?q=80&w=600&auto=format&fit=crop" },
-                { title: "Farewell Dinner", date: "Dec 2023", img: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=600&auto=format&fit=crop" }
+                { title: "", date: "2025: Sangkha got a new flat!", img: "assets/gallery/GP-02.jpg" },
+                { title: "", date: "2026: New year celebration!", img: "assets/gallery/GP-01.jpg" },
+                { title: "", date: "2026: Sangkha brought some Assamese cakes!", img: "assets/gallery/GP-03.jpg" },
             ]
         };
 
@@ -2220,17 +2218,17 @@ We welcome driven PhD Scholars and postdocs excited about Machine Learning, Quan
         `).join('');
 
         // Render Gallery
-        // document.getElementById('gallery-container').innerHTML = groupData.gallery.map(item => `
-        //     <div class="card p-3 group">
-        //         <div class="overflow-hidden rounded-xl h-64 bg-gray-100 mb-4">
-        //             <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-        //         </div>
-        //         <div class="px-2 pb-2">
-        //             <span class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1 block">${item.date}</span>
-        //             <h3 class="text-lg font-bold text-black">${item.title}</h3>
-        //         </div>
-        //     </div>
-        // `).join('');
+        document.getElementById('gallery-container').innerHTML = groupData.gallery.map(item => `
+            <div class="card p-3 group">
+                <div class="overflow-hidden rounded-xl h-64 bg-gray-100 mb-4">
+                    <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                </div>
+                <div class="px-2 pb-2">
+                    <span class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1 block">${item.date}</span>
+                    <h3 class="text-lg font-bold text-black">${item.title}</h3>
+                </div>
+            </div>
+        `).join('');
 
         // Re-run icons for dynamically added content
         lucide.createIcons();
