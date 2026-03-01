@@ -137,8 +137,7 @@
 
         <!-- ================= VIEW: HOME ================= -->
         <div id="view-home" class="view-section fade-in">
-            <!-- Hero Section -->
-            <section class="mb-24 text-center md:text-left">
+            <section class="mb-16 text-center md:text-left">
                 <div class="flex flex-col md:flex-row items-center justify-between">
                     <div class="max-w-3xl py-12">
                         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-200/50 text-gray-600 text-[10px] font-bold uppercase tracking-widest mb-6">
@@ -160,7 +159,6 @@
                             </a>
                         </div>
                     </div>
-                    <!-- Animated Abstract Graphic -->
                     <div class="relative w-64 h-64 md:w-96 md:h-96 opacity-60">
                         <div class="absolute inset-0 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl animate-blob"></div>
                         <div class="absolute top-0 -right-4 w-72 h-72 bg-purple-400 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000"></div>
@@ -169,51 +167,78 @@
                 </div>
             </section>
 
-             <!-- Research Areas (Horizontal Scroll) -->
-             <section class="mb-24">
-                <div class="flex items-center justify-between mb-8">
+             <section class="mb-16">
+                <div class="flex items-center justify-between mb-6">
                     <h2 class="text-2xl font-semibold heading-section">Primary Research Areas</h2>
                     <div class="flex gap-2">
                          <button onclick="document.getElementById('areas-container').scrollBy({left: -300, behavior: 'smooth'})" class="p-2 rounded-full bg-white border hover:bg-gray-50"><i data-lucide="arrow-left" class="w-4 h-4"></i></button>
                          <button onclick="document.getElementById('areas-container').scrollBy({left: 300, behavior: 'smooth'})" class="p-2 rounded-full bg-white border hover:bg-gray-50"><i data-lucide="arrow-right" class="w-4 h-4"></i></button>
                     </div>
                 </div>
-                <div id="areas-container" class="flex overflow-x-auto gap-6 pb-8 snap-x-mandatory hide-scrollbar">
-                    <!-- Injected JS -->
-                </div>
+                <div id="areas-container" class="flex overflow-x-auto gap-6 pb-4 snap-x-mandatory hide-scrollbar">
+                    </div>
             </section>
 
-            <!-- Highlights (Bento Grid) -->
-            <section class="mb-24">
-                <div class="flex items-center justify-between mb-8">
+            <section class="mb-16">
+                <div class="flex items-center justify-between mb-6">
                     <h2 class="text-3xl font-semibold heading-section">Highlights</h2>
                 </div>
-                <div id="highlights-container" class="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-6 h-auto md:h-[600px]">
-                    <!-- Injected via JS -->
-                </div>
+                <div id="highlights-container" class="flex flex-col gap-8">
+                    </div>
             </section>
 
-            <!-- Openings / Contact Banner -->
-            <section id="openings" class="mb-24">
-                <div class="bg-black rounded-3xl p-10 md:p-16 text-center relative overflow-hidden">
-                    <div class="relative z-10">
-                        <h2 class="text-3xl font-bold text-white mb-4">Open Positions</h2>
-                        <p class="text-gray-400 max-w-2xl mx-auto mb-8 text-lg">
-We welcome driven PhD Scholars and postdocs excited about Machine Learning, Quantum Computing, and Quantum Technologies, especially in Quantum Error Correction, Quantum Machine Learning, and Quantum Neuromorphic Computing.
+            <section id="openings" class="mb-12 relative group">
+                <div class="bg-black rounded-[2rem] p-10 md:p-16 text-center relative overflow-hidden border border-white/10 shadow-2xl">
+                    
+                    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+                        <div class="absolute -top-[30%] -left-[10%] w-[60%] h-[60%] bg-blue-600/30 rounded-full blur-[100px] mix-blend-screen group-hover:bg-blue-500/40 transition-all duration-1000"></div>
+                        <div class="absolute -bottom-[30%] -right-[10%] w-[60%] h-[60%] bg-purple-600/30 rounded-full blur-[100px] mix-blend-screen group-hover:bg-purple-500/40 transition-all duration-1000"></div>
+                    </div>
+
+                    <div class="relative z-10 flex flex-col items-center">
+                        
+                        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-500/10 border border-green-500/20 text-green-400 text-xs font-bold uppercase tracking-widest mb-6">
+                            <span class="relative flex h-2 w-2">
+                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                            </span>
+                            Actively Recruiting
+                        </div>
+
+                        <h2 class="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-500 mb-6">
+                            Join the MLPS Group
+                        </h2>
+
+                        <p class="text-gray-400 max-w-2xl mx-auto mb-8 text-lg leading-relaxed font-light">
+                            We welcome driven researchers excited about the intersection of <span class="text-white font-medium">Artificial Intelligence</span> and <span class="text-white font-medium">Quantum Technologies</span>.
                         </p>
-                        <div class="flex flex-col md:flex-row justify-center gap-4">
-                            <a href="mailto:sangkha.borah@phy.iith.ac.in" class="bg-white text-black px-8 py-3 rounded-full font-bold hover:bg-gray-100 transition-colors inline-flex items-center justify-center gap-2">
-                                <i data-lucide="mail" class="w-4 h-4"></i> Contact PI
+
+                        <div class="flex flex-wrap justify-center gap-3 mb-10">
+                            <span class="px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-sm text-gray-300 backdrop-blur-md flex items-center gap-2 shadow-sm">
+                                <i data-lucide="graduation-cap" class="w-4 h-4"></i> PhD Scholars
+                            </span>
+                            <span class="px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-sm text-gray-300 backdrop-blur-md flex items-center gap-2 shadow-sm">
+                                <i data-lucide="microscope" class="w-4 h-4"></i> Postdocs
+                            </span>
+                            <span class="px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-sm text-gray-300 backdrop-blur-md flex items-center gap-2 shadow-sm">
+                                <i data-lucide="terminal-square" class="w-4 h-4"></i> Project Students
+                            </span>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row justify-center gap-4 w-full sm:w-auto">
+                            <a href="mailto:sangkha.borah@phy.iith.ac.in" class="bg-white text-black px-8 py-3.5 rounded-full font-bold hover:bg-gray-100 hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] transition-all duration-300 flex items-center justify-center gap-2">
+                                <i data-lucide="mail" class="w-5 h-5"></i> Contact PI
                             </a>
-                            <button onclick="switchTab('about')" class="bg-transparent border border-gray-700 text-white px-8 py-3 rounded-full font-medium hover:bg-gray-900 transition-colors">
+                            <button onclick="switchTab('about')" class="bg-white/5 backdrop-blur-md border border-white/20 text-white px-8 py-3.5 rounded-full font-medium hover:bg-white/10 transition-colors flex items-center justify-center">
                                 Learn More
                             </button>
                         </div>
+                        
                     </div>
-                    <!-- Decor -->
-                    <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-blue-900/20 to-purple-900/20 pointer-events-none"></div>
                 </div>
             </section>
+
+            
         </div>
 
         <!-- ================= VIEW: ABOUT PI ================= -->
@@ -1065,32 +1090,53 @@ We welcome driven PhD Scholars and postdocs excited about Machine Learning, Quan
             ],
             highlights: [
                 {
-                    type: "Latest Paper I",
+                    type: "Publication",
                     title: "Non-Markovian feedback for optimized quantum error correction",
-                    desc: "Physical Review Letters (2025)",
+                    desc: "Physical Review Letters, 134, 020601 (2025)",
+                    expandedDesc: "Bosonic codes allow the encoding of a logical qubit in a single component device, utilizing the infinitely large Hilbert space of a harmonic oscillator. In particular, the Gottesman-Kitaev-Preskill code has recently been demonstrated to be correctable well beyond the break-even point of the best passive encoding in the same system. Current approaches to quantum error correction (QEC) for this system are based on protocols that use feedback, but the response is based only on the latest measurement outcome. In our work, we use the recently proposed Feedback-GRAPE (Gradient Ascent Pulse Engineering with Feedback) method to train a recurrent neural network that provides a QEC scheme based on memory, responding in a non-Markovian way to the full history of previous measurement outcomes, optimizing all subsequent unitary operations. This approach significantly outperforms current strategies and paves the way for more powerful measurement-based QEC protocols.",
                     link: "https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.134.020601",
-                    color: "bg-blue-255 text-blue-900",
-                    size: "md:col-span-1 md:row-span-1", // Big Square
-                    bgImage: "assets/paper_images/prl2025_cover.png"
+                    bgImage: "assets/paper_images/gkp2025b.jpg"
                 },
                 {
-                    type: "Latest Paper II",
-                    title: "No-Collapse Feedback Control",
-                    desc: "Published in Physical Review Letters (2023): Achieving accurate quantum feedback via conditional state tomography.",
+                    type: "Publication",
+                    title: "No-collapse accurate quantum feedback control via conditional state tomography",
+                    desc: "Physical Review Letters, 131, 210803 (2023)",
+                    expandedDesc: "The effectiveness of measurement-based feedback control protocols is hampered by the presence of measurement noise, which affects the ability to accurately infer the underlying dynamics of a quantum system from noisy continuous measurement records to determine an accurate control strategy. To circumvent such limitations, this Letter explores a real-time stochastic state estimation approach that enables noise-free monitoring of the conditional dynamics including the full density matrix of the quantum system using noisy measurement records within a single quantum trajectory—a method we name as “conditional state tomography.” This, in turn, enables the development of precise measurement-based feedback control strategies that lead to effective control of quantum systems by essentially mitigating the constraints imposed by measurement noise and has potential applications in various feedback quantum control scenarios. This approach is particularly useful for reinforcement-learning-(RL) based control, where the RL-agent can be trained with arbitrary conditional averages of observables, and/or the full density matrix as input (observation), to quickly and accurately learn control strategies.",
                     link: "https://doi.org/10.1103/PhysRevLett.131.210803",
-                    color: "bg-white border border-gray-100",
-                    size: "md:col-span-1 md:row-span-1",
                     bgImage: "assets/paper_images/borah2023_prl_g.png" 
                 },
                 {
-                    type: "news",
+                    type: "Publication",
+                    title: "Measurement-Based Feedback Quantum Control with Deep Reinforcement Learning for a Double-Well Nonlinear Potential",
+                    desc: "Physical Review Letters, 127(19), 190403 (2021)",
+                    expandedDesc: "Closed loop quantum control uses measurement to control the dynamics of a quantum system to achieve either a desired target state or target dynamics. In the case when the quantum Hamiltonian is quadratic in x and p, there are known optimal control techniques to drive the dynamics toward particular states, e.g., the ground state. However, for nonlinear Hamiltonian such control techniques often fail. We apply deep reinforcement learning (DRL), where an artificial neural agent explores and learns to control the quantum evolution of a highly nonlinear system (double well), driving the system toward the ground state with high fidelity. We consider a DRL strategy which is particularly motivated by experiment where the quantum system is continuously but weakly measured. This measurement is then fed back to the neural agent and used for training. We show that the DRL can effectively learn counterintuitive strategies to cool the system to a nearly pure“cat” state, which has a high overlap fidelity with the true ground state.",
+                    link: "https://doi.org/10.1103/PhysRevLett.127.190403",
+                    bgImage: "assets/paper_images/machine-learning-a-use.jpg" 
+                },
+                {
+                    type: "Publication",
+                    title: "Accelerated Motional Cooling with Deep Reinforcement Learning",
+                    desc: "Physical Review Research (Letter), 4, L042038 (2022)",
+                    expandedDesc: "Achieving fast cooling of motional modes is a prerequisite for leveraging such bosonic quanta for high-speed quantum information processing. In this work, we address the aspect of reducing the time limit for cooling below that constrained by the conventional sideband cooling techniques; and propose a scheme to apply deep reinforcement learning (DRL) to achieve this. In particular, we have shown how the scheme can be used effectively to accelerate the dynamic motional cooling of a macroscopic magnonic sphere, and how it can be uniformly extended for more complex systems, for example, a tripartite opto-magno-mechanical system to obtain cooling of the motional mode below the time bound of coherent cooling. While conventional sideband cooling methods do not work beyond the well-known rotating wave approximation (RWA) regimes, our proposed DRL scheme can be applied uniformly to regimes operating within and beyond the RWA, and thus this offers a new and complete toolkit for rapid control and generation of macroscopic quantum states for application in quantum technologies.",
+                    link: "https://doi.org/10.1103/PhysRevResearch.4.L042038",
+                    bgImage: "assets/paper_images/sarma2022_prr_cover.jpg" 
+                },
+                {
+                    type: "Publication",
+                    title: "Measurement based estimator scheme for continuous quantum error correction",
+                    desc: "Physical Review Research 4, 033207 (2022)",
+                    expandedDesc: "Canonical discrete quantum error correction (DQEC) schemes use projective von Neumann measurements on stabilizers to discretize the error syndromes into a finite set, and fast unitary gates are applied to recover the corrupted information. Quantum error correction (QEC) based on continuous measurement, known as continuous quantum error correction (CQEC), in principle, can be executed faster than DQEC and can also be resource efficient. However, CQEC requires meticulous filtering of noisy continuous measurement data to reliably extract error syndromes on the basis of which errors could be detected. In this paper, we show that by constructing a measurement-based estimator (MBE) of the logical qubit to be protected, which is driven by the noisy continuous measurement currents of the stabilizers, it is possible to accurately track the errors occurring on the physical qubits in real time. We use this MBE to develop a continuous quantum error correction (MBE-CQEC) scheme that can protect the logical qubit to a high degree, surpassing the performance of DQEC, and also allows QEC to be conducted either immediately or in delayed time with instantaneous feedbacks.",
+                    link: "https://doi.org/10.1103/PhysRevResearch.4.033207",
+                    bgImage: "assets/paper_images/borah2022_prr_cover.jpg" 
+                },
+                {
+                    type: "News",
                     title: "New Joining",
-                    desc: "Subodh Roushan, Akash Kumar Saw and Anjana K have joined the group as PhD scholars",
+                    desc: "Akash Kumar Saw, Anjana K and Subodh Roshan have joined the group as PhD scholars.",
+                    expandedDesc: "We are thrilled to welcome our new cohort of PhD scholars. They will be focusing on Quantum Error Correction, Quantum Machine Learning, and Neuromorphic Quantum Computing, respectively. We look forward to their contributions and growth in the field.",
                     link: "#",
-                    color: "bg-purple-50 text-purple-900",
-                    size: "md:col-span-1 md:row-span-1",
-                    bgImage: ""
-                }
+                    bgImage: "assets/gallery/new_joining_2025.jpg" // Will show a placeholder if empty
+                },
             ],
             team: {
                 // Manually add PI to the team data structure for Group View consistency
@@ -1877,65 +1923,75 @@ We welcome driven PhD Scholars and postdocs excited about Machine Learning, Quan
         document.getElementById('pi-bio').textContent = groupData.pi.bio;
         document.getElementById('pi-image').src = groupData.pi.image;
 
-        // Render Research Areas (Horizontal Scroll)
+       // Render Research Areas (Horizontal Scroll)
         const areasContainer = document.getElementById('areas-container');
         groupData.researchAreas.forEach(area => {
             const div = document.createElement('div');
-            div.className = "min-w-[200px] snap-center p-6 bg-white rounded-2xl border border-gray-100 shadow-sm flex flex-col items-center text-center hover:shadow-md transition-shadow cursor-default";
+            div.className = "min-w-[300px] snap-center p-6 bg-white rounded-2xl border border-gray-100 shadow-sm flex flex-col items-center text-center hover:shadow-md transition-shadow cursor-default";
             div.innerHTML = `
                 <div class="w-12 h-12 bg-gray-50 rounded-full flex items-center justify-center mb-4 text-black">
                     <i data-lucide="${area.icon}" class="w-6 h-6"></i>
                 </div>
                 <h4 class="font-bold text-sm mb-1">${area.title}</h4>
-                <p class="text-xs text-gray-500">${area.desc}</p>
+                <p class="text-base text-gray-500">${area.desc}</p>
             `;
             areasContainer.appendChild(div);
         });
 
-        // Render Highlights (Bento Grid with Images)
+        // Render Highlights (1/2 Image, 1/2 Text & Details)
         const highlightContainer = document.getElementById('highlights-container');
-        groupData.highlights.forEach(item => {
-            const div = document.createElement('div');
-            div.className = `card flex flex-col justify-between relative group ${item.size} ${item.color}`;
+        highlightContainer.innerHTML = ''; // Clear previous items if re-rendering
+
+        groupData.highlights.forEach((item, index) => {
+            const collapseId = `highlight-details-${index}`;
             
-            // Background Image Overlay
-            let bgOverlay = '';
-            let textClass = '';
-            if (item.bgImage) {
-                bgOverlay = `
-                    <div class="absolute inset-0 z-0">
-                        <img src="${item.bgImage}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+            // Image setup (Fallback placeholder if no image is provided)
+            const imageHtml = item.bgImage 
+                ? `<img src="${item.bgImage}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">`
+                : `<div class="w-full h-full bg-gray-50 flex items-center justify-center border-r border-gray-100"><i data-lucide="image" class="w-12 h-12 text-gray-300"></i></div>`;
+
+            // Collapsible details setup
+            const detailsHtml = item.expandedDesc ? `
+                <div class="mt-4 border-t border-gray-100 pt-4">
+                    <button onclick="toggleCourseInfo('${collapseId}')" class="text-sm font-semibold text-blue-600 hover:text-blue-800 flex items-center gap-1 transition-colors">
+                        Read Details <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                    </button>
+                    <div id="${collapseId}" class="hidden mt-3 text-sm text-gray-600 leading-relaxed bg-gray-50 p-4 rounded-xl border border-gray-100">
+                        ${item.expandedDesc}
                     </div>
-                `;
-                textClass = 'text-white';
-            } else {
-                 textClass = item.color.includes('text-white') ? 'text-white' : 'text-black';
-            }
+                </div>
+            ` : '';
 
-            // Decorative background for 'featured' if no image
-            let decor = '';
-            if(item.type === 'featured' && !item.bgImage) {
-                decor = `<div class="absolute -right-10 -bottom-10 w-48 h-48 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>`;
-            }
-
+            // Card structure
+            const div = document.createElement('div');
+            // CHANGED HERE: md:grid-cols-3 is now md:grid-cols-2
+            div.className = `card flex flex-col md:grid md:grid-cols-2 bg-white group overflow-hidden border border-gray-100 hover:shadow-lg transition-shadow`;
+            
             div.innerHTML = `
-                ${bgOverlay}
-                ${decor}
-                <div class="relative z-10 p-8 flex flex-col h-full justify-between ${textClass}">
+                <div class="h-64 md:h-auto min-h-[300px] relative overflow-hidden bg-gray-100">
+                    ${imageHtml}
+                </div>
+                
+                <div class="p-6 md:p-8 flex flex-col justify-center bg-white relative z-10">
                     <div>
-                        <span class="text-xs font-bold uppercase tracking-wider opacity-80 mb-2 block">${item.type}</span>
-                        <h3 class="text-2xl font-bold mb-3 leading-tight">${item.title}</h3>
-                        <p class="opacity-90 text-sm leading-relaxed">${item.desc}</p>
+                        <span class="text-xs font-bold uppercase tracking-wider text-blue-600 mb-2 block">${item.type}</span>
+                        <h3 class="text-2xl font-bold mb-3 leading-tight text-gray-900">${item.title}</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">${item.desc}</p>
                     </div>
-                    <a href="${item.link}" class="mt-6 inline-flex items-center text-sm font-semibold hover:opacity-70 transition-opacity">
-                        View Details <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
+                    
+                    ${detailsHtml}
+                    
+                    ${item.link && item.link !== '#' ? `
+                    <a href="${item.link}" target="_blank" class="mt-6 inline-flex items-center text-sm font-bold text-gray-900 hover:text-blue-600 transition-colors">
+                        Go to Link <i data-lucide="arrow-right" class="w-4 h-4 ml-1 relative top-[1px]"></i>
                     </a>
+                    ` : ''}
                 </div>
             `;
             highlightContainer.appendChild(div);
         });
 
+        
         // Helper for Member Rows (Updated with Social Dock)
         function createMemberRow(member) {
             
